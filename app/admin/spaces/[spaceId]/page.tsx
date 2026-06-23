@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { updateSpace, deleteSpace, createLesson } from "../../actions";
 import { TextField, TextArea, Toggle } from "@/components/admin/Field";
+import { IS_DEMO, demoSpaceById, demoLessonsForSpace } from "@/lib/demo";
 import type { Lesson, Space } from "@/lib/types";
 
 export default async function EditSpacePage({
@@ -10,22 +11,32 @@ export default async function EditSpacePage({
 }: {
   params: { spaceId: string };
 }) {
-  const supabase = createClient();
-  const { data: space } = await supabase
-    .from("spaces")
-    .select("*")
-    .eq("id", params.spaceId)
-    .maybeSingle();
+  let s: Space;
+  let list: Lesson[];
 
-  if (!space) notFound();
-  const s = space as Space;
+  if (IS_DEMO) {
+    const demo = demoSpaceById(params.spaceId);
+    if (!demo) notFound();
+    s = demo;
+    list = demoLessonsForSpace(demo.id);
+  } else {
+    const supabase = createClient();
+    const { data: space } = await supabase
+      .from("spaces")
+      .select("*")
+      .eq("id", params.spaceId)
+      .maybeSingle();
 
-  const { data: lessons } = await supabase
-    .from("lessons")
-    .select("*")
-    .eq("space_id", s.id)
-    .order("position", { ascending: true });
-  const list = (lessons ?? []) as Lesson[];
+    if (!space) notFound();
+    s = space as Space;
+
+    const { data: lessons } = await supabase
+      .from("lessons")
+      .select("*")
+      .eq("space_id", s.id)
+      .order("position", { ascending: true });
+    list = (lessons ?? []) as Lesson[];
+  }
 
   return (
     <div className="space-y-10">

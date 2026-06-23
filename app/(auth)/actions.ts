@@ -2,6 +2,7 @@
 
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
+import { IS_DEMO } from "@/lib/demo";
 
 /**
  * Email/password sign in. On success, send the user to the hub (or the
@@ -9,6 +10,7 @@ import { createClient } from "@/lib/supabase/server";
  * whether they need to subscribe.
  */
 export async function signIn(formData: FormData) {
+  if (IS_DEMO) redirect("/hub");
   const email = String(formData.get("email") ?? "").trim();
   const password = String(formData.get("password") ?? "");
   const redirectTo = String(formData.get("redirect") ?? "/hub");
@@ -28,6 +30,7 @@ export async function signIn(formData: FormData) {
  * immediately. Either way we route them toward subscribing.
  */
 export async function signUp(formData: FormData) {
+  if (IS_DEMO) redirect("/hub");
   const email = String(formData.get("email") ?? "").trim();
   const password = String(formData.get("password") ?? "");
   const fullName = String(formData.get("full_name") ?? "").trim();

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
+import { IS_DEMO, demoSpaceBySlug, demoLessonsForSpace } from "@/lib/demo";
 import type { Lesson, Space } from "@/lib/types";
 
 /**
@@ -12,24 +13,33 @@ export default async function SpacePage({
 }: {
   params: { spaceSlug: string };
 }) {
-  const supabase = createClient();
+  let s: Space;
+  let list: Lesson[];
 
-  const { data: space } = await supabase
-    .from("spaces")
-    .select("*")
-    .eq("slug", params.spaceSlug)
-    .maybeSingle();
+  if (IS_DEMO) {
+    const demo = demoSpaceBySlug(params.spaceSlug);
+    if (!demo) notFound();
+    s = demo;
+    list = demoLessonsForSpace(demo.id);
+  } else {
+    const supabase = createClient();
+    const { data: space } = await supabase
+      .from("spaces")
+      .select("*")
+      .eq("slug", params.spaceSlug)
+      .maybeSingle();
 
-  if (!space) notFound();
-  const s = space as Space;
+    if (!space) notFound();
+    s = space as Space;
 
-  const { data: lessons } = await supabase
-    .from("lessons")
-    .select("*")
-    .eq("space_id", s.id)
-    .order("position", { ascending: true });
+    const { data: lessons } = await supabase
+      .from("lessons")
+      .select("*")
+      .eq("space_id", s.id)
+      .order("position", { ascending: true });
 
-  const list = (lessons ?? []) as Lesson[];
+    list = (lessons ?? []) as Lesson[];
+  }
 
   return (
     <div className="mx-auto max-w-4xl px-8 py-10">

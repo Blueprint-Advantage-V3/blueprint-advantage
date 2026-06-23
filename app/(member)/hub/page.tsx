@@ -1,11 +1,17 @@
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
+import { IS_DEMO, demoSpaces } from "@/lib/demo";
 
 /**
  * Hub entry point. Sends the member to the first space (Start Here sits
  * at position 0, so they always land there first).
  */
 export default async function HubIndex() {
+  if (IS_DEMO) {
+    const first = demoSpaces()[0];
+    if (first) redirect(`/hub/${first.slug}`);
+  }
+
   const supabase = createClient();
   const { data: firstSpace } = await supabase
     .from("spaces")

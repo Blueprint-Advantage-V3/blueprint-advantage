@@ -3,6 +3,7 @@ import { getMemberContext, isAdmin } from "@/lib/subscription";
 import { createClient } from "@/lib/supabase/server";
 import { Sidebar } from "@/components/layout/Sidebar";
 import { TopBar } from "@/components/layout/TopBar";
+import { IS_DEMO, demoSpaces } from "@/lib/demo";
 import type { Space } from "@/lib/types";
 
 /**
@@ -26,16 +27,28 @@ export default async function MemberLayout({
 
   // Load the spaces for the sidebar. Admins see unpublished ones too
   // (RLS already enforces this; the order is by position).
-  const supabase = createClient();
-  const { data: spaces } = await supabase
-    .from("spaces")
-    .select("*")
-    .order("position", { ascending: true });
+  let spaces: Space[];
+  if (IS_DEMO) {
+    spaces = demoSpaces();
+  } else {
+    const supabase = createClient();
+    const { data } = await supabase
+      .from("spaces")
+      .select("*")
+      .order("position", { ascending: true });
+    spaces = (data ?? []) as Space[];
+  }
 
   return (
     <div className="flex h-screen overflow-hidden bg-canvas">
-      <Sidebar spaces={(spaces ?? []) as Space[]} isAdmin={isAdmin(profile)} />
+      <Sidebar spaces={spaces} isAdmin={isAdmin(profile)} />
       <div className="flex flex-1 flex-col overflow-hidden">
+        {IS_DEMO && (
+          <div className="flex-none bg-amber-500/15 px-6 py-1.5 text-center text-xs text-amber-300">
+            🔍 Demo mode — sample content, no login required. Connect Supabase +
+            Stripe to go live.
+          </div>
+        )}
         <TopBar
           fullName={profile?.full_name ?? user.email ?? "Member"}
           email={user.email ?? ""}

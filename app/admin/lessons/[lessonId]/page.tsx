@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { updateLesson, deleteLesson } from "../../actions";
 import { TextField, TextArea, Toggle } from "@/components/admin/Field";
+import { IS_DEMO, demoLessonById } from "@/lib/demo";
 import type { Lesson } from "@/lib/types";
 
 export default async function EditLessonPage({
@@ -10,15 +11,23 @@ export default async function EditLessonPage({
 }: {
   params: { lessonId: string };
 }) {
-  const supabase = createClient();
-  const { data: lesson } = await supabase
-    .from("lessons")
-    .select("*")
-    .eq("id", params.lessonId)
-    .maybeSingle();
+  let l: Lesson;
 
-  if (!lesson) notFound();
-  const l = lesson as Lesson;
+  if (IS_DEMO) {
+    const demo = demoLessonById(params.lessonId);
+    if (!demo) notFound();
+    l = demo;
+  } else {
+    const supabase = createClient();
+    const { data: lesson } = await supabase
+      .from("lessons")
+      .select("*")
+      .eq("id", params.lessonId)
+      .maybeSingle();
+
+    if (!lesson) notFound();
+    l = lesson as Lesson;
+  }
 
   return (
     <div className="space-y-8">

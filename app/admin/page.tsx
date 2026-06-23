@@ -1,12 +1,21 @@
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
+import { IS_DEMO, DEMO_SPACES, DEMO_LESSONS } from "@/lib/demo";
 
 export const metadata = { title: "Admin" };
 
 export default async function AdminDashboard() {
-  const supabase = createClient();
-  const [{ count: spaceCount }, { count: lessonCount }, { count: memberCount }] =
-    await Promise.all([
+  let spaceCount = 0;
+  let lessonCount = 0;
+  let memberCount = 0;
+
+  if (IS_DEMO) {
+    spaceCount = DEMO_SPACES.length;
+    lessonCount = DEMO_LESSONS.length;
+    memberCount = 1;
+  } else {
+    const supabase = createClient();
+    const [spaces, lessons, members] = await Promise.all([
       supabase.from("spaces").select("*", { count: "exact", head: true }),
       supabase.from("lessons").select("*", { count: "exact", head: true }),
       supabase
@@ -14,11 +23,15 @@ export default async function AdminDashboard() {
         .select("*", { count: "exact", head: true })
         .in("status", ["active", "trialing"]),
     ]);
+    spaceCount = spaces.count ?? 0;
+    lessonCount = lessons.count ?? 0;
+    memberCount = members.count ?? 0;
+  }
 
   const stats = [
-    { label: "Spaces", value: spaceCount ?? 0 },
-    { label: "Lessons", value: lessonCount ?? 0 },
-    { label: "Active members", value: memberCount ?? 0 },
+    { label: "Spaces", value: spaceCount },
+    { label: "Lessons", value: lessonCount },
+    { label: "Active members", value: memberCount },
   ];
 
   return (

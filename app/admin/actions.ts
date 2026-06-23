@@ -4,6 +4,18 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { getMemberContext, isAdmin } from "@/lib/subscription";
+import { IS_DEMO } from "@/lib/demo";
+
+/**
+ * In demo mode, writes are a no-op (there's no database) — bounce back so
+ * the forms don't error. Returns true if the caller should stop here.
+ */
+function blockedInDemo(redirectTo: string): boolean {
+  if (IS_DEMO) {
+    redirect(redirectTo);
+  }
+  return false;
+}
 
 /** Throws (via redirect) if the caller isn't an admin. */
 async function assertAdmin() {
@@ -23,6 +35,7 @@ function slugify(input: string): string {
 // ── Spaces ───────────────────────────────────────────────────────
 
 export async function createSpace(formData: FormData) {
+  blockedInDemo("/admin/spaces");
   await assertAdmin();
   const name = String(formData.get("name") ?? "").trim();
   if (!name) return;
@@ -49,6 +62,7 @@ export async function createSpace(formData: FormData) {
 }
 
 export async function updateSpace(formData: FormData) {
+  blockedInDemo("/admin/spaces");
   await assertAdmin();
   const id = String(formData.get("id"));
   const supabase = createClient();
@@ -71,6 +85,7 @@ export async function updateSpace(formData: FormData) {
 }
 
 export async function deleteSpace(formData: FormData) {
+  blockedInDemo("/admin/spaces");
   await assertAdmin();
   const id = String(formData.get("id"));
   const supabase = createClient();
@@ -83,6 +98,7 @@ export async function deleteSpace(formData: FormData) {
 // ── Lessons ──────────────────────────────────────────────────────
 
 export async function createLesson(formData: FormData) {
+  blockedInDemo(`/admin/spaces/${String(formData.get("space_id"))}`);
   await assertAdmin();
   const spaceId = String(formData.get("space_id"));
   const title = String(formData.get("title") ?? "").trim();
@@ -111,6 +127,7 @@ export async function createLesson(formData: FormData) {
 }
 
 export async function updateLesson(formData: FormData) {
+  blockedInDemo(`/admin/spaces/${String(formData.get("space_id"))}`);
   await assertAdmin();
   const id = String(formData.get("id"));
   const spaceId = String(formData.get("space_id"));
@@ -134,6 +151,7 @@ export async function updateLesson(formData: FormData) {
 }
 
 export async function deleteLesson(formData: FormData) {
+  blockedInDemo(`/admin/spaces/${String(formData.get("space_id"))}`);
   await assertAdmin();
   const id = String(formData.get("id"));
   const spaceId = String(formData.get("space_id"));

@@ -8,6 +8,11 @@ import { NextResponse, type NextRequest } from "next/server";
  * DB for subscription status on every single request.
  */
 export async function updateSession(request: NextRequest) {
+  // Local demo mode: no auth, no redirects — let every route render.
+  if (process.env.NEXT_PUBLIC_DEMO_MODE === "true") {
+    return NextResponse.next({ request });
+  }
+
   let supabaseResponse = NextResponse.next({ request });
 
   const supabase = createServerClient(

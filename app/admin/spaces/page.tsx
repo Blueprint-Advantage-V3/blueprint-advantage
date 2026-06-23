@@ -2,18 +2,23 @@ import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import { createSpace } from "../actions";
 import { TextField, TextArea, Toggle } from "@/components/admin/Field";
+import { IS_DEMO, demoSpaces } from "@/lib/demo";
 import type { Space } from "@/lib/types";
 
 export const metadata = { title: "Spaces" };
 
 export default async function AdminSpacesPage() {
-  const supabase = createClient();
-  const { data: spaces } = await supabase
-    .from("spaces")
-    .select("*")
-    .order("position", { ascending: true });
-
-  const list = (spaces ?? []) as Space[];
+  let list: Space[];
+  if (IS_DEMO) {
+    list = demoSpaces();
+  } else {
+    const supabase = createClient();
+    const { data: spaces } = await supabase
+      .from("spaces")
+      .select("*")
+      .order("position", { ascending: true });
+    list = (spaces ?? []) as Space[];
+  }
 
   return (
     <div>

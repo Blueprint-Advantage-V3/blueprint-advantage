@@ -2,6 +2,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { VideoEmbed } from "@/components/hub/VideoEmbed";
+import { LessonNotes } from "@/components/hub/LessonNotes";
+import { IS_DEMO, demoSpaceBySlug, demoLesson } from "@/lib/demo";
 import type { Lesson, Space } from "@/lib/types";
 
 /**
@@ -16,26 +18,37 @@ export default async function LessonPage({
 }: {
   params: { spaceSlug: string; lessonSlug: string };
 }) {
-  const supabase = createClient();
+  let s: Pick<Space, "id" | "slug" | "name" | "icon">;
+  let l: Lesson;
 
-  const { data: space } = await supabase
-    .from("spaces")
-    .select("id, slug, name, icon")
-    .eq("slug", params.spaceSlug)
-    .maybeSingle();
+  if (IS_DEMO) {
+    const demoSpace = demoSpaceBySlug(params.spaceSlug);
+    const demoL = demoLesson(params.spaceSlug, params.lessonSlug);
+    if (!demoSpace || !demoL) notFound();
+    s = demoSpace;
+    l = demoL;
+  } else {
+    const supabase = createClient();
 
-  if (!space) notFound();
-  const s = space as Pick<Space, "id" | "slug" | "name" | "icon">;
+    const { data: space } = await supabase
+      .from("spaces")
+      .select("id, slug, name, icon")
+      .eq("slug", params.spaceSlug)
+      .maybeSingle();
 
-  const { data: lesson } = await supabase
-    .from("lessons")
-    .select("*")
-    .eq("space_id", s.id)
-    .eq("slug", params.lessonSlug)
-    .maybeSingle();
+    if (!space) notFound();
+    s = space as Pick<Space, "id" | "slug" | "name" | "icon">;
 
-  if (!lesson) notFound();
-  const l = lesson as Lesson;
+    const { data: lesson } = await supabase
+      .from("lessons")
+      .select("*")
+      .eq("space_id", s.id)
+      .eq("slug", params.lessonSlug)
+      .maybeSingle();
+
+    if (!lesson) notFound();
+    l = lesson as Lesson;
+  }
 
   return (
     <div className="mx-auto max-w-3xl px-8 py-10">
@@ -56,13 +69,9 @@ export default async function LessonPage({
       )}
 
       {l.content && (
-        <article className="prose-notes mt-8">
-          {/* MVP: notes are plain text with simple line breaks. Swap in a
-              markdown renderer here later without touching anything else. */}
-          {l.content.split("\n").map((line, i) => (
-            <p key={i}>{line}</p>
-          ))}
-        </article>
+        <div className="mt-8">
+          <LessonNotes content={l.content} />
+        </div>
       )}
 
       {/* ── Phase 2 drop-in: lesson discussion thread goes here ──

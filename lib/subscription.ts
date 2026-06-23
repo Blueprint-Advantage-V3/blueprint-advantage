@@ -1,5 +1,6 @@
 import { createClient } from "@/lib/supabase/server";
 import { ACTIVE_STATUSES } from "@/lib/constants";
+import { IS_DEMO, demoMemberContext } from "@/lib/demo";
 import type { Profile, Subscription } from "@/lib/types";
 
 /**
@@ -7,6 +8,9 @@ import type { Profile, Subscription } from "@/lib/types";
  * Returns null user if not authenticated.
  */
 export async function getMemberContext() {
+  // Local demo mode: skip auth/DB entirely and act as an active admin.
+  if (IS_DEMO) return demoMemberContext();
+
   const supabase = createClient();
   const {
     data: { user },
