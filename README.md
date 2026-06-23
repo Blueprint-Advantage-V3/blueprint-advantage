@@ -31,7 +31,8 @@ npm run dev                  # http://localhost:3000
    - `supabase/migrations/0001_init.sql` (tables + helpers + triggers)
    - `supabase/migrations/0002_rls.sql` (row-level security policies)
    - `supabase/migrations/0003_phase2_stubs.sql` (inert Phase-2 tables — optional now)
-   - `supabase/seed.sql` (optional sample spaces/lessons)
+   - `supabase/migrations/0004_channels.sql` (Discord channels + lesson instructor; auto-seeds a channel set per space)
+   - `supabase/seed.sql` (optional sample spaces/lessons — channels auto-created by the 0004 trigger)
 4. **Auth → Providers → Email**: for the smoothest MVP flow, turn **off**
    "Confirm email" (users sign in immediately). Leave it on if you want
    email verification — the `/auth/callback` route already handles it.

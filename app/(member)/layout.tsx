@@ -1,19 +1,19 @@
 import { redirect } from "next/navigation";
-import { getMemberContext, isAdmin } from "@/lib/subscription";
+import { getMemberContext } from "@/lib/subscription";
 import { createClient } from "@/lib/supabase/server";
-import { Sidebar } from "@/components/layout/Sidebar";
-import { TopBar } from "@/components/layout/TopBar";
-import { IS_DEMO, demoSpaces } from "@/lib/demo";
-import type { Space } from "@/lib/types";
+import { ServerRail } from "@/components/layout/ServerRail";
+import { ChannelSidebar } from "@/components/layout/ChannelSidebar";
+import { IS_DEMO, demoSpaces, demoChannels } from "@/lib/demo";
+import type { Channel, Space } from "@/lib/types";
 
 /**
- * THE HUB SHELL. Rendered once and persists across navigation between
- * spaces/lessons — the sidebar and top bar never reload; only the main
- * content swaps (App Router nested routing). This is what gives the
- * app-like, Discord feel.
+ * THE HUB SHELL — Discord-style three-column app frame, rendered once and
+ * persisted across navigation:
+ *   1. ServerRail    — icon column to switch spaces
+ *   2. ChannelSidebar — channels for the active space (+ user panel)
+ *   3. main          — the active channel / lesson / home
  *
- * Gate: must be authenticated (enforced by middleware) AND have an active
- * subscription (enforced here). Non-subscribers are sent to the paywall.
+ * Gate: authenticated (middleware) AND active subscription (here).
  */
 export default async function MemberLayout({
   children,
@@ -25,23 +25,30 @@ export default async function MemberLayout({
   if (!user) redirect("/login?redirect=/hub");
   if (!hasAccess) redirect("/subscribe");
 
-  // Load the spaces for the sidebar. Admins see unpublished ones too
-  // (RLS already enforces this; the order is by position).
   let spaces: Space[];
+  let channels: Channel[];
   if (IS_DEMO) {
     spaces = demoSpaces();
+    channels = demoChannels();
   } else {
     const supabase = createClient();
-    const { data } = await supabase
-      .from("spaces")
-      .select("*")
-      .order("position", { ascending: true });
-    spaces = (data ?? []) as Space[];
+    const [spacesRes, channelsRes] = await Promise.all([
+      supabase.from("spaces").select("*").order("position", { ascending: true }),
+      supabase.from("channels").select("*").order("position", { ascending: true }),
+    ]);
+    spaces = (spacesRes.data ?? []) as Space[];
+    channels = (channelsRes.data ?? []) as Channel[];
   }
 
   return (
     <div className="flex h-screen overflow-hidden bg-canvas">
-      <Sidebar spaces={spaces} isAdmin={isAdmin(profile)} />
+      <ServerRail spaces={spaces} />
+      <ChannelSidebar
+        spaces={spaces}
+        channels={channels}
+        fullName={profile?.full_name ?? user.email ?? "Member"}
+        email={user.email ?? ""}
+      />
       <div className="flex flex-1 flex-col overflow-hidden">
         {IS_DEMO && (
           <div className="flex-none bg-amber-500/15 px-6 py-1.5 text-center text-xs text-amber-300">
@@ -49,10 +56,6 @@ export default async function MemberLayout({
             Stripe to go live.
           </div>
         )}
-        <TopBar
-          fullName={profile?.full_name ?? user.email ?? "Member"}
-          email={user.email ?? ""}
-        />
         <main className="flex-1 overflow-y-auto">{children}</main>
       </div>
     </div>

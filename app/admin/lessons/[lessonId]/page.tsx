@@ -49,6 +49,7 @@ export default async function EditLessonPage({
             <TextField label="Title" name="title" defaultValue={l.title} required />
             <TextField label="Slug" name="slug" defaultValue={l.slug} required />
           </div>
+          <TextField label="Instructor / professor" name="instructor" defaultValue={l.instructor} />
           <TextField label="Video URL" name="video_url" defaultValue={l.video_url} />
           <TextArea label="Written notes" name="content" defaultValue={l.content} rows={12} />
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">

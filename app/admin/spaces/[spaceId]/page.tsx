@@ -114,6 +114,7 @@ export default async function EditSpacePage({
             <TextField label="Title" name="title" placeholder="SAT Math: The Foundations" required />
             <TextField label="Slug (optional)" name="slug" placeholder="sat-math-foundations" />
           </div>
+          <TextField label="Instructor / professor" name="instructor" placeholder="Dr. Lena Ortiz" />
           <TextField
             label="Video URL (YouTube / Vimeo)"
             name="video_url"

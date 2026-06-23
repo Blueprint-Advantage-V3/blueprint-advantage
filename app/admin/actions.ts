@@ -117,6 +117,7 @@ export async function createLesson(formData: FormData) {
     space_id: spaceId,
     title,
     slug: slugify(String(formData.get("slug") || title)),
+    instructor: String(formData.get("instructor") ?? "") || null,
     video_url: String(formData.get("video_url") ?? "") || null,
     content: String(formData.get("content") ?? "") || null,
     position: (last?.position ?? -1) + 1,
@@ -138,6 +139,7 @@ export async function updateLesson(formData: FormData) {
     .update({
       title: String(formData.get("title") ?? "").trim(),
       slug: slugify(String(formData.get("slug") ?? "")),
+      instructor: String(formData.get("instructor") ?? "") || null,
       video_url: String(formData.get("video_url") ?? "") || null,
       content: String(formData.get("content") ?? "") || null,
       position: Number(formData.get("position") ?? 0),

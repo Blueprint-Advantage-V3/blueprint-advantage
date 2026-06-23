@@ -47,11 +47,37 @@ export interface Space {
   created_at: string;
 }
 
+/**
+ * Discord-style channel inside a space. `lessons` channels surface the
+ * prerecorded lesson library; `text` is chat; `voice`/`video` are live rooms.
+ */
+export type ChannelType = "lessons" | "text" | "voice" | "video";
+
+export interface Channel {
+  id: string;
+  space_id: string;
+  slug: string;
+  name: string;
+  type: ChannelType;
+  position: number;
+}
+
+/** A chat message in a text channel (Phase 2 realtime; demo-seeded for now). */
+export interface ChannelMessage {
+  id: string;
+  channel_id: string;
+  author_name: string;
+  author_initial: string;
+  body: string;
+  created_at: string;
+}
+
 export interface Lesson {
   id: string;
   space_id: string;
   slug: string;
   title: string;
+  instructor: string | null; // the professor who recorded this lesson
   video_url: string | null;
   content: string | null; // written notes (markdown-ish plain text for MVP)
   position: number;

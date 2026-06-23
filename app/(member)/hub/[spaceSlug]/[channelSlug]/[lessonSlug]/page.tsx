@@ -7,18 +7,18 @@ import { IS_DEMO, demoSpaceBySlug, demoLesson } from "@/lib/demo";
 import type { Lesson, Space } from "@/lib/types";
 
 /**
- * Lesson view — video embed + written notes, in the main content area.
+ * Lesson view — a professor's prerecorded video + written notes, opened from
+ * a Lessons channel.
  *
- * Phase 2 hook: a comments/discussion thread would mount below the notes
- * (lesson_comments table already stubbed). Marked with a placeholder
- * region so it's an obvious, isolated drop-in later.
+ * Phase 2 hook: a comments/discussion thread mounts below the notes
+ * (lesson_comments table already stubbed) — marked region below.
  */
 export default async function LessonPage({
   params,
 }: {
-  params: { spaceSlug: string; lessonSlug: string };
+  params: { spaceSlug: string; channelSlug: string; lessonSlug: string };
 }) {
-  let s: Pick<Space, "id" | "slug" | "name" | "icon">;
+  let s: Pick<Space, "slug" | "name" | "icon">;
   let l: Lesson;
 
   if (IS_DEMO) {
@@ -29,38 +29,45 @@ export default async function LessonPage({
     l = demoL;
   } else {
     const supabase = createClient();
-
     const { data: space } = await supabase
       .from("spaces")
       .select("id, slug, name, icon")
       .eq("slug", params.spaceSlug)
       .maybeSingle();
-
     if (!space) notFound();
-    s = space as Pick<Space, "id" | "slug" | "name" | "icon">;
+    s = space as Space;
 
     const { data: lesson } = await supabase
       .from("lessons")
       .select("*")
-      .eq("space_id", s.id)
+      .eq("space_id", (space as Space).id)
       .eq("slug", params.lessonSlug)
       .maybeSingle();
-
     if (!lesson) notFound();
     l = lesson as Lesson;
   }
 
+  const channelBase = `/hub/${params.spaceSlug}/${params.channelSlug}`;
+
   return (
-    <div className="mx-auto max-w-3xl px-8 py-10">
+    <div className="mx-auto h-full max-w-3xl overflow-y-auto px-8 py-10">
       <nav className="mb-6 flex items-center gap-1.5 text-sm text-zinc-500">
-        <Link href={`/hub/${s.slug}`} className="transition hover:text-zinc-300">
-          {s.icon} {s.name}
+        <Link href={channelBase} className="transition hover:text-zinc-300">
+          🎓 Lessons
         </Link>
         <span>/</span>
         <span className="text-zinc-400">{l.title}</span>
       </nav>
 
       <h1 className="text-3xl font-semibold tracking-tight">{l.title}</h1>
+      {l.instructor && (
+        <p className="mt-2 flex items-center gap-2 text-sm text-muted">
+          <span className="flex h-6 w-6 items-center justify-center rounded-full bg-brand text-xs font-semibold text-white">
+            {l.instructor.charAt(0).toUpperCase()}
+          </span>
+          {l.instructor}
+        </p>
+      )}
 
       {l.video_url && (
         <div className="mt-6">
