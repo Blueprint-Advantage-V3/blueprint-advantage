@@ -90,7 +90,7 @@ export default async function AdminSpacesPage() {
           </div>
           <Toggle label="Published" name="is_published" />
           <div className="sm:col-span-2">
-            <button className="glow-button inline-flex items-center gap-2 rounded-lg bg-primary px-6 py-2 font-label-md font-bold text-on-primary transition-all active:scale-95">
+            <button className="glow-button inline-flex items-center gap-2 rounded-lg bg-primary-container px-6 py-2 font-label-md font-bold text-on-primary-container transition-all active:scale-95">
               <Icon name="add" className="text-base" />
               Add New Space
             </button>

@@ -70,7 +70,7 @@ export default async function EditSpacePage({
           </div>
           <Toggle label="Published" name="is_published" defaultChecked={s.is_published} />
           <div className="flex items-center gap-3 sm:col-span-2">
-            <button className="glow-button rounded-lg bg-primary px-6 py-2 font-label-md font-bold text-on-primary transition-all active:scale-95">
+            <button className="glow-button rounded-lg bg-primary-container px-6 py-2 font-label-md font-bold text-on-primary-container transition-all active:scale-95">
               Save changes
             </button>
           </div>
@@ -147,7 +147,7 @@ export default async function EditSpacePage({
             placeholder="Lesson notes, action steps, links…"
           />
           <Toggle label="Published" name="is_published" />
-          <button className="glow-button inline-flex items-center gap-2 rounded-lg bg-primary px-6 py-2 font-label-md font-bold text-on-primary transition-all active:scale-95">
+          <button className="glow-button inline-flex items-center gap-2 rounded-lg bg-primary-container px-6 py-2 font-label-md font-bold text-on-primary-container transition-all active:scale-95">
             <Icon name="add" className="text-base" />
             Add New Lesson
           </button>

@@ -13,15 +13,16 @@ const config: Config = {
     extend: {
       colors: {
         // ── Ascendant Core tokens ──────────────────────────────
-        "on-primary": "#3f008e",
-        primary: "#d2bbff",
-        "primary-fixed": "#eaddff",
-        "primary-fixed-dim": "#d2bbff",
-        "primary-container": "#7c3aed",
-        "on-primary-container": "#ede0ff",
-        "on-primary-fixed": "#25005a",
-        "on-primary-fixed-variant": "#5a00c6",
-        "inverse-primary": "#732ee4",
+        // Accent = navy/blue (Material-3 blue tonal palette)
+        "on-primary": "#002e69",
+        primary: "#adc6ff",
+        "primary-fixed": "#d8e2ff",
+        "primary-fixed-dim": "#adc6ff",
+        "primary-container": "#1e3a8a",
+        "on-primary-container": "#dbe4ff",
+        "on-primary-fixed": "#001a41",
+        "on-primary-fixed-variant": "#284777",
+        "inverse-primary": "#415f91",
         secondary: "#89ceff",
         "secondary-container": "#00a2e6",
         "on-secondary": "#00344d",
@@ -54,7 +55,7 @@ const config: Config = {
         "surface-container-high": "#2a2a2b",
         "surface-container-highest": "#353436",
         "surface-variant": "#353436",
-        "surface-tint": "#d2bbff",
+        "surface-tint": "#adc6ff",
         // On-surface / outlines
         "on-surface": "#e5e2e3",
         "on-surface-variant": "#ccc3d8",
@@ -66,9 +67,9 @@ const config: Config = {
         // ── Back-compat aliases (old token names) ──────────────
         muted: "#ccc3d8",
         border: "#4a4455",
-        brand: "#7c3aed",
-        "brand-hover": "#6d28d9",
-        "brand-soft": "#241b3d",
+        brand: "#1e3a8a",
+        "brand-hover": "#2a4ba0",
+        "brand-soft": "#16213f",
       },
       spacing: {
         sidebar_width: "280px",
@@ -101,8 +102,8 @@ const config: Config = {
         code: ["14px", { lineHeight: "1.5", fontWeight: "400" }],
       },
       boxShadow: {
-        glow: "0 0 0 1px rgba(210,187,255,0.35), 0 0 24px -4px rgba(124,58,237,0.5)",
-        "glow-sm": "0 0 15px rgba(210, 187, 255, 0.3)",
+        glow: "0 0 0 1px rgba(173,198,255,0.35), 0 0 24px -4px rgba(30,58,138,0.6)",
+        "glow-sm": "0 0 15px rgba(173, 198, 255, 0.3)",
       },
     },
   },

@@ -61,7 +61,7 @@ export default async function EditLessonPage({
               <Toggle label="Published" name="is_published" defaultChecked={l.is_published} />
             </div>
           </div>
-          <button className="glow-button rounded-lg bg-primary px-6 py-2 font-label-md font-bold text-on-primary transition-all active:scale-95">
+          <button className="glow-button rounded-lg bg-primary-container px-6 py-2 font-label-md font-bold text-on-primary-container transition-all active:scale-95">
             Save changes
           </button>
         </form>

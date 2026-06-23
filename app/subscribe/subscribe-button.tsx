@@ -31,7 +31,7 @@ export function SubscribeButton() {
       <button
         onClick={startCheckout}
         disabled={loading}
-        className="glow-button w-full rounded-2xl bg-primary py-6 font-headline-md text-headline-md font-black text-on-primary transition-transform active:scale-95 disabled:opacity-60"
+        className="glow-button w-full rounded-2xl bg-primary-container py-6 font-headline-md text-headline-md font-black text-on-primary-container transition-transform active:scale-95 disabled:opacity-60"
       >
         {loading ? "Redirecting…" : "Subscribe & enter the hub"}
       </button>

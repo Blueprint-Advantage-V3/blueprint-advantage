@@ -45,7 +45,7 @@ export function UserPanel({
         onClick={() => setOpen((v) => !v)}
         className="flex w-full items-center gap-stack_sm rounded-lg px-2 py-1.5 transition-colors hover:bg-white/5"
       >
-        <span className="flex h-8 w-8 flex-none items-center justify-center rounded-full bg-primary text-sm font-bold text-on-primary">
+        <span className="flex h-8 w-8 flex-none items-center justify-center rounded-full bg-primary-container text-sm font-bold text-on-primary-container">
           {initial}
         </span>
         <span className="min-w-0 text-left">

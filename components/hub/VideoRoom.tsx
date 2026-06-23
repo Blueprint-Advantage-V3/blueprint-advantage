@@ -70,7 +70,7 @@ export function VideoRoom({ channelName, currentUser }: { channelName: string; c
         </div>
         <button
           onClick={() => setJoined(true)}
-          className="glow-button flex items-center gap-2 rounded-lg bg-primary px-6 py-2 font-label-md font-bold text-on-primary transition-all active:scale-95"
+          className="glow-button flex items-center gap-2 rounded-lg bg-primary-container px-6 py-2 font-label-md font-bold text-on-primary-container transition-all active:scale-95"
         >
           <Icon name="videocam" fill className="text-[20px]" />
           Join Video

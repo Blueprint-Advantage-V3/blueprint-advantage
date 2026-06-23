@@ -83,7 +83,7 @@ export default function LandingPage() {
             </Link>
             <Link
               href="/signup"
-              className="glow-button rounded-lg bg-primary px-6 py-2 font-label-md text-label-md font-bold text-on-primary transition-all active:scale-95"
+              className="glow-button rounded-lg bg-primary-container px-6 py-2 font-label-md text-label-md font-bold text-on-primary-container transition-all active:scale-95"
             >
               Join Now
             </Link>
@@ -111,7 +111,7 @@ export default function LandingPage() {
           <div className="flex flex-col items-center justify-center gap-4 md:flex-row">
             <Link
               href="/signup"
-              className="glow-button w-full rounded-xl bg-primary px-10 py-5 font-headline-md text-headline-md font-bold text-on-primary transition-transform hover:scale-[1.02] md:w-auto"
+              className="glow-button w-full rounded-xl bg-primary-container px-10 py-5 font-headline-md text-headline-md font-bold text-on-primary-container transition-transform hover:scale-[1.02] md:w-auto"
             >
               Join for {PRICE_DISPLAY.amount}{PRICE_DISPLAY.period}
             </Link>
@@ -182,7 +182,7 @@ export default function LandingPage() {
         <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
           {STEPS.map((s) => (
             <div key={s.n} className="glass-panel rounded-2xl p-stack_lg">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary font-headline-md font-bold text-on-primary">
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary-container font-headline-md font-bold text-on-primary-container">
                 {s.n}
               </div>
               <h3 className="mt-4 font-headline-md text-headline-md">{s.title}</h3>
@@ -234,7 +234,7 @@ export default function LandingPage() {
             </div>
             <Link
               href="/signup"
-              className="glow-button block w-full rounded-2xl bg-primary py-6 text-center font-headline-md text-headline-md font-black text-on-primary transition-transform active:scale-95"
+              className="glow-button block w-full rounded-2xl bg-primary-container py-6 text-center font-headline-md text-headline-md font-black text-on-primary-container transition-transform active:scale-95"
             >
               Claim Your Seat
             </Link>
@@ -271,7 +271,7 @@ export default function LandingPage() {
         <div className="mt-stack_lg">
           <Link
             href="/signup"
-            className="glow-button inline-block rounded-xl bg-primary px-10 py-5 font-headline-md text-headline-md font-bold text-on-primary transition-transform hover:scale-[1.02]"
+            className="glow-button inline-block rounded-xl bg-primary-container px-10 py-5 font-headline-md text-headline-md font-bold text-on-primary-container transition-transform hover:scale-[1.02]"
           >
             Get started — {PRICE_DISPLAY.amount}{PRICE_DISPLAY.period}
           </Link>

@@ -69,8 +69,8 @@ function RailButton({
         className={[
           "flex h-12 w-12 items-center justify-center transition-all active:scale-95",
           active
-            ? "rounded-2xl bg-primary-container text-on-primary-container shadow-[0_0_18px_rgba(124,58,237,0.5)]"
-            : "rounded-3xl bg-surface-container-high text-on-surface-variant hover:rounded-2xl hover:bg-primary-container hover:text-on-primary-container hover:shadow-[0_0_18px_rgba(124,58,237,0.4)]",
+            ? "rounded-2xl bg-primary-container text-on-primary-container shadow-[0_0_18px_rgba(30,58,138,0.6)]"
+            : "rounded-3xl bg-surface-container-high text-on-surface-variant hover:rounded-2xl hover:bg-primary-container hover:text-on-primary-container hover:shadow-[0_0_18px_rgba(30,58,138,0.5)]",
         ].join(" ")}
       >
         {children}

@@ -63,7 +63,7 @@ export default async function AdminDashboard() {
       <div>
         <Link
           href="/admin/spaces"
-          className="glow-button inline-flex items-center gap-2 rounded-lg bg-primary px-6 py-2 font-label-md font-bold text-on-primary transition-all active:scale-95"
+          className="glow-button inline-flex items-center gap-2 rounded-lg bg-primary-container px-6 py-2 font-label-md font-bold text-on-primary-container transition-all active:scale-95"
         >
           Manage spaces &amp; lessons
           <Icon name="arrow_forward" className="text-base" />

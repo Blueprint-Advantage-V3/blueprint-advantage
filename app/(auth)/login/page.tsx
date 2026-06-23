@@ -41,7 +41,7 @@ export default function LoginPage({
         />
         <button
           type="submit"
-          className="glow-button w-full rounded-lg bg-primary px-5 py-3 font-label-md font-bold text-on-primary transition-all active:scale-95"
+          className="glow-button w-full rounded-lg bg-primary-container px-5 py-3 font-label-md font-bold text-on-primary-container transition-all active:scale-95"
         >
           Log in
         </button>
