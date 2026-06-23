@@ -1,0 +1,69 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body {
+  background-color: #09090b;
+  color: #fafafa;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Sleek thin scrollbars to match the premium dark shell */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #27272a transparent;
+}
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+*::-webkit-scrollbar-thumb {
+  background-color: #27272a;
+  border-radius: 9999px;
+}
+*::-webkit-scrollbar-thumb:hover {
+  background-color: #3f3f46;
+}
+
+/* Typographic defaults for lesson notes rendered from markdown-ish text */
+.prose-notes {
+  line-height: 1.7;
+  color: #d4d4d8;
+}
+.prose-notes h1,
+.prose-notes h2,
+.prose-notes h3 {
+  color: #fafafa;
+  font-weight: 600;
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+}
+.prose-notes p {
+  margin-bottom: 1em;
+}
+.prose-notes a {
+  color: #6d5efc;
+  text-decoration: underline;
+}
+.prose-notes ul,
+.prose-notes ol {
+  margin: 1em 0;
+  padding-left: 1.4em;
+}
+.prose-notes ul {
+  list-style: disc;
+}
+.prose-notes ol {
+  list-style: decimal;
+}
+.prose-notes code {
+  background: #18181b;
+  padding: 0.15em 0.4em;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
