@@ -1,250 +1,277 @@
 import Link from "next/link";
+import { Icon } from "@/components/ui/Icon";
 import { BRAND, PRICE_DISPLAY } from "@/lib/constants";
-
-const CATEGORIES = [
-  { icon: "📈", name: "SAT Prep", blurb: "Proven strategies to lift your score fast." },
-  { icon: "💰", name: "Finance", blurb: "Build wealth and master your money." },
-  { icon: "⚖️", name: "Law", blurb: "Understand the law and protect yourself." },
-  { icon: "🤖", name: "Using AI", blurb: "Leverage AI to 10x your output." },
-];
 
 const FEATURES = [
   {
-    icon: "🏛️",
-    title: "A hub, not a course catalog",
-    body: "Log into one members-only space with a Discord-style sidebar. Switch between topics, jump into lessons, talk to the community — all in one place.",
+    icon: "school",
+    accent: "text-primary",
+    title: "SAT Mastery",
+    body: "Proprietary strategies for the 1600 club, taught by top-percentile scorers. Lift your score fast.",
+    cta: "Explore curriculum",
+    ctaIcon: "arrow_forward",
+    span: "md:col-span-3",
+    blob: "absolute top-0 right-0 w-32 h-32 bg-primary/20 blur-[80px] group-hover:bg-primary/40 transition-all",
   },
   {
-    icon: "🎓",
-    title: "Learn from real professors",
-    body: "Every lesson is a prerecorded video from an expert, backed by written playbooks and action steps you can apply the same day.",
+    icon: "payments",
+    accent: "text-secondary",
+    title: "High Finance",
+    body: "From the fundamentals to personal wealth-building systems. Master your money and build real leverage.",
+    cta: "Capital mastery",
+    ctaIcon: "trending_up",
+    span: "md:col-span-3",
+    blob: "absolute bottom-0 right-0 w-48 h-24 bg-secondary/10 blur-[60px]",
   },
   {
-    icon: "🔊",
-    title: "Voice & video rooms",
-    body: "Drop into study halls, office hours, and live classes. Ask questions, get unstuck, and learn alongside other ambitious people.",
+    icon: "psychology",
+    accent: "text-primary",
+    title: "Using AI",
+    body: "Leverage AI to 10x your output and stay ahead of the curve.",
+    span: "md:col-span-2",
+    featured: true,
   },
   {
-    icon: "💬",
-    title: "A community that pushes you",
-    body: "Text channels in every space keep the momentum going between lessons. Surround yourself with people leveling up.",
+    icon: "gavel",
+    accent: "text-tertiary",
+    title: "Law & Logic",
+    body: "Understand the law, sharpen your reasoning, and protect yourself.",
+    span: "md:col-span-2",
+  },
+  {
+    icon: "campaign",
+    accent: "text-on-surface",
+    title: "The Community",
+    body: "Discord-style spaces, live voice & video rooms, and a network that pushes you forward.",
+    span: "md:col-span-2",
+    bgClass: "bg-surface-container-high",
   },
 ];
 
 const STEPS = [
-  { n: "1", title: "Join", body: `Create your account and start your membership for ${PRICE_DISPLAY.amount}/month.` },
+  { n: "1", title: "Join", body: `Create your account and start your membership for ${PRICE_DISPLAY.amount}${PRICE_DISPLAY.period}.` },
   { n: "2", title: "Pick your spaces", body: "SAT, Finance, Law, AI — open the sidebar and dive into whatever moves your life forward." },
   { n: "3", title: "Start leveling up", body: "Watch, take notes, join the rooms, and apply it. New content drops every week." },
 ];
 
-const FAQ = [
-  { q: "What do I get for my membership?", a: "Full access to every space and lesson, the community text channels, and the voice & video rooms. One price, everything included." },
-  { q: "Can I cancel anytime?", a: "Yes. Manage or cancel your subscription in two clicks from inside the hub. No contracts, no hassle." },
-  { q: "Who is this for?", a: "Ambitious people who refuse to stay average — students prepping for the SAT, anyone serious about money, and people who want to master AI and the law." },
-  { q: "Do I need anything to install it?", a: "Nothing. It runs in your browser on any device — just sign up and log in. It works best on a computer but is fully usable on mobile." },
-];
-
 export default function LandingPage() {
   return (
-    <main className="min-h-screen bg-canvas">
-      {/* Nav */}
-      <header className="sticky top-0 z-40 border-b border-border/60 bg-canvas/80 backdrop-blur">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-          <span className="text-lg font-semibold tracking-tight">{BRAND.name}</span>
-          <nav className="flex items-center gap-3 text-sm">
-            <Link href="/login" className="hidden text-muted transition hover:text-white sm:block">
+    <main className="relative min-h-screen overflow-x-hidden bg-canvas">
+      {/* Fixed blurred header */}
+      <header className="fixed top-0 z-50 w-full border-b border-outline-variant/10 bg-surface/70 backdrop-blur-xl">
+        <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-gutter">
+          <span className="font-display text-headline-md font-black uppercase tracking-tighter text-primary">
+            {BRAND.name}
+          </span>
+          <div className="hidden items-center gap-stack_lg md:flex">
+            <a href="#features" className="font-label-md text-label-md text-on-surface-variant transition-all hover:text-on-surface">
+              Curriculum
+            </a>
+            <a href="#how" className="font-label-md text-label-md text-on-surface-variant transition-all hover:text-on-surface">
+              How it works
+            </a>
+            <a href="#pricing" className="font-label-md text-label-md text-on-surface-variant transition-all hover:text-on-surface">
+              Pricing
+            </a>
+          </div>
+          <div className="flex items-center gap-4">
+            <Link
+              href="/login"
+              className="hidden rounded-lg border border-outline-variant/30 px-4 py-2 font-label-md text-label-md text-on-surface transition-all hover:bg-white/5 md:flex"
+            >
               Log in
             </Link>
             <Link
               href="/signup"
-              className="rounded-lg bg-brand px-4 py-2 font-medium text-white transition hover:bg-brand-hover"
+              className="glow-button rounded-lg bg-primary px-6 py-2 font-label-md text-label-md font-bold text-on-primary transition-all active:scale-95"
             >
-              Get started
+              Join Now
             </Link>
-          </nav>
-        </div>
+          </div>
+        </nav>
       </header>
 
       {/* Hero */}
-      <section className="mx-auto max-w-6xl px-6 pb-12 pt-16 sm:pt-24">
-        <div className="grid items-center gap-12 lg:grid-cols-2">
-          <div>
-            <span className="inline-block rounded-full border border-border bg-surface px-4 py-1.5 text-xs font-medium text-muted">
-              A members-only hub for ambitious people
-            </span>
-            <h1 className="mt-6 text-4xl font-bold leading-[1.1] tracking-tight sm:text-6xl">
-              Stop staying average.
-              <br />
-              <span className="text-brand">Build your advantage.</span>
-            </h1>
-            <p className="mt-6 max-w-xl text-lg text-muted">
-              {BRAND.promise} Video lessons from real professors, a Discord-style
-              community, and live voice & video rooms — all in one place.
-            </p>
-            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-              <Link
-                href="/signup"
-                className="rounded-xl bg-brand px-7 py-3.5 text-center text-base font-semibold text-white shadow-glow transition hover:bg-brand-hover"
-              >
-                Get started — {PRICE_DISPLAY.amount}{PRICE_DISPLAY.period}
-              </Link>
-              <a
-                href="#how"
-                className="rounded-xl border border-border px-7 py-3.5 text-center text-base font-medium text-zinc-200 transition hover:border-zinc-600"
-              >
-                See how it works
-              </a>
-            </div>
-            <p className="mt-4 text-sm text-zinc-500">
-              Runs in your browser on any device. Cancel anytime.
-            </p>
+      <section className="relative flex min-h-screen items-center justify-center overflow-hidden px-margin_mobile pt-24">
+        <div className="pointer-events-none absolute left-1/2 top-1/3 -z-10 h-[700px] w-[700px] -translate-x-1/2 rounded-full bg-primary/5 blur-[120px]" />
+        <div className="relative z-10 mx-auto max-w-content_max_width text-center">
+          <div className="mb-stack_lg inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-3 py-1 font-label-md text-label-md text-primary">
+            <Icon name="stars" className="text-[14px]" />
+            A members-only hub for ambitious people
           </div>
-
-          {/* Product mockup */}
-          <HubMockup />
-        </div>
-      </section>
-
-      {/* Trust strip */}
-      <section className="border-y border-border/60 bg-surface/40">
-        <div className="mx-auto grid max-w-4xl grid-cols-3 gap-6 px-6 py-8 text-center">
-          {[
-            { k: "4 spaces", v: "SAT · Finance · Law · AI" },
-            { k: "Weekly", v: "New lessons every week" },
-            { k: "1 price", v: "Everything included" },
-          ].map((s) => (
-            <div key={s.k}>
-              <p className="text-xl font-bold">{s.k}</p>
-              <p className="mt-1 text-sm text-muted">{s.v}</p>
+          <h1 className="mb-stack_md bg-gradient-to-b from-on-surface to-on-surface-variant bg-clip-text font-display text-[48px] font-black leading-[1] tracking-tighter text-transparent md:text-[80px]">
+            Stop staying average.
+            <br />
+            Build your advantage.
+          </h1>
+          <p className="mx-auto mb-stack_lg max-w-2xl font-body-lg text-body-lg text-on-surface-variant/80">
+            {BRAND.promise} Video lessons from real professors, a Discord-style
+            community, and live voice & video rooms. One subscription. Infinite leverage.
+          </p>
+          <div className="flex flex-col items-center justify-center gap-4 md:flex-row">
+            <Link
+              href="/signup"
+              className="glow-button w-full rounded-xl bg-primary px-10 py-5 font-headline-md text-headline-md font-bold text-on-primary transition-transform hover:scale-[1.02] md:w-auto"
+            >
+              Join for {PRICE_DISPLAY.amount}{PRICE_DISPLAY.period}
+            </Link>
+            <a
+              href="#how"
+              className="w-full rounded-xl border border-outline-variant/30 px-10 py-5 font-headline-md text-headline-md font-medium text-on-surface transition-all hover:bg-white/5 md:w-auto"
+            >
+              See how it works
+            </a>
+          </div>
+          <div className="mt-stack_lg flex items-center justify-center gap-stack_md font-label-md text-label-md text-on-surface-variant/60">
+            <div className="flex -space-x-2">
+              <div className="h-8 w-8 rounded-full border-2 border-background bg-surface-container-high" />
+              <div className="h-8 w-8 rounded-full border-2 border-background bg-surface-container-highest" />
+              <div className="h-8 w-8 rounded-full border-2 border-background bg-surface-container-high" />
             </div>
-          ))}
+            <span>Joined by ambitious members leveling up</span>
+          </div>
+        </div>
+        {/* Scroll indicator */}
+        <div className="absolute bottom-10 left-1/2 flex -translate-x-1/2 animate-bounce flex-col items-center gap-2 opacity-40">
+          <span className="font-label-md text-label-md uppercase tracking-widest">Explore</span>
+          <Icon name="expand_more" />
         </div>
       </section>
 
-      {/* Features */}
-      <section className="mx-auto max-w-6xl px-6 py-20">
-        <h2 className="text-center text-2xl font-semibold tracking-tight sm:text-3xl">
-          Not another course site
-        </h2>
-        <p className="mx-auto mt-3 max-w-xl text-center text-muted">
-          It feels like a serious members-only hub you log into — because it is.
-        </p>
-        <div className="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2">
+      {/* Bento feature grid */}
+      <section id="features" className="mx-auto mb-20 max-w-7xl px-gutter py-stack_lg">
+        <div className="mb-stack_lg">
+          <h2 className="mb-2 font-headline-lg text-headline-lg">Architecting Success</h2>
+          <p className="font-body-md text-body-md text-on-surface-variant">
+            One hub. Every pillar of the {BRAND.shortName} ecosystem.
+          </p>
+        </div>
+        <div className="grid h-auto grid-cols-1 gap-4 md:h-[600px] md:grid-cols-6 md:grid-rows-2">
           {FEATURES.map((f) => (
             <div
               key={f.title}
-              className="rounded-2xl border border-border bg-surface p-7 transition hover:border-zinc-700"
+              className={`group glass-card relative flex flex-col justify-between overflow-hidden rounded-2xl p-stack_lg ${f.span} ${
+                f.featured ? "primary-gradient-border" : ""
+              } ${f.bgClass ?? ""}`}
             >
-              <div className="text-3xl">{f.icon}</div>
-              <h3 className="mt-4 text-lg font-semibold">{f.title}</h3>
-              <p className="mt-2 text-muted">{f.body}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Categories */}
-      <section className="mx-auto max-w-6xl px-6 py-12">
-        <h2 className="text-center text-2xl font-semibold tracking-tight sm:text-3xl">
-          Your spaces
-        </h2>
-        <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {CATEGORIES.map((c) => (
-            <div
-              key={c.name}
-              className="rounded-2xl border border-border bg-surface p-6 transition hover:border-zinc-700"
-            >
-              <div className="text-3xl">{c.icon}</div>
-              <h3 className="mt-4 text-lg font-semibold">{c.name}</h3>
-              <p className="mt-1.5 text-sm text-muted">{c.blurb}</p>
+              {f.blob && <div className={f.blob} />}
+              <div>
+                <Icon name={f.icon} className={`mb-4 text-[32px] ${f.accent}`} />
+                <h3 className="mb-2 font-headline-md text-headline-md">{f.title}</h3>
+                <p className="font-body-md text-body-md text-on-surface-variant/80">{f.body}</p>
+              </div>
+              {f.cta && (
+                <div className={`mt-4 flex items-center gap-2 font-label-md ${f.accent}`}>
+                  <span>{f.cta}</span>
+                  <Icon name={f.ctaIcon ?? "arrow_forward"} className="text-[16px]" />
+                </div>
+              )}
             </div>
           ))}
         </div>
       </section>
 
       {/* How it works */}
-      <section id="how" className="mx-auto max-w-6xl px-6 py-20">
-        <h2 className="text-center text-2xl font-semibold tracking-tight sm:text-3xl">
-          Up and running in minutes
-        </h2>
-        <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-3">
+      <section id="how" className="mx-auto max-w-7xl px-gutter py-stack_lg">
+        <div className="mb-stack_lg text-center">
+          <h2 className="mb-2 font-headline-lg text-headline-lg">Up and running in minutes</h2>
+          <p className="font-body-md text-body-md text-on-surface-variant">
+            Three steps from sign-up to leveling up.
+          </p>
+        </div>
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
           {STEPS.map((s) => (
-            <div key={s.n} className="rounded-2xl border border-border bg-surface p-7">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-brand text-lg font-bold text-white">
+            <div key={s.n} className="glass-panel rounded-2xl p-stack_lg">
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary font-headline-md font-bold text-on-primary">
                 {s.n}
               </div>
-              <h3 className="mt-4 text-lg font-semibold">{s.title}</h3>
-              <p className="mt-2 text-sm text-muted">{s.body}</p>
+              <h3 className="mt-4 font-headline-md text-headline-md">{s.title}</h3>
+              <p className="mt-2 font-body-md text-body-md text-on-surface-variant">{s.body}</p>
             </div>
           ))}
         </div>
       </section>
 
       {/* Pricing */}
-      <section className="mx-auto max-w-2xl px-6 py-12">
-        <div className="rounded-3xl border border-border bg-gradient-to-b from-surface to-canvas p-10 text-center shadow-glow">
-          <h2 className="text-2xl font-semibold tracking-tight">One membership. Everything.</h2>
-          <div className="mt-6 flex items-end justify-center">
-            <span className="text-6xl font-bold">{PRICE_DISPLAY.amount}</span>
-            <span className="mb-2 ml-1 text-xl text-muted">{PRICE_DISPLAY.period}</span>
+      <section id="pricing" className="relative overflow-hidden bg-surface-container-lowest py-24">
+        <div className="relative z-10 mx-auto flex max-w-7xl flex-col items-center gap-stack_lg px-gutter md:flex-row">
+          <div className="flex-1 text-center md:text-left">
+            <h2 className="mb-stack_md font-display text-display text-on-primary-container">
+              Infinite Leverage.
+              <br />
+              One Membership.
+            </h2>
+            <p className="mb-8 max-w-lg font-body-lg text-body-lg text-on-surface-variant/80">
+              {BRAND.name} is not a course. It is an ecosystem of knowledge designed
+              for those who refuse to be average.
+            </p>
+            <ul className="inline-block space-y-4 text-left md:block">
+              {[
+                "Every space, every lesson",
+                "Lessons from real professors",
+                "Private community networking",
+                "Weekly live voice & video rooms",
+              ].map((f) => (
+                <li key={f} className="flex items-center gap-3">
+                  <Icon name="check_circle" fill className="text-[20px] text-primary" />
+                  <span className="font-body-md text-body-md">{f}</span>
+                </li>
+              ))}
+            </ul>
           </div>
-          <ul className="mx-auto mt-8 max-w-xs space-y-3 text-left text-sm text-zinc-300">
-            {[
-              "Every space, every lesson",
-              "Lessons from real professors",
-              "Community text channels",
-              "Voice & video rooms",
-              "New content every week",
-              "Cancel anytime",
-            ].map((f) => (
-              <li key={f} className="flex items-center gap-3">
-                <span className="text-brand">✓</span>
-                {f}
-              </li>
-            ))}
-          </ul>
-          <Link
-            href="/signup"
-            className="mt-9 block rounded-xl bg-brand px-7 py-3.5 text-base font-semibold text-white transition hover:bg-brand-hover"
-          >
-            Get started
-          </Link>
-        </div>
-      </section>
-
-      {/* FAQ */}
-      <section className="mx-auto max-w-3xl px-6 py-16">
-        <h2 className="text-center text-2xl font-semibold tracking-tight sm:text-3xl">
-          Questions
-        </h2>
-        <div className="mt-10 space-y-3">
-          {FAQ.map((item) => (
-            <details
-              key={item.q}
-              className="group rounded-2xl border border-border bg-surface p-5"
+          <div className="glass-card w-full max-w-md rounded-[2rem] border-2 border-primary/20 p-stack_lg shadow-2xl shadow-primary/10">
+            <div className="mb-8 text-center">
+              <span className="font-label-md text-label-md font-bold uppercase tracking-widest text-primary">
+                Standard Access
+              </span>
+              <div className="mt-4 flex items-baseline justify-center gap-1">
+                <span className="font-display text-[64px] leading-none">{PRICE_DISPLAY.amount}</span>
+                <span className="font-headline-md text-on-surface-variant/60">{PRICE_DISPLAY.period}</span>
+              </div>
+              <p className="mt-2 font-body-md text-body-md text-on-surface-variant">
+                No contracts. Cancel anytime.
+              </p>
+            </div>
+            <Link
+              href="/signup"
+              className="glow-button block w-full rounded-2xl bg-primary py-6 text-center font-headline-md text-headline-md font-black text-on-primary transition-transform active:scale-95"
             >
-              <summary className="flex cursor-pointer list-none items-center justify-between font-medium">
-                {item.q}
-                <span className="text-muted transition group-open:rotate-45">+</span>
-              </summary>
-              <p className="mt-3 text-sm text-muted">{item.a}</p>
-            </details>
-          ))}
+              Claim Your Seat
+            </Link>
+            <p className="mt-6 px-4 text-center font-label-md text-label-md text-on-surface-variant/40">
+              Runs in your browser on any device. Everything included, one price.
+            </p>
+          </div>
         </div>
+        <div className="absolute left-1/2 top-1/2 -z-10 h-[800px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/5 blur-[120px]" />
       </section>
 
-      {/* Final CTA */}
-      <section className="mx-auto max-w-5xl px-6 py-16">
-        <div className="rounded-3xl border border-border bg-brand-soft p-12 text-center">
-          <h2 className="text-3xl font-bold tracking-tight">
-            Your advantage starts today.
-          </h2>
-          <p className="mx-auto mt-3 max-w-md text-muted">
-            Join {BRAND.name} and get instant access to every space, lesson, and room.
-          </p>
+      {/* Scarcity / final CTA */}
+      <section className="relative px-gutter py-24 text-center">
+        <h2 className="mb-stack_md font-display text-headline-lg md:text-display">Doors closing soon.</h2>
+        <p className="mx-auto mb-stack_lg max-w-2xl font-body-lg text-body-lg text-on-surface-variant">
+          We limit membership to keep the network sharp. Secure your position in {BRAND.name} today.
+        </p>
+        <div className="flex flex-col items-center justify-center gap-6 md:flex-row">
+          <div className="flex flex-col items-center">
+            <span className="font-display text-headline-md">158</span>
+            <span className="font-label-md text-label-md uppercase text-on-surface-variant">Spots Left</span>
+          </div>
+          <div className="hidden h-10 w-px bg-outline-variant/30 md:block" />
+          <div className="flex flex-col items-center">
+            <span className="font-display text-headline-md">24/7</span>
+            <span className="font-label-md text-label-md uppercase text-on-surface-variant">Community</span>
+          </div>
+          <div className="hidden h-10 w-px bg-outline-variant/30 md:block" />
+          <div className="flex flex-col items-center">
+            <span className="font-display text-headline-md">Weekly</span>
+            <span className="font-label-md text-label-md uppercase text-on-surface-variant">New Drops</span>
+          </div>
+        </div>
+        <div className="mt-stack_lg">
           <Link
             href="/signup"
-            className="mt-8 inline-block rounded-xl bg-brand px-8 py-3.5 text-base font-semibold text-white shadow-glow transition hover:bg-brand-hover"
+            className="glow-button inline-block rounded-xl bg-primary px-10 py-5 font-headline-md text-headline-md font-bold text-on-primary transition-transform hover:scale-[1.02]"
           >
             Get started — {PRICE_DISPLAY.amount}{PRICE_DISPLAY.period}
           </Link>
@@ -252,63 +279,26 @@ export default function LandingPage() {
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-border/60">
-        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-3 px-6 py-10 text-sm text-zinc-600 sm:flex-row">
-          <span>© {new Date().getFullYear()} {BRAND.name}. All rights reserved.</span>
-          <div className="flex gap-5">
-            <Link href="/login" className="transition hover:text-zinc-300">Log in</Link>
-            <Link href="/signup" className="transition hover:text-zinc-300">Get started</Link>
+      <footer className="border-t border-outline-variant/10 bg-surface-container-lowest py-stack_lg">
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-stack_md px-gutter md:flex-row">
+          <div>
+            <span className="font-headline-md text-headline-md font-bold uppercase tracking-tighter text-primary">
+              {BRAND.name}
+            </span>
+            <p className="mt-1 font-label-md text-label-md text-on-surface-variant/60">
+              © {new Date().getFullYear()} {BRAND.name}. All rights reserved.
+            </p>
+          </div>
+          <div className="flex gap-stack_lg font-label-md text-label-md">
+            <Link href="/login" className="text-on-surface-variant transition-colors hover:text-primary">
+              Log in
+            </Link>
+            <Link href="/signup" className="text-on-surface-variant transition-colors hover:text-primary">
+              Get started
+            </Link>
           </div>
         </div>
       </footer>
     </main>
-  );
-}
-
-/** A stylized, Discord-style mockup of the hub for the hero. */
-function HubMockup() {
-  return (
-    <div className="relative">
-      <div className="overflow-hidden rounded-2xl border border-border bg-surface shadow-2xl">
-        {/* window bar */}
-        <div className="flex items-center gap-1.5 border-b border-border bg-black/30 px-4 py-2.5">
-          <span className="h-3 w-3 rounded-full bg-red-500/70" />
-          <span className="h-3 w-3 rounded-full bg-amber-500/70" />
-          <span className="h-3 w-3 rounded-full bg-green-500/70" />
-        </div>
-        <div className="flex h-[320px]">
-          {/* server rail */}
-          <div className="flex w-12 flex-none flex-col items-center gap-2 bg-black/30 py-3">
-            <span className="flex h-8 w-8 items-center justify-center rounded-2xl bg-brand text-sm">🏠</span>
-            {["📈", "💰", "⚖️", "🤖"].map((i) => (
-              <span key={i} className="flex h-8 w-8 items-center justify-center rounded-2xl bg-surface-2 text-sm">
-                {i}
-              </span>
-            ))}
-          </div>
-          {/* channel list */}
-          <div className="w-32 flex-none border-r border-border bg-surface px-2 py-3 text-[11px]">
-            <p className="px-1 pb-1 font-semibold text-zinc-100">📈 SAT Prep</p>
-            <p className="px-1 pt-2 text-[9px] uppercase tracking-wider text-zinc-500">Lessons</p>
-            <p className="rounded bg-brand-soft px-1.5 py-1 text-white">🎓 Lessons</p>
-            <p className="px-1 pt-2 text-[9px] uppercase tracking-wider text-zinc-500">Text</p>
-            <p className="px-1.5 py-1 text-zinc-400"># general</p>
-            <p className="px-1 pt-2 text-[9px] uppercase tracking-wider text-zinc-500">Voice</p>
-            <p className="px-1.5 py-1 text-zinc-400">🔊 Study Hall</p>
-          </div>
-          {/* main */}
-          <div className="flex-1 p-4">
-            <div className="aspect-video w-full rounded-lg bg-gradient-to-br from-brand/30 to-surface-2 ring-1 ring-border">
-              <div className="flex h-full items-center justify-center">
-                <span className="flex h-12 w-12 items-center justify-center rounded-full bg-white/90 text-brand">▶</span>
-              </div>
-            </div>
-            <p className="mt-3 text-sm font-semibold text-zinc-100">SAT Math: The Foundations</p>
-            <p className="text-xs text-zinc-500">Dr. Lena Ortiz · Video + notes</p>
-          </div>
-        </div>
-      </div>
-      <div className="pointer-events-none absolute -inset-4 -z-10 rounded-3xl bg-brand/20 blur-3xl" />
-    </div>
   );
 }

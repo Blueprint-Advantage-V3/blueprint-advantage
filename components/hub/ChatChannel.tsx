@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { Icon } from "@/components/ui/Icon";
 import type { ChannelMessage } from "@/lib/types";
 
 /**
@@ -42,29 +43,40 @@ export function ChatChannel({
 
   return (
     <div className="flex h-full flex-col">
-      <div className="flex-1 space-y-4 overflow-y-auto px-5 py-6">
+      <div className="flex-1 space-y-4 overflow-y-auto px-gutter py-6">
         {messages.map((m) => (
-          <div key={m.id} className="flex gap-3">
-            <span className="flex h-10 w-10 flex-none items-center justify-center rounded-full bg-brand text-sm font-semibold text-white">
+          <div key={m.id} className="group flex gap-3">
+            <span className="flex h-10 w-10 flex-none items-center justify-center rounded-full bg-primary-container text-sm font-bold text-on-primary-container">
               {m.author_initial}
             </span>
             <div className="min-w-0">
-              <p className="text-sm font-semibold text-zinc-100">
+              <p className="font-label-md text-sm font-bold text-on-surface">
                 {m.author_name}
               </p>
-              <p className="text-zinc-300">{m.body}</p>
+              <p className="font-body-md text-body-md text-on-surface-variant">
+                {m.body}
+              </p>
             </div>
           </div>
         ))}
       </div>
 
-      <form onSubmit={send} className="flex-none px-5 pb-5">
-        <input
-          value={draft}
-          onChange={(e) => setDraft(e.target.value)}
-          placeholder={`Message #${channelName}`}
-          className="w-full rounded-xl border border-border bg-surface-2 px-4 py-3 text-zinc-100 outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/30"
-        />
+      <form onSubmit={send} className="flex-none px-gutter pb-5">
+        <div className="flex items-center gap-2 rounded-xl border border-outline-variant/20 bg-surface-container-lowest px-4 transition-all focus-within:border-primary focus-within:ring-1 focus-within:ring-primary">
+          <input
+            value={draft}
+            onChange={(e) => setDraft(e.target.value)}
+            placeholder={`Message #${channelName}`}
+            className="flex-1 bg-transparent py-3 text-sm text-on-surface outline-none placeholder:text-outline"
+          />
+          <button
+            type="submit"
+            className="flex h-8 w-8 flex-none items-center justify-center rounded-lg text-outline transition-colors hover:text-primary"
+            aria-label="Send message"
+          >
+            <Icon name="send" />
+          </button>
+        </div>
       </form>
     </div>
   );

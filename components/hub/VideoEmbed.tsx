@@ -8,14 +8,14 @@ export function VideoEmbed({ url, title }: { url: string; title: string }) {
 
   if (!embedUrl) {
     return (
-      <div className="flex aspect-video w-full items-center justify-center rounded-xl border border-border bg-surface text-sm text-zinc-500">
+      <div className="flex aspect-video w-full items-center justify-center rounded-2xl border border-outline-variant/20 bg-surface-container-lowest text-body-md text-outline shadow-2xl">
         Video unavailable
       </div>
     );
   }
 
   return (
-    <div className="aspect-video w-full overflow-hidden rounded-xl border border-border bg-black">
+    <div className="relative aspect-video w-full overflow-hidden rounded-2xl border border-outline-variant/20 bg-surface-container-lowest shadow-2xl">
       <iframe
         src={embedUrl}
         title={title}

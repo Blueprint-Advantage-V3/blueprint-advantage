@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import { IS_DEMO, DEMO_SPACES, DEMO_LESSONS } from "@/lib/demo";
+import { Icon } from "@/components/ui/Icon";
 
 export const metadata = { title: "Admin" };
 
@@ -29,31 +30,43 @@ export default async function AdminDashboard() {
   }
 
   const stats = [
-    { label: "Spaces", value: spaceCount },
-    { label: "Lessons", value: lessonCount },
-    { label: "Active members", value: memberCount },
+    { label: "Spaces", value: spaceCount, tone: "text-primary" },
+    { label: "Lessons", value: lessonCount, tone: "text-secondary" },
+    { label: "Active members", value: memberCount, tone: "text-tertiary" },
   ];
 
   return (
-    <div>
-      <h1 className="text-2xl font-semibold tracking-tight">Dashboard</h1>
-      <p className="mt-1 text-muted">Manage your spaces, lessons, and content.</p>
+    <div className="space-y-stack_lg">
+      <div>
+        <h1 className="font-display text-3xl font-black tracking-tight bg-gradient-to-b from-on-surface to-on-surface-variant bg-clip-text text-transparent">
+          Dashboard
+        </h1>
+        <p className="mt-1 text-on-surface-variant">
+          Manage your spaces, lessons, and content.
+        </p>
+      </div>
 
-      <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
+      <div className="grid grid-cols-1 gap-stack_md sm:grid-cols-3">
         {stats.map((s) => (
-          <div key={s.label} className="rounded-2xl border border-border bg-surface p-6">
-            <p className="text-sm text-muted">{s.label}</p>
-            <p className="mt-1 text-3xl font-bold">{s.value}</p>
+          <div key={s.label} className="glass-panel rounded-xl p-stack_md">
+            <p className="mb-1 text-xs font-bold uppercase tracking-widest text-outline">
+              {s.label}
+            </p>
+            <p className={`text-3xl font-headline-md ${s.tone}`}>{s.value}</p>
+            <div className="mt-3 h-1 w-full overflow-hidden rounded-full bg-surface-container">
+              <div className="h-full w-3/4 bg-gradient-to-r from-secondary to-primary" />
+            </div>
           </div>
         ))}
       </div>
 
-      <div className="mt-8">
+      <div>
         <Link
           href="/admin/spaces"
-          className="inline-block rounded-xl bg-brand px-5 py-3 font-semibold text-white transition hover:bg-brand-hover"
+          className="glow-button inline-flex items-center gap-2 rounded-lg bg-primary px-6 py-2 font-label-md font-bold text-on-primary transition-all active:scale-95"
         >
-          Manage spaces & lessons →
+          Manage spaces &amp; lessons
+          <Icon name="arrow_forward" className="text-base" />
         </Link>
       </div>
     </div>

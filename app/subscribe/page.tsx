@@ -1,4 +1,5 @@
 import { redirect } from "next/navigation";
+import { Icon } from "@/components/ui/Icon";
 import { getMemberContext } from "@/lib/subscription";
 import { BRAND, PRICE_DISPLAY } from "@/lib/constants";
 import { signOut } from "../(auth)/actions";
@@ -21,25 +22,31 @@ export default async function SubscribePage({
   if (hasAccess) redirect("/hub");
 
   return (
-    <main className="flex min-h-screen items-center justify-center px-6 py-12">
+    <main className="relative flex min-h-screen items-center justify-center overflow-hidden bg-canvas px-6 py-12">
+      <div className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/5 blur-[120px]" />
       <div className="w-full max-w-md text-center">
-        <h1 className="text-3xl font-bold tracking-tight">One step left</h1>
-        <p className="mt-3 text-muted">
+        <span className="font-label-md text-label-md font-bold uppercase tracking-widest text-primary">
+          One step left
+        </span>
+        <h1 className="mt-3 font-display text-display tracking-tight text-on-primary-container">
+          Claim Your Seat
+        </h1>
+        <p className="mt-3 font-body-md text-body-md text-on-surface-variant">
           Activate your {BRAND.name} membership to unlock every space and lesson.
         </p>
 
         {searchParams.canceled && (
-          <p className="mt-5 rounded-lg border border-border bg-surface px-4 py-3 text-sm text-zinc-300">
+          <p className="mt-5 rounded-lg border border-outline-variant/20 bg-surface-container px-4 py-3 font-body-md text-body-md text-on-surface-variant">
             Checkout canceled — no worries, you can join whenever you're ready.
           </p>
         )}
 
-        <div className="mt-8 rounded-3xl border border-border bg-surface p-8 shadow-glow">
-          <div className="flex items-end justify-center">
-            <span className="text-5xl font-bold">{PRICE_DISPLAY.amount}</span>
-            <span className="mb-1.5 ml-1 text-lg text-muted">{PRICE_DISPLAY.period}</span>
+        <div className="glass-card mt-8 rounded-[2rem] border-2 border-primary/20 p-stack_lg shadow-2xl shadow-primary/10">
+          <div className="flex items-baseline justify-center gap-1">
+            <span className="font-display text-[64px] leading-none">{PRICE_DISPLAY.amount}</span>
+            <span className="font-headline-md text-on-surface-variant/60">{PRICE_DISPLAY.period}</span>
           </div>
-          <ul className="mx-auto mt-6 max-w-xs space-y-2.5 text-left text-sm text-zinc-300">
+          <ul className="mx-auto mt-6 max-w-xs space-y-3 text-left">
             {[
               "Every space, every lesson",
               "Video + written playbooks",
@@ -47,21 +54,21 @@ export default async function SubscribePage({
               "Cancel anytime",
             ].map((f) => (
               <li key={f} className="flex items-center gap-3">
-                <span className="text-brand">✓</span>
-                {f}
+                <Icon name="check_circle" fill className="text-[20px] text-primary" />
+                <span className="font-body-md text-body-md">{f}</span>
               </li>
             ))}
           </ul>
           <div className="mt-8">
             <SubscribeButton />
           </div>
-          <p className="mt-3 text-xs text-zinc-500">
+          <p className="mt-3 font-label-md text-label-md text-on-surface-variant/40">
             Secure checkout via Stripe. Card required.
           </p>
         </div>
 
         <form action={signOut} className="mt-6">
-          <button className="text-sm text-muted transition hover:text-white">
+          <button className="font-label-md text-label-md text-on-surface-variant transition hover:text-on-surface">
             Sign out
           </button>
         </form>

@@ -16,20 +16,21 @@ export function AuthShell({
   footer: React.ReactNode;
 }) {
   return (
-    <main className="flex min-h-screen items-center justify-center px-6 py-12">
+    <main className="relative flex min-h-screen items-center justify-center overflow-hidden bg-canvas px-6 py-12">
+      <div className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/5 blur-[120px]" />
       <div className="w-full max-w-md">
         <Link
           href="/"
-          className="mb-8 block text-center text-lg font-semibold tracking-tight"
+          className="mb-8 block text-center font-display text-headline-md font-black uppercase tracking-tighter text-primary"
         >
           {BRAND.name}
         </Link>
-        <div className="rounded-2xl border border-border bg-surface p-8 shadow-glow">
-          <h1 className="text-2xl font-semibold tracking-tight">{title}</h1>
-          <p className="mt-1.5 text-sm text-muted">{subtitle}</p>
+        <div className="glass-panel rounded-2xl p-8">
+          <h1 className="font-headline-md text-headline-md font-bold tracking-tight">{title}</h1>
+          <p className="mt-1.5 font-body-md text-body-md text-on-surface-variant">{subtitle}</p>
           <div className="mt-6">{children}</div>
         </div>
-        <p className="mt-6 text-center text-sm text-muted">{footer}</p>
+        <p className="mt-6 text-center font-body-md text-body-md text-on-surface-variant">{footer}</p>
       </div>
     </main>
   );

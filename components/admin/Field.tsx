@@ -18,15 +18,17 @@ export function TextField({
   type?: string;
 }) {
   return (
-    <label className="block">
-      <span className="mb-1.5 block text-sm font-medium text-zinc-300">{label}</span>
+    <label className="block space-y-1">
+      <span className="block text-xs font-bold uppercase tracking-widest text-outline">
+        {label}
+      </span>
       <input
         name={name}
         type={type}
         defaultValue={defaultValue ?? undefined}
         placeholder={placeholder}
         required={required}
-        className="w-full rounded-xl border border-border bg-canvas px-4 py-2.5 text-zinc-100 outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/30"
+        className="w-full rounded-lg border border-outline-variant/20 bg-surface-container-lowest px-4 py-3 text-sm text-on-surface outline-none transition-all focus:border-primary focus:ring-1 focus:ring-primary"
       />
     </label>
   );
@@ -46,14 +48,16 @@ export function TextArea({
   placeholder?: string;
 }) {
   return (
-    <label className="block">
-      <span className="mb-1.5 block text-sm font-medium text-zinc-300">{label}</span>
+    <label className="block space-y-1">
+      <span className="block text-xs font-bold uppercase tracking-widest text-outline">
+        {label}
+      </span>
       <textarea
         name={name}
         rows={rows}
         defaultValue={defaultValue ?? undefined}
         placeholder={placeholder}
-        className="w-full rounded-xl border border-border bg-canvas px-4 py-2.5 font-mono text-sm text-zinc-100 outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/30"
+        className="w-full rounded-lg border border-outline-variant/20 bg-surface-container-lowest px-4 py-3 font-mono text-sm text-on-surface outline-none transition-all placeholder:text-outline/40 focus:border-primary focus:ring-1 focus:ring-primary"
       />
     </label>
   );
@@ -74,9 +78,11 @@ export function Toggle({
         type="checkbox"
         name={name}
         defaultChecked={defaultChecked}
-        className="h-4 w-4 rounded border-border bg-canvas accent-brand"
+        className="h-4 w-4 rounded border-outline-variant/30 bg-surface-container-lowest accent-primary"
       />
-      <span className="text-sm text-zinc-300">{label}</span>
+      <span className="text-xs font-bold uppercase tracking-widest text-outline">
+        {label}
+      </span>
     </label>
   );
 }

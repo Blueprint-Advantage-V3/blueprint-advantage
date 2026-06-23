@@ -14,14 +14,14 @@ export default function SignupPage({
       footer={
         <>
           Already a member?{" "}
-          <Link href="/login" className="text-brand hover:underline">
+          <Link href="/login" className="font-bold text-primary hover:underline">
             Log in
           </Link>
         </>
       }
     >
       {searchParams.error && (
-        <p className="mb-4 rounded-lg border border-red-900/60 bg-red-950/40 px-4 py-3 text-sm text-red-300">
+        <p className="mb-4 rounded-lg border border-error/40 bg-error/10 px-4 py-3 font-body-md text-body-md text-error">
           {searchParams.error}
         </p>
       )}
@@ -36,7 +36,7 @@ export default function SignupPage({
         />
         <button
           type="submit"
-          className="w-full rounded-xl bg-brand px-5 py-3 font-semibold text-white transition hover:bg-brand-hover"
+          className="glow-button w-full rounded-lg bg-primary px-5 py-3 font-label-md font-bold text-on-primary transition-all active:scale-95"
         >
           Create account
         </button>
@@ -58,13 +58,13 @@ function Field({
 }) {
   return (
     <label className="block">
-      <span className="mb-1.5 block text-sm font-medium text-zinc-300">{label}</span>
+      <span className="mb-1.5 block text-xs font-bold uppercase tracking-widest text-outline">{label}</span>
       <input
         name={name}
         type={type}
         required
         autoComplete={autoComplete}
-        className="w-full rounded-xl border border-border bg-surface px-4 py-3 text-zinc-100 outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/30"
+        className="w-full rounded-lg border border-outline-variant/20 bg-surface-container-lowest px-4 py-3 text-sm text-on-surface outline-none transition-all focus:border-primary focus:ring-1 focus:ring-primary"
       />
     </label>
   );

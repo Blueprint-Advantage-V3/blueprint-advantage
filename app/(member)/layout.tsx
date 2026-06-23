@@ -51,7 +51,7 @@ export default async function MemberLayout({
       />
       <div className="flex flex-1 flex-col overflow-hidden">
         {IS_DEMO && (
-          <div className="flex-none bg-amber-500/15 px-6 py-1.5 text-center text-xs text-amber-300">
+          <div className="flex-none border-b border-amber-500/20 bg-amber-500/15 px-gutter py-1.5 text-center text-xs font-label-md text-amber-300">
             🔍 Demo mode — sample content, no login required. Connect Supabase +
             Stripe to go live.
           </div>

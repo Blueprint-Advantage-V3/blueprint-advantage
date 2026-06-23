@@ -31,11 +31,11 @@ export function SubscribeButton() {
       <button
         onClick={startCheckout}
         disabled={loading}
-        className="w-full rounded-xl bg-brand px-5 py-3.5 font-semibold text-white transition hover:bg-brand-hover disabled:opacity-60"
+        className="glow-button w-full rounded-2xl bg-primary py-6 font-headline-md text-headline-md font-black text-on-primary transition-transform active:scale-95 disabled:opacity-60"
       >
         {loading ? "Redirecting…" : "Subscribe & enter the hub"}
       </button>
-      {error && <p className="mt-3 text-sm text-red-400">{error}</p>}
+      {error && <p className="mt-3 font-body-md text-body-md text-error">{error}</p>}
     </div>
   );
 }
