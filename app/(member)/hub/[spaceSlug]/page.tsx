@@ -5,7 +5,7 @@ import type { Channel } from "@/lib/types";
 
 /**
  * Entering a space drops you on its first channel (the Lessons channel sits
- * at position 0), Discord-style.
+ * at position 0), community-style.
  */
 export default async function SpaceIndex({
   params,

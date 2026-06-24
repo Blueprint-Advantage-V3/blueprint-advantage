@@ -1,5 +1,5 @@
 /**
- * LOCAL DEMO MODE — click through the full Discord-style hub locally
+ * LOCAL DEMO MODE — click through the full community-style hub locally
  * without Supabase or Stripe configured.
  *
  * Enabled only when NEXT_PUBLIC_DEMO_MODE === "true" (set in .env.local,
@@ -19,7 +19,7 @@ export const IS_DEMO = process.env.NEXT_PUBLIC_DEMO_MODE === "true";
 
 const NOW = "2026-06-23T00:00:00.000Z";
 
-// ── Spaces (Discord "servers") ───────────────────────────────────
+// ── Spaces (community "servers") ───────────────────────────────────
 function space(
   slug: string,
   name: string,
@@ -46,7 +46,7 @@ export const DEMO_SPACES: Space[] = [
   space("ai", "Using AI", "🤖", "Leverage AI to 10x your output.", 3),
 ];
 
-// ── Channels (every space gets the same Discord-style set) ───────
+// ── Channels (every space gets the same community-style set) ───────
 function channelsFor(spaceSlug: string): Channel[] {
   const make = (
     slug: string,

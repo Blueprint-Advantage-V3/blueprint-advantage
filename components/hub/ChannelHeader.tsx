@@ -2,7 +2,7 @@ import { Icon } from "@/components/ui/Icon";
 import { channelIcon } from "@/lib/icons";
 import type { ChannelType } from "@/lib/types";
 
-/** Discord-style channel header bar at the top of the main content area. */
+/** community-style channel header bar at the top of the main content area. */
 export function ChannelHeader({
   type,
   name,

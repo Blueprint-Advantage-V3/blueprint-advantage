@@ -7,7 +7,7 @@ import { IS_DEMO, demoSpaces, demoChannels } from "@/lib/demo";
 import type { Channel, Space } from "@/lib/types";
 
 /**
- * THE HUB SHELL — Discord-style three-column app frame, rendered once and
+ * THE HUB SHELL — community-style three-column app frame, rendered once and
  * persisted across navigation:
  *   1. ServerRail    — icon column to switch spaces
  *   2. ChannelSidebar — channels for the active space (+ user panel)

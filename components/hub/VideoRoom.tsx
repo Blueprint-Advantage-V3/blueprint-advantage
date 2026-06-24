@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { Icon } from "@/components/ui/Icon";
 
 /**
- * Video channel room. Discord-style join screen → video grid with camera /
+ * Video channel room. community-style join screen → video grid with camera /
  * mic / leave controls.
  *
  * As a local touch, joining requests YOUR real camera (getUserMedia) for the

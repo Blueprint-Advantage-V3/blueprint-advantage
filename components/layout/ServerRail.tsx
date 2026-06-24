@@ -7,7 +7,7 @@ import { spaceIcon } from "@/lib/icons";
 import type { Space } from "@/lib/types";
 
 /**
- * Far-left icon rail — the Discord "servers" column. A Home button up top,
+ * Far-left icon rail — the community "servers" column. A Home button up top,
  * then one rounded icon per space. Active space gets the pill indicator.
  */
 export function ServerRail({ spaces }: { spaces: Space[] }) {

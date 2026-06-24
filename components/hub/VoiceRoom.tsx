@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Icon } from "@/components/ui/Icon";
 
 /**
- * Voice channel room. Discord-style join screen → in-call participant grid
+ * Voice channel room. community-style join screen → in-call participant grid
  * with mic/leave controls.
  *
  * The UI + interactions are real; live audio transport is wired in Phase 2

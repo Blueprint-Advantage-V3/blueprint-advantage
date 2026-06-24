@@ -19,7 +19,7 @@ const TYPE_ORDER: { type: ChannelType; heading: string }[] = [
 const TOTAL_RANKS = 5;
 
 /**
- * The middle column — Discord's channel list. Shows the active space's
+ * The middle column — the community's channel list. Shows the active space's
  * channels grouped by type, or a Home panel when on the platform landing.
  * The active space is derived from the URL.
  */

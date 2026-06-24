@@ -5,7 +5,7 @@ import { Icon } from "@/components/ui/Icon";
 import type { ChannelMessage } from "@/lib/types";
 
 /**
- * Text channel — message list + composer. Discord-style.
+ * Text channel — message list + composer. community-style.
  *
  * MVP: messages are seeded and new messages are appended locally so the
  * channel feels live. Phase 2 swaps the local state for Supabase Realtime

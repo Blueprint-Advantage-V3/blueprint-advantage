@@ -42,7 +42,7 @@ const FEATURES = [
     icon: "campaign",
     accent: "text-on-surface",
     title: "The Community",
-    body: "Discord-style spaces, live voice & video rooms, and a network that pushes you forward.",
+    body: "Members-only spaces, live voice & video rooms, and a network that pushes you forward.",
     span: "md:col-span-2",
     bgClass: "bg-surface-container-high",
   },
@@ -100,12 +100,13 @@ export default function LandingPage() {
             A members-only hub for ambitious people
           </div>
           <h1 className="mb-stack_md bg-gradient-to-b from-on-surface to-on-surface-variant bg-clip-text font-display text-[48px] font-black leading-[1] tracking-tighter text-transparent md:text-[80px]">
-            Stop staying average.
+            Front-run the world
             <br />
-            Build your advantage.
+            with <span className="text-primary">Blueprint Advantage</span>.
           </h1>
           <p className="mx-auto mb-stack_lg max-w-2xl font-body-lg text-body-lg text-on-surface-variant/80">
-            {BRAND.promise} Video lessons from real professors, a Discord-style
+            Learn from professionals who&apos;ve built real success in their field —
+            money, the law, AI, and the road to a top university. Lessons, a private
             community, and live voice & video rooms. One subscription. Infinite leverage.
           </p>
           <div className="flex flex-col items-center justify-center gap-4 md:flex-row">
@@ -179,16 +180,16 @@ export default function LandingPage() {
               <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-3 py-1 font-label-md text-label-md text-primary">
                 <Icon name="bolt" className="text-[14px]" /> The skill of the decade
               </span>
-              <h2 className="mt-4 font-headline-lg text-headline-lg">
-                Learning to use AI right now isn&apos;t optional — it&apos;s your unfair advantage.
-              </h2>
-              <p className="mt-4 font-body-md text-body-md text-on-surface-variant">
-                AI is rewriting every industry in real time. The people who learn to
-                wield it <span className="text-on-surface">today</span> aren&apos;t just
-                keeping up — they&apos;re doing the work of ten, landing the
-                opportunities, and pulling away from everyone who waits. The gap between
-                those who use AI and those who don&apos;t widens every single week, and
-                school isn&apos;t teaching it. <span className="text-primary">We are.</span>
+              <blockquote className="mt-4 font-display text-[26px] font-bold leading-snug tracking-tight md:text-[30px]">
+                &ldquo;AI isn&apos;t going to replace humans — but it{" "}
+                <span className="text-primary">will</span> replace humans who don&apos;t
+                know how to take full advantage of AI.&rdquo;
+              </blockquote>
+              <p className="mt-5 font-body-md text-body-md text-on-surface-variant">
+                That&apos;s why learning to use AI right now isn&apos;t optional. It&apos;s
+                rewriting every industry in real time — the people who wield it today are
+                doing the work of ten and pulling away from everyone who waits. School
+                isn&apos;t teaching it. <span className="text-primary">We are.</span>
               </p>
               <Link
                 href="/signup"

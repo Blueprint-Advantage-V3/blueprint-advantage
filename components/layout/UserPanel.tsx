@@ -5,7 +5,7 @@ import { signOut } from "@/app/(auth)/actions";
 import { Icon } from "@/components/ui/Icon";
 
 /**
- * Bottom-left user panel — Discord-style. Shows the member's avatar/name
+ * Bottom-left user panel — community-style. Shows the member's avatar/name
  * + "Active member" status, with a menu for billing and sign out.
  */
 export function UserPanel({

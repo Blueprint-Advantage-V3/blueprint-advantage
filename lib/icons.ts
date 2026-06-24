@@ -16,7 +16,7 @@ export function spaceIcon(slug: string): string {
   return SPACE_ICONS[slug] ?? "workspaces";
 }
 
-/** Material Symbols icon for each Discord-style channel type. */
+/** Material Symbols icon for each community-style channel type. */
 const CHANNEL_ICONS: Record<ChannelType, string> = {
   lessons: "play_lesson",
   text: "tag",

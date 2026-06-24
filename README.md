@@ -1,7 +1,7 @@
 # Blueprint Advantage
 
 A paid, members-only education hub. Subscribers ($50/mo) log into a
-Discord-style hub with a persistent left sidebar of **spaces** (SAT,
+community-style hub with a persistent left sidebar of **spaces** (SAT,
 Finance, Law, AI, Start Here); clicking a space loads its lessons (video +
 written notes) in the main area. Owner-only admin to manage content.
 
@@ -31,7 +31,7 @@ npm run dev                  # http://localhost:3000
    - `supabase/migrations/0001_init.sql` (tables + helpers + triggers)
    - `supabase/migrations/0002_rls.sql` (row-level security policies)
    - `supabase/migrations/0003_phase2_stubs.sql` (inert Phase-2 tables — optional now)
-   - `supabase/migrations/0004_channels.sql` (Discord channels + lesson instructor; auto-seeds a channel set per space)
+   - `supabase/migrations/0004_channels.sql` (community channels + lesson instructor; auto-seeds a channel set per space)
    - `supabase/seed.sql` (optional sample spaces/lessons — channels auto-created by the 0004 trigger)
 4. **Auth → Providers → Email**: for the smoothest MVP flow, turn **off**
    "Confirm email" (users sign in immediately). Leave it on if you want
@@ -114,7 +114,7 @@ visitor → /            (public landing)
         → /signup      (Supabase email/password) → profile auto-created
         → /subscribe   (Stripe Checkout, $50/mo, card required)
         → webhook writes subscriptions.status = 'active'
-        → /hub         (gated: active sub required; Discord-style shell)
+        → /hub         (gated: active sub required; community-style shell)
 ```
 
 - **Middleware** (`middleware.ts`) refreshes the session and blocks

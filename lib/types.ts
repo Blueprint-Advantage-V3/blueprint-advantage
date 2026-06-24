@@ -48,7 +48,7 @@ export interface Space {
 }
 
 /**
- * Discord-style channel inside a space. `lessons` channels surface the
+ * community-style channel inside a space. `lessons` channels surface the
  * prerecorded lesson library; `text` is chat; `voice`/`video` are live rooms.
  */
 export type ChannelType = "lessons" | "text" | "voice" | "video";
