@@ -1,12 +1,13 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { signOut } from "@/app/(auth)/actions";
 import { Icon } from "@/components/ui/Icon";
 
 /**
- * Bottom-left user panel — community-style. Shows the member's avatar/name
- * + "Active member" status, with a menu for billing and sign out.
+ * Bottom-left user panel. Clicking the member opens a menu with Settings
+ * (account + billing live there) and Sign out.
  */
 export function UserPanel({
   fullName,
@@ -16,31 +17,10 @@ export function UserPanel({
   email: string;
 }) {
   const [open, setOpen] = useState(false);
-  const [loadingPortal, setLoadingPortal] = useState(false);
   const initial = (fullName || email || "M").charAt(0).toUpperCase();
 
-  async function openPortal() {
-    setLoadingPortal(true);
-    try {
-      const res = await fetch("/api/stripe/portal", { method: "POST" });
-      const data = await res.json();
-      if (data.url) window.location.href = data.url;
-    } finally {
-      setLoadingPortal(false);
-    }
-  }
-
   return (
-    <div className="relative flex-none space-y-stack_sm border-t border-outline-variant/10 bg-surface-container-low p-3">
-      {/* Manage Subscription — primary-container button above the user row */}
-      <button
-        onClick={openPortal}
-        disabled={loadingPortal}
-        className="w-full rounded-lg bg-primary-container py-3 font-label-md text-label-md font-bold text-on-primary-container transition-all hover:opacity-90 active:scale-95 disabled:opacity-60"
-      >
-        {loadingPortal ? "Opening…" : "Manage Subscription"}
-      </button>
-
+    <div className="relative flex-none border-t border-outline-variant/10 bg-surface-container-low p-3">
       <button
         onClick={() => setOpen((v) => !v)}
         className="flex w-full items-center gap-stack_sm rounded-lg px-2 py-1.5 transition-colors hover:bg-white/5"
@@ -69,14 +49,14 @@ export function UserPanel({
               <p className="truncate text-xs text-outline">{email}</p>
             </div>
             <div className="my-1 h-px bg-outline-variant/20" />
-            <button
-              onClick={openPortal}
-              disabled={loadingPortal}
-              className="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-left text-sm text-on-surface-variant transition-colors hover:bg-white/5 disabled:opacity-60"
+            <Link
+              href="/settings"
+              onClick={() => setOpen(false)}
+              className="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-left text-sm text-on-surface-variant transition-colors hover:bg-white/5"
             >
-              <Icon name="payments" className="text-[18px]" />
-              {loadingPortal ? "Opening…" : "Manage subscription"}
-            </button>
+              <Icon name="settings" className="text-[18px]" />
+              Settings
+            </Link>
             <form action={signOut}>
               <button className="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-left text-sm text-on-surface-variant transition-colors hover:bg-white/5">
                 <Icon name="logout" className="text-[18px]" />

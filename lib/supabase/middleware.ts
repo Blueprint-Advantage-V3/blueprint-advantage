@@ -48,7 +48,8 @@ export async function updateSession(request: NextRequest) {
   const isProtected =
     path.startsWith("/hub") ||
     path.startsWith("/admin") ||
-    path.startsWith("/welcome");
+    path.startsWith("/welcome") ||
+    path.startsWith("/settings");
 
   // Unauthenticated users hitting protected areas → login.
   if (isProtected && !user) {
