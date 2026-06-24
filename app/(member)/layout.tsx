@@ -3,6 +3,7 @@ import { getMemberContext } from "@/lib/subscription";
 import { createClient } from "@/lib/supabase/server";
 import { ServerRail } from "@/components/layout/ServerRail";
 import { ChannelSidebar } from "@/components/layout/ChannelSidebar";
+import { StudyBuddy } from "@/components/hub/StudyBuddy";
 import { IS_DEMO, demoSpaces, demoChannels } from "@/lib/demo";
 import type { Channel, Space } from "@/lib/types";
 
@@ -58,6 +59,7 @@ export default async function MemberLayout({
         )}
         <main className="flex-1 overflow-y-auto">{children}</main>
       </div>
+      <StudyBuddy />
     </div>
   );
 }
