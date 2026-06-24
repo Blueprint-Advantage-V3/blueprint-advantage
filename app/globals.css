@@ -8,8 +8,8 @@
 
 html,
 body {
-  background-color: #0a0a0b;
-  color: #e5e2e3;
+  background-color: #0a0f20;
+  color: #e7e9f6;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -38,7 +38,7 @@ body {
 /* Glassmorphism panel — translucent, blurred, hairline border */
 .glass-panel,
 .glass-card {
-  background: rgba(28, 28, 30, 0.7);
+  background: rgba(20, 28, 64, 0.62);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -46,13 +46,13 @@ body {
 }
 .glass-card:hover {
   border-color: rgba(173, 198, 255, 0.3);
-  background: rgba(28, 28, 30, 0.85);
+  background: rgba(24, 34, 76, 0.8);
 }
 
 /* Featured card: gradient (violet → sky) top border via padding-box trick */
 .premium-border {
   border-top: 1px solid transparent;
-  background-image: linear-gradient(#141415, #141415),
+  background-image: linear-gradient(#131a3a, #131a3a),
     linear-gradient(to right, #3a5fcc, #89ceff);
   background-origin: border-box;
   background-clip: padding-box, border-box;
@@ -121,7 +121,7 @@ body {
 .custom-scrollbar::-webkit-scrollbar,
 * {
   scrollbar-width: thin;
-  scrollbar-color: #4a4455 transparent;
+  scrollbar-color: #2f3c70 transparent;
 }
 .custom-scrollbar::-webkit-scrollbar {
   width: 4px;
@@ -135,11 +135,11 @@ body {
   background: transparent;
 }
 *::-webkit-scrollbar-thumb {
-  background-color: #4a4455;
+  background-color: #2f3c70;
   border-radius: 9999px;
 }
 *::-webkit-scrollbar-thumb:hover {
-  background-color: #5a5466;
+  background-color: #3a4884;
 }
 
 /* ── Lesson long-form content (markdown-ish) ───────────────────── */
@@ -158,14 +158,14 @@ body {
 .prose-notes h3 {
   font-family: var(--font-geist-sans), system-ui, sans-serif;
   font-weight: 600;
-  color: #e5e2e3;
+  color: #e7e9f6;
   margin-top: 1.5rem;
   margin-bottom: 0.5rem;
 }
 .lesson-content p,
 .prose-notes p {
   margin-bottom: 1.5rem;
-  color: #ccc3d8;
+  color: #c2c8e4;
   line-height: 1.7;
 }
 .prose-notes a {
@@ -176,7 +176,7 @@ body {
 .prose-notes ol {
   margin: 1em 0;
   padding-left: 1.4em;
-  color: #ccc3d8;
+  color: #c2c8e4;
 }
 .prose-notes ul {
   list-style: disc;
@@ -185,7 +185,7 @@ body {
   list-style: decimal;
 }
 .prose-notes code {
-  background: #0e0e0f;
+  background: #070b18;
   padding: 0.15em 0.4em;
   border-radius: 4px;
   font-size: 0.9em;
