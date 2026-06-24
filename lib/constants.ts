@@ -6,7 +6,7 @@ export const BRAND = {
   shortName: "Blueprint",
   tagline: "The membership for ambitious people who refuse to stay average.",
   // Marketing one-liners reused across the landing page.
-  promise: "Master the SAT, money, the law, and AI — all in one members-only hub.",
+  promise: "Get into university, master your money, the law, and AI — all in one members-only hub.",
 };
 
 export const PRICE_DISPLAY = {

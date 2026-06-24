@@ -45,7 +45,10 @@ export async function updateSession(request: NextRequest) {
   } = await supabase.auth.getUser();
 
   const path = request.nextUrl.pathname;
-  const isProtected = path.startsWith("/hub") || path.startsWith("/admin");
+  const isProtected =
+    path.startsWith("/hub") ||
+    path.startsWith("/admin") ||
+    path.startsWith("/welcome");
 
   // Unauthenticated users hitting protected areas → login.
   if (isProtected && !user) {

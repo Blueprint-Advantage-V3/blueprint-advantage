@@ -6,8 +6,8 @@ const FEATURES = [
   {
     icon: "school",
     accent: "text-primary",
-    title: "SAT Mastery",
-    body: "Proprietary strategies for the 1600 club, taught by top-percentile scorers. Lift your score fast.",
+    title: "Road to University",
+    body: "Your roadmap into a top university — SAT mastery, standout essays, and applications that get you in.",
     cta: "Explore curriculum",
     ctaIcon: "arrow_forward",
     span: "md:col-span-3",
@@ -50,7 +50,7 @@ const FEATURES = [
 
 const STEPS = [
   { n: "1", title: "Join", body: `Create your account and start your membership for ${PRICE_DISPLAY.amount}${PRICE_DISPLAY.period}.` },
-  { n: "2", title: "Pick your spaces", body: "SAT, Finance, Law, AI — open the sidebar and dive into whatever moves your life forward." },
+  { n: "2", title: "Pick your campus", body: "University, Finance, Law, AI — onboarding drops you in the right campus, then explore them all." },
   { n: "3", title: "Start leveling up", body: "Watch, take notes, join the rooms, and apply it. New content drops every week." },
 ];
 
@@ -168,6 +168,51 @@ export default function LandingPage() {
               )}
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* Why AI now */}
+      <section className="mx-auto max-w-7xl px-gutter py-stack_lg">
+        <div className="primary-gradient-border glass-card overflow-hidden rounded-[2rem] p-stack_lg md:p-12">
+          <div className="grid gap-stack_lg md:grid-cols-2 md:items-center">
+            <div>
+              <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-3 py-1 font-label-md text-label-md text-primary">
+                <Icon name="bolt" className="text-[14px]" /> The skill of the decade
+              </span>
+              <h2 className="mt-4 font-headline-lg text-headline-lg">
+                Learning to use AI right now isn&apos;t optional — it&apos;s your unfair advantage.
+              </h2>
+              <p className="mt-4 font-body-md text-body-md text-on-surface-variant">
+                AI is rewriting every industry in real time. The people who learn to
+                wield it <span className="text-on-surface">today</span> aren&apos;t just
+                keeping up — they&apos;re doing the work of ten, landing the
+                opportunities, and pulling away from everyone who waits. The gap between
+                those who use AI and those who don&apos;t widens every single week, and
+                school isn&apos;t teaching it. <span className="text-primary">We are.</span>
+              </p>
+              <Link
+                href="/signup"
+                className="mt-6 inline-flex items-center gap-2 font-label-md text-label-md font-bold text-primary transition hover:gap-3"
+              >
+                Start learning AI <Icon name="arrow_forward" className="text-[16px]" />
+              </Link>
+            </div>
+            <div className="space-y-4">
+              {[
+                { icon: "rocket_launch", t: "10x your output", b: "Do in an hour what used to take a week — research, writing, building, planning." },
+                { icon: "schedule", t: "The early-mover edge", b: "Skills compound. Starting now puts you years ahead of everyone who starts 'later.'" },
+                { icon: "workspace_premium", t: "It's the new literacy", b: "Prompting, building, and automating is becoming as basic as knowing how to type." },
+              ].map((p) => (
+                <div key={p.t} className="flex items-start gap-4 rounded-2xl border border-outline-variant/10 bg-surface-container/40 p-5">
+                  <Icon name={p.icon} fill className="flex-none text-[28px] text-primary" />
+                  <div>
+                    <h3 className="font-headline-md text-headline-md">{p.t}</h3>
+                    <p className="mt-1 font-body-md text-body-md text-on-surface-variant/80">{p.b}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 

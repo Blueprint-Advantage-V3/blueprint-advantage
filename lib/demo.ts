@@ -40,7 +40,7 @@ function space(
 }
 
 export const DEMO_SPACES: Space[] = [
-  space("sat", "SAT Prep", "📈", "Crush the SAT with proven strategies.", 0),
+  space("sat", "Road to University", "🎓", "Your roadmap into a top university — SAT, essays & applications.", 0),
   space("finance", "Finance", "💰", "Build wealth and master your money.", 1),
   space("law", "Law", "⚖️", "Understand the law and protect yourself.", 2),
   space("ai", "Using AI", "🤖", "Leverage AI to 10x your output.", 3),
@@ -184,7 +184,7 @@ function msg(
 }
 
 export const DEMO_MESSAGES: ChannelMessage[] = [
-  msg("chan-sat-general", "Dr. Lena Ortiz", "Welcome to SAT Prep! New lesson drops every Monday. 📈", 0),
+  msg("chan-sat-general", "Dr. Lena Ortiz", "Welcome to Road to University! New lesson drops every Monday. 🎓", 0),
   msg("chan-sat-general", "Maya", "Just hit a 1480 on my practice test 🔥 thank you!", 1),
   msg("chan-sat-general", "Dr. Lena Ortiz", "Incredible Maya — let's push for 1500+ next.", 2),
   msg("chan-sat-questions", "Jordan", "On the math no-calc section, how do you handle systems fast?", 0),

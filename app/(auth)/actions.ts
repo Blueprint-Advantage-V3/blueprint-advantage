@@ -30,7 +30,8 @@ export async function signIn(formData: FormData) {
  * immediately. Either way we route them toward subscribing.
  */
 export async function signUp(formData: FormData) {
-  if (IS_DEMO) redirect("/hub");
+  // New members go through campus onboarding first.
+  if (IS_DEMO) redirect("/welcome");
   const email = String(formData.get("email") ?? "").trim();
   const password = String(formData.get("password") ?? "");
   const fullName = String(formData.get("full_name") ?? "").trim();
