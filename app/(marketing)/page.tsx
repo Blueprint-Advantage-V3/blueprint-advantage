@@ -95,10 +95,6 @@ export default function LandingPage() {
       <section className="relative flex min-h-screen items-center justify-center overflow-hidden px-margin_mobile pt-24">
         <div className="pointer-events-none absolute left-1/2 top-1/3 -z-10 h-[700px] w-[700px] -translate-x-1/2 rounded-full bg-primary/5 blur-[120px]" />
         <div className="relative z-10 mx-auto max-w-content_max_width text-center">
-          <div className="mb-stack_lg inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-3 py-1 font-label-md text-label-md text-primary">
-            <Icon name="stars" className="text-[14px]" />
-            A members-only hub for ambitious people
-          </div>
           <h1 className="mb-stack_md bg-gradient-to-b from-on-surface to-on-surface-variant bg-clip-text font-display text-[48px] font-black leading-[1] tracking-tighter text-transparent md:text-[80px]">
             Front-run the world
             <br />
