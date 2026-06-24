@@ -9,6 +9,7 @@ import { ChatChannel } from "@/components/hub/ChatChannel";
 import { VoiceRoom } from "@/components/hub/VoiceRoom";
 import { VideoRoom } from "@/components/hub/VideoRoom";
 import { ScheduleView } from "@/components/hub/ScheduleView";
+import { MemberList } from "@/components/community/MemberList";
 import { LessonStatus } from "@/components/progress/LessonStatus";
 import {
   IS_DEMO,
@@ -98,11 +99,17 @@ export default async function ChannelPage({
           <ScheduleView sessions={schedule} spaceName={space.name} />
         )}
         {channel.type === "text" && (
-          <ChatChannel
-            channelName={channel.name}
-            initialMessages={messages}
-            currentUser={currentUser}
-          />
+          <div className="flex h-full">
+            <div className="min-w-0 flex-1">
+              <ChatChannel
+                channelName={channel.name}
+                initialMessages={messages}
+                currentUser={currentUser}
+                storageKey={`${space.slug}/${channel.slug}`}
+              />
+            </div>
+            <MemberList currentUser={currentUser} />
+          </div>
         )}
         {channel.type === "voice" && (
           <VoiceRoom channelName={channel.name} currentUser={currentUser} />

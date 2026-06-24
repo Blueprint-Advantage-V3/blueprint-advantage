@@ -1,27 +1,54 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Icon } from "@/components/ui/Icon";
 import type { ChannelMessage } from "@/lib/types";
 
 /**
- * Text channel — message list + composer. community-style.
- *
- * MVP: messages are seeded and new messages are appended locally so the
- * channel feels live. Phase 2 swaps the local state for Supabase Realtime
- * (insert into `messages`, subscribe to the channel) — the UI stays the same.
+ * Text channel — message list + composer. Messages persist per-channel in
+ * localStorage so the conversation survives reloads (demo). Wave 4 swaps this
+ * for Supabase Realtime; the UI stays the same.
  */
 export function ChatChannel({
   channelName,
   initialMessages,
   currentUser,
+  storageKey,
 }: {
   channelName: string;
   initialMessages: ChannelMessage[];
   currentUser: string;
+  storageKey: string;
 }) {
+  const KEY = `ba_chat_${storageKey}`;
   const [messages, setMessages] = useState<ChannelMessage[]>(initialMessages);
   const [draft, setDraft] = useState("");
+  const [ready, setReady] = useState(false);
+  const scrollRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    try {
+      const raw = localStorage.getItem(KEY);
+      if (raw) setMessages(JSON.parse(raw));
+    } catch {
+      /* ignore */
+    }
+    setReady(true);
+  }, [KEY]);
+
+  useEffect(() => {
+    if (ready) {
+      try {
+        localStorage.setItem(KEY, JSON.stringify(messages));
+      } catch {
+        /* ignore */
+      }
+    }
+  }, [messages, ready, KEY]);
+
+  useEffect(() => {
+    scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight });
+  }, [messages]);
 
   function send(e: React.FormEvent) {
     e.preventDefault();
@@ -30,7 +57,7 @@ export function ChatChannel({
     setMessages((prev) => [
       ...prev,
       {
-        id: `local-${prev.length}`,
+        id: `local-${Date.now()}`,
         channel_id: "local",
         author_name: currentUser,
         author_initial: currentUser.charAt(0).toUpperCase(),
@@ -43,7 +70,7 @@ export function ChatChannel({
 
   return (
     <div className="flex h-full flex-col">
-      <div className="flex-1 space-y-4 overflow-y-auto px-gutter py-6">
+      <div ref={scrollRef} className="flex-1 space-y-4 overflow-y-auto px-gutter py-6">
         {messages.map((m) => (
           <div key={m.id} className="group flex gap-3">
             <span className="flex h-10 w-10 flex-none items-center justify-center rounded-full bg-primary-container text-sm font-bold text-on-primary-container">

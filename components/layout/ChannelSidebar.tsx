@@ -102,6 +102,13 @@ function HomePanel({ spaces }: { spaces: Space[] }) {
         <Icon name="home" fill={onHome} className="text-[20px]" />
         <span className="font-label-md text-label-md">Home</span>
       </Link>
+      <Link
+        href="/hub/wins"
+        className={pathname.startsWith("/hub/wins") ? NAV_ACTIVE : NAV_INACTIVE}
+      >
+        <Icon name="emoji_events" fill={pathname.startsWith("/hub/wins")} className="text-[20px]" />
+        <span className="font-label-md text-label-md">Wins</span>
+      </Link>
 
       <p className="px-4 pb-1 pt-4 text-[11px] font-bold uppercase tracking-widest text-outline">
         Your spaces

@@ -19,6 +19,13 @@ export function ServerRail({ spaces }: { spaces: Space[] }) {
       <RailButton href="/hub" active={onHome} label="Home">
         <Icon name="home" fill={onHome} className="text-[22px]" />
       </RailButton>
+      <RailButton
+        href="/hub/wins"
+        active={pathname.startsWith("/hub/wins")}
+        label="Wins"
+      >
+        <Icon name="emoji_events" fill={pathname.startsWith("/hub/wins")} className="text-[22px]" />
+      </RailButton>
 
       <div className="my-1 h-px w-8 bg-outline-variant/20" />
 
