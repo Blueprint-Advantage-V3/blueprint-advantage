@@ -3,6 +3,8 @@ import { createClient } from "@/lib/supabase/server";
 import { BRAND } from "@/lib/constants";
 import { IS_DEMO, demoSpaces } from "@/lib/demo";
 import { Icon } from "@/components/ui/Icon";
+import { ProgressStats } from "@/components/progress/ProgressStats";
+import { Leaderboard } from "@/components/progress/Leaderboard";
 import type { Space } from "@/lib/types";
 
 export const metadata = { title: "Home" };
@@ -105,37 +107,10 @@ export default async function HubHome() {
         />
       </div>
 
-      {/* QUICK STATS */}
-      <div className="mt-stack_lg grid grid-cols-1 gap-4 md:grid-cols-3">
-        <div className="glass-panel rounded-xl p-stack_md">
-          <p className="mb-1 text-[10px] font-bold uppercase text-on-surface-variant">
-            XP Points
-          </p>
-          <div className="flex items-end justify-between">
-            <span className="text-3xl font-bold text-primary">12,450</span>
-            <div className="h-1 w-24 overflow-hidden rounded-full bg-surface-container">
-              <div className="h-full w-[65%] bg-gradient-to-r from-secondary to-primary" />
-            </div>
-          </div>
-        </div>
-        <div className="glass-panel rounded-xl p-stack_md">
-          <p className="mb-1 text-[10px] font-bold uppercase text-on-surface-variant">
-            Rank
-          </p>
-          <div className="flex items-end justify-between">
-            <span className="text-3xl font-bold text-secondary">Elite V</span>
-            <Icon name="military_tech" className="text-secondary opacity-50" />
-          </div>
-        </div>
-        <div className="glass-panel rounded-xl p-stack_md">
-          <p className="mb-1 text-[10px] font-bold uppercase text-on-surface-variant">
-            Streak
-          </p>
-          <div className="flex items-end justify-between">
-            <span className="text-3xl font-bold text-tertiary">14 Days</span>
-            <Icon name="local_fire_department" className="text-tertiary opacity-50" />
-          </div>
-        </div>
+      {/* PROGRESS + LEADERBOARD (live, Wave 2) */}
+      <div className="mt-stack_lg space-y-4">
+        <ProgressStats />
+        <Leaderboard />
       </div>
     </div>
   );

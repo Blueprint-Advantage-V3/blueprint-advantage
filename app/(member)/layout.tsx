@@ -4,6 +4,7 @@ import { createClient } from "@/lib/supabase/server";
 import { ServerRail } from "@/components/layout/ServerRail";
 import { ChannelSidebar } from "@/components/layout/ChannelSidebar";
 import { StudyBuddy } from "@/components/hub/StudyBuddy";
+import { ProgressProvider } from "@/lib/progress";
 import { IS_DEMO, demoSpaces, demoChannels } from "@/lib/demo";
 import type { Channel, Space } from "@/lib/types";
 
@@ -42,6 +43,7 @@ export default async function MemberLayout({
   }
 
   return (
+    <ProgressProvider>
     <div className="flex h-screen overflow-hidden bg-canvas">
       <ServerRail spaces={spaces} />
       <ChannelSidebar
@@ -61,5 +63,6 @@ export default async function MemberLayout({
       </div>
       <StudyBuddy />
     </div>
+    </ProgressProvider>
   );
 }

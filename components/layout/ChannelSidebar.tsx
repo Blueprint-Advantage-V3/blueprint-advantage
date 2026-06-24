@@ -6,17 +6,17 @@ import { UserPanel } from "./UserPanel";
 import { Icon } from "@/components/ui/Icon";
 import { channelIcon, spaceIcon } from "@/lib/icons";
 import { BRAND } from "@/lib/constants";
+import { useProgress, rankProgress, TOTAL_RANKS } from "@/lib/progress";
 import type { Channel, ChannelType, Space } from "@/lib/types";
 
 // Live channels (voice + video) sit right below Lessons; text channels last.
 const TYPE_ORDER: { type: ChannelType; heading: string }[] = [
   { type: "lessons", heading: "Lessons" },
+  { type: "schedule", heading: "Schedule" },
   { type: "voice", heading: "Voice Channels" },
   { type: "video", heading: "Video Channels" },
   { type: "text", heading: "Text Channels" },
 ];
-
-const TOTAL_RANKS = 5;
 
 /**
  * The middle column — the community's channel list. Shows the active space's
@@ -129,12 +129,14 @@ function SpaceChannels({
   channels: Channel[];
   activeChannelSlug?: string;
 }) {
-  // Each class has a Rank 1–5 progression ladder; current rank varies by class.
-  const currentRank = (space.position % (TOTAL_RANKS - 1)) + 2;
+  // Rank comes from real XP earned in this class (Wave 2 gamification).
+  const { campusRank, campusXp } = useProgress();
+  const currentRank = campusRank(space.slug);
+  const xp = campusXp(space.slug);
 
   return (
     <div className="space-y-stack_md">
-      <RankLadder currentRank={currentRank} />
+      <RankLadder currentRank={currentRank} xp={xp} />
       {TYPE_ORDER.map(({ type, heading }) => {
         const group = channels
           .filter((c) => c.type === type)
@@ -173,8 +175,9 @@ function SpaceChannels({
   );
 }
 
-/** Rank 1–5 progression ladder shown at the top of every class. */
-function RankLadder({ currentRank }: { currentRank: number }) {
+/** Rank 1–5 progression ladder + live XP bar shown at the top of every class. */
+function RankLadder({ currentRank, xp }: { currentRank: number; xp: number }) {
+  const p = rankProgress(xp);
   return (
     <div>
       <p className="px-4 pb-1 text-[11px] font-bold uppercase tracking-widest text-outline">
@@ -214,6 +217,19 @@ function RankLadder({ currentRank }: { currentRank: number }) {
             </div>
           );
         })}
+      </div>
+      {/* Live XP-to-next-rank bar */}
+      <div className="mt-2 px-4">
+        <div className="mb-1 flex items-center justify-between text-[10px] text-outline">
+          <span>{xp} XP</span>
+          <span>{p.atMax ? "Max rank" : `${p.into}/${p.need} → Rank ${p.rank + 1}`}</span>
+        </div>
+        <div className="h-1.5 w-full overflow-hidden rounded-full bg-surface-container">
+          <div
+            className="h-full rounded-full bg-gradient-to-r from-secondary to-primary transition-all duration-500"
+            style={{ width: `${p.pct}%` }}
+          />
+        </div>
       </div>
     </div>
   );

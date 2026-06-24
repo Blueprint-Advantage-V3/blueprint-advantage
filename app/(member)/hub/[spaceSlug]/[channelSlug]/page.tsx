@@ -8,14 +8,23 @@ import { ChannelHeader } from "@/components/hub/ChannelHeader";
 import { ChatChannel } from "@/components/hub/ChatChannel";
 import { VoiceRoom } from "@/components/hub/VoiceRoom";
 import { VideoRoom } from "@/components/hub/VideoRoom";
+import { ScheduleView } from "@/components/hub/ScheduleView";
+import { LessonStatus } from "@/components/progress/LessonStatus";
 import {
   IS_DEMO,
   demoChannel,
   demoSpaceBySlug,
   demoLessonsForSpace,
   demoMessagesForChannel,
+  demoScheduleForSpace,
 } from "@/lib/demo";
-import type { Channel, ChannelMessage, Lesson, Space } from "@/lib/types";
+import type {
+  Channel,
+  ChannelMessage,
+  Lesson,
+  ScheduleSession,
+  Space,
+} from "@/lib/types";
 
 /**
  * Channel view. Resolves the channel by space + slug, then renders the right
@@ -33,6 +42,7 @@ export default async function ChannelPage({
   let channel: Channel;
   let lessons: Lesson[] = [];
   let messages: ChannelMessage[] = [];
+  let schedule: ScheduleSession[] = [];
 
   if (IS_DEMO) {
     const s = demoSpaceBySlug(params.spaceSlug);
@@ -42,6 +52,7 @@ export default async function ChannelPage({
     channel = c;
     if (c.type === "lessons") lessons = demoLessonsForSpace(s.id);
     if (c.type === "text") messages = demoMessagesForChannel(c.id);
+    if (c.type === "schedule") schedule = demoScheduleForSpace(s.id);
   } else {
     const supabase = createClient();
     const { data: s } = await supabase
@@ -82,6 +93,9 @@ export default async function ChannelPage({
       <div className="min-h-0 flex-1">
         {channel.type === "lessons" && (
           <LessonLibrary space={space} channelSlug={channel.slug} lessons={lessons} />
+        )}
+        {channel.type === "schedule" && (
+          <ScheduleView sessions={schedule} spaceName={space.name} />
         )}
         {channel.type === "text" && (
           <ChatChannel
@@ -141,9 +155,7 @@ function LessonLibrary({
                 {lesson.video_url ? "Video + notes" : "Notes"}
               </p>
             </div>
-            <span className="ml-auto flex h-8 w-8 flex-none items-center justify-center rounded-full text-outline transition-colors group-hover:text-primary">
-              <Icon name="play_arrow" fill />
-            </span>
+            <LessonStatus lessonId={lesson.id} />
           </Link>
         ))}
       </div>

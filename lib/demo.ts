@@ -11,6 +11,7 @@ import type {
   ChannelMessage,
   Lesson,
   Profile,
+  ScheduleSession,
   Space,
   Subscription,
 } from "@/lib/types";
@@ -63,11 +64,12 @@ function channelsFor(spaceSlug: string): Channel[] {
   });
   return [
     make("lessons", "Lessons", "lessons", 0),
-    make("general", "general", "text", 1),
-    make("questions", "questions", "text", 2),
-    make("study-hall", "Study Hall", "voice", 3),
-    make("office-hours", "Office Hours", "voice", 4),
-    make("live-class", "Live Class", "video", 5),
+    make("schedule", "Schedule", "schedule", 1),
+    make("general", "general", "text", 2),
+    make("questions", "questions", "text", 3),
+    make("study-hall", "Study Hall", "voice", 4),
+    make("office-hours", "Office Hours", "voice", 5),
+    make("live-class", "Live Class", "video", 6),
   ];
 }
 
@@ -193,7 +195,43 @@ export const DEMO_MESSAGES: ChannelMessage[] = [
   msg("chan-ai-general", "Sam Reyes", "Drop your best prompt of the week below 👇", 0),
 ];
 
+// ── Educator schedules (each professor's weekly live sessions) ───
+function sched(
+  spaceSlug: string,
+  n: number,
+  educator: string,
+  title: string,
+  type: ScheduleSession["type"],
+  day: string,
+  time: string
+): ScheduleSession {
+  return {
+    id: `sched-${spaceSlug}-${n}`,
+    space_id: `space-${spaceSlug}`,
+    educator,
+    title,
+    type,
+    day,
+    time,
+  };
+}
+
+export const DEMO_SCHEDULE: ScheduleSession[] = [
+  sched("sat", 1, "Dr. Lena Ortiz", "SAT Math Intensive (Live)", "live-class", "Monday", "6:00 PM ET"),
+  sched("sat", 2, "Dr. Lena Ortiz", "Open Office Hours", "office-hours", "Wednesday", "5:00 PM ET"),
+  sched("sat", 3, "Dr. Lena Ortiz", "Essay Review Workshop", "workshop", "Friday", "4:00 PM ET"),
+  sched("finance", 1, "Marcus Webb", "Investing Live", "live-class", "Tuesday", "7:00 PM ET"),
+  sched("finance", 2, "Marcus Webb", "Portfolio Office Hours", "office-hours", "Thursday", "5:00 PM ET"),
+  sched("law", 1, "Prof. Aisha Bello", "Case Breakdown (Live)", "live-class", "Wednesday", "6:00 PM ET"),
+  sched("law", 2, "Prof. Aisha Bello", "Ask-Me-Anything", "qa", "Monday", "4:00 PM ET"),
+  sched("ai", 1, "Sam Reyes", "Build With AI Workshop", "workshop", "Thursday", "6:30 PM ET"),
+  sched("ai", 2, "Sam Reyes", "Prompt Clinic Office Hours", "office-hours", "Tuesday", "5:00 PM ET"),
+];
+
 // ── Helpers ──────────────────────────────────────────────────────
+export function demoScheduleForSpace(spaceId: string): ScheduleSession[] {
+  return DEMO_SCHEDULE.filter((s) => s.space_id === spaceId);
+}
 export function demoSpaces(): Space[] {
   return [...DEMO_SPACES].sort((a, b) => a.position - b.position);
 }

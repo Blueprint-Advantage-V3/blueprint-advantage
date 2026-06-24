@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { VideoEmbed } from "@/components/hub/VideoEmbed";
 import { LessonNotes } from "@/components/hub/LessonNotes";
+import { LessonComplete } from "@/components/progress/LessonComplete";
 import { Icon } from "@/components/ui/Icon";
 import { IS_DEMO, demoSpaceBySlug, demoLesson } from "@/lib/demo";
 import type { Lesson, Space } from "@/lib/types";
@@ -93,15 +94,9 @@ export default async function LessonPage({
 
               {l.content && <LessonNotes content={l.content} />}
 
-              {/* Lesson actions (presentational chrome) */}
+              {/* Lesson actions */}
               <div className="mt-12 flex flex-wrap items-center gap-4 border-t border-outline-variant/10 py-8">
-                <button
-                  type="button"
-                  className="flex items-center gap-3 rounded-xl bg-primary-container px-8 py-4 font-headline-md text-headline-md text-on-primary-container transition-all hover:opacity-90 active:scale-95"
-                >
-                  <Icon name="check_circle" fill />
-                  Mark as Complete
-                </button>
+                <LessonComplete campus={params.spaceSlug} lessonId={l.id} />
                 <button
                   type="button"
                   className="rounded-xl border border-outline-variant/30 px-6 py-4 font-label-md text-label-md text-on-surface-variant transition-all hover:bg-white/5"

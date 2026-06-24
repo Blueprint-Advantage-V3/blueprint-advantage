@@ -51,7 +51,18 @@ export interface Space {
  * community-style channel inside a space. `lessons` channels surface the
  * prerecorded lesson library; `text` is chat; `voice`/`video` are live rooms.
  */
-export type ChannelType = "lessons" | "text" | "voice" | "video";
+export type ChannelType = "lessons" | "schedule" | "text" | "voice" | "video";
+
+/** A session an educator schedules (live class, office hours, Q&A). */
+export interface ScheduleSession {
+  id: string;
+  space_id: string;
+  educator: string;
+  title: string;
+  type: "live-class" | "office-hours" | "qa" | "workshop";
+  day: string; // e.g. "Monday"
+  time: string; // e.g. "6:00 PM ET"
+}
 
 export interface Channel {
   id: string;

@@ -19,6 +19,7 @@ export function spaceIcon(slug: string): string {
 /** Material Symbols icon for each community-style channel type. */
 const CHANNEL_ICONS: Record<ChannelType, string> = {
   lessons: "play_lesson",
+  schedule: "calendar_month",
   text: "tag",
   voice: "graphic_eq",
   video: "videocam",
