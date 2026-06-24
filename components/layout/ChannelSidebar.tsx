@@ -8,12 +8,15 @@ import { channelIcon, spaceIcon } from "@/lib/icons";
 import { BRAND } from "@/lib/constants";
 import type { Channel, ChannelType, Space } from "@/lib/types";
 
+// Live channels (voice + video) sit right below Lessons; text channels last.
 const TYPE_ORDER: { type: ChannelType; heading: string }[] = [
   { type: "lessons", heading: "Lessons" },
-  { type: "text", heading: "Text Channels" },
   { type: "voice", heading: "Voice Channels" },
   { type: "video", heading: "Video Channels" },
+  { type: "text", heading: "Text Channels" },
 ];
+
+const TOTAL_RANKS = 5;
 
 /**
  * The middle column — Discord's channel list. Shows the active space's
@@ -126,8 +129,12 @@ function SpaceChannels({
   channels: Channel[];
   activeChannelSlug?: string;
 }) {
+  // Each class has a Rank 1–5 progression ladder; current rank varies by class.
+  const currentRank = (space.position % (TOTAL_RANKS - 1)) + 2;
+
   return (
     <div className="space-y-stack_md">
+      <RankLadder currentRank={currentRank} />
       {TYPE_ORDER.map(({ type, heading }) => {
         const group = channels
           .filter((c) => c.type === type)
@@ -162,6 +169,52 @@ function SpaceChannels({
           </div>
         );
       })}
+    </div>
+  );
+}
+
+/** Rank 1–5 progression ladder shown at the top of every class. */
+function RankLadder({ currentRank }: { currentRank: number }) {
+  return (
+    <div>
+      <p className="px-4 pb-1 text-[11px] font-bold uppercase tracking-widest text-outline">
+        Ranks
+      </p>
+      <div className="space-y-0.5">
+        {Array.from({ length: TOTAL_RANKS }, (_, i) => i + 1).map((r) => {
+          const done = r < currentRank;
+          const current = r === currentRank;
+          const locked = r > currentRank;
+          return (
+            <div
+              key={r}
+              className={[
+                "flex items-center gap-stack_sm rounded-r-lg px-4 py-2",
+                current
+                  ? "border-l-4 border-primary bg-primary/10 font-bold text-primary sidebar-indicator"
+                  : locked
+                  ? "text-on-surface-variant opacity-40"
+                  : "text-on-surface-variant",
+              ].join(" ")}
+            >
+              <Icon
+                name={locked ? "lock" : "military_tech"}
+                fill={current || done}
+                className="flex-none text-[20px]"
+              />
+              <span className="font-label-md text-label-md">Rank {r}</span>
+              {current && (
+                <span className="ml-auto text-[10px] font-bold uppercase tracking-wider text-primary">
+                  You
+                </span>
+              )}
+              {done && (
+                <Icon name="check_circle" fill className="ml-auto text-[16px] text-secondary" />
+              )}
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }

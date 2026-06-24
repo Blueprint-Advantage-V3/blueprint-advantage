@@ -18,7 +18,7 @@ const config: Config = {
         primary: "#adc6ff",
         "primary-fixed": "#d8e2ff",
         "primary-fixed-dim": "#adc6ff",
-        "primary-container": "#1e3a8a",
+        "primary-container": "#2c4fb8",
         "on-primary-container": "#dbe4ff",
         "on-primary-fixed": "#001a41",
         "on-primary-fixed-variant": "#284777",
@@ -67,9 +67,9 @@ const config: Config = {
         // ── Back-compat aliases (old token names) ──────────────
         muted: "#ccc3d8",
         border: "#4a4455",
-        brand: "#1e3a8a",
-        "brand-hover": "#2a4ba0",
-        "brand-soft": "#16213f",
+        brand: "#2c4fb8",
+        "brand-hover": "#3a5fcc",
+        "brand-soft": "#1a2952",
       },
       spacing: {
         sidebar_width: "280px",
@@ -102,7 +102,7 @@ const config: Config = {
         code: ["14px", { lineHeight: "1.5", fontWeight: "400" }],
       },
       boxShadow: {
-        glow: "0 0 0 1px rgba(173,198,255,0.35), 0 0 24px -4px rgba(30,58,138,0.6)",
+        glow: "0 0 0 1px rgba(173,198,255,0.35), 0 0 24px -4px rgba(44,79,184,0.6)",
         "glow-sm": "0 0 15px rgba(173, 198, 255, 0.3)",
       },
     },
