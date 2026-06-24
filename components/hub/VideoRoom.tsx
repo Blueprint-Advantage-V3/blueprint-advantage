@@ -86,7 +86,7 @@ export function VideoRoom({ channelName, currentUser }: { channelName: string; c
           {/* Your tile (real camera) */}
           <div className="relative flex aspect-video items-center justify-center overflow-hidden rounded-2xl border border-secondary bg-black shadow-[0_0_0_2px_rgba(137,206,255,0.4)]">
             {camOn && !camError ? (
-              <video ref={videoRef} autoPlay playsInline muted className="h-full w-full object-cover" />
+              <video ref={videoRef} autoPlay playsInline muted className="h-full w-full -scale-x-100 object-cover" />
             ) : (
               <span className="flex h-20 w-20 items-center justify-center rounded-full bg-primary-container text-3xl font-bold text-on-primary-container">
                 {currentUser.charAt(0).toUpperCase()}
