@@ -56,7 +56,36 @@ function fallbackReply(campus: string | undefined, question: string) {
   ].join("\n\n");
 }
 
+// ── Best-effort abuse guard (per warm instance) ──────────────────
+// DeepSeek is cheap, but this is a public endpoint. Cap input + rate.
+// For production scale, move to a shared store (Upstash/Vercel KV) and
+// gate behind auth (Wave 4).
+const WINDOW_MS = 5 * 60_000;
+const MAX_PER_WINDOW = 20;
+const MAX_INPUT_CHARS = 4000;
+const hits = new Map<string, { count: number; resetAt: number }>();
+
+function rateLimited(ip: string): boolean {
+  const now = Date.now();
+  const rec = hits.get(ip);
+  if (!rec || now > rec.resetAt) {
+    hits.set(ip, { count: 1, resetAt: now + WINDOW_MS });
+    return false;
+  }
+  rec.count += 1;
+  return rec.count > MAX_PER_WINDOW;
+}
+
 export async function POST(req: Request) {
+  const ip =
+    req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
+  if (rateLimited(ip)) {
+    return NextResponse.json(
+      { reply: "Whoa — slow down a sec ⏳ You've hit the tutor a lot. Try again in a few minutes." },
+      { status: 429 }
+    );
+  }
+
   let body: { messages?: Msg[]; campus?: string };
   try {
     body = await req.json();
@@ -64,7 +93,17 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Invalid request" }, { status: 400 });
   }
 
-  const messages = (body.messages ?? []).slice(-12);
+  const messages = (body.messages ?? [])
+    .slice(-12)
+    .filter((m) => m && (m.role === "user" || m.role === "assistant") && typeof m.content === "string")
+    .map((m) => ({ role: m.role, content: m.content.slice(0, 2000) }));
+  const totalChars = messages.reduce((n, m) => n + m.content.length, 0);
+  if (totalChars > MAX_INPUT_CHARS) {
+    return NextResponse.json(
+      { reply: "That's a lot to chew on at once — try asking one focused question and I'll go deep on it. 🎯" },
+      { status: 200 }
+    );
+  }
   const campus = body.campus;
   const lastUser = [...messages].reverse().find((m) => m.role === "user");
 

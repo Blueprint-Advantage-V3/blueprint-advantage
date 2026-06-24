@@ -63,15 +63,18 @@ export function StudyBuddy() {
 
   return (
     <>
-      {/* Floating launcher */}
+      {/* Floating launcher — fixed lives on the wrapper so the glow-button's
+          position:relative can't override it (that caused a full-height blob). */}
       {!open && (
-        <button
-          onClick={() => setOpen(true)}
-          className="glow-button fixed bottom-6 right-6 z-40 flex items-center gap-2 rounded-full bg-primary-container px-5 py-3 font-label-md text-label-md font-bold text-on-primary-container shadow-2xl transition-transform hover:scale-105 active:scale-95"
-        >
-          <Icon name="auto_awesome" fill className="text-[20px]" />
-          Ask AI
-        </button>
+        <div className="fixed bottom-6 right-6 z-40">
+          <button
+            onClick={() => setOpen(true)}
+            className="glow-button flex h-11 items-center gap-1.5 rounded-full bg-primary-container px-4 text-sm font-bold text-on-primary-container shadow-2xl transition-transform hover:scale-105 active:scale-95"
+          >
+            <Icon name="auto_awesome" fill className="text-[18px]" />
+            Ask AI
+          </button>
+        </div>
       )}
 
       {/* Slide-over panel */}
