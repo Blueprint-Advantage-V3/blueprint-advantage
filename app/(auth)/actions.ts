@@ -3,6 +3,7 @@
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { IS_DEMO } from "@/lib/demo";
+import { SUBSCRIPTION_ENABLED } from "@/lib/subscription";
 
 /**
  * Email/password sign in. On success, send the user to the hub (or the
@@ -55,7 +56,8 @@ export async function signUp(formData: FormData) {
     redirect("/login?notice=Check your email to confirm your account, then log in.");
   }
 
-  redirect("/subscribe");
+  // New members onboard first; only route to the paywall once Stripe is live.
+  redirect(SUBSCRIPTION_ENABLED ? "/subscribe" : "/welcome");
 }
 
 export async function signOut() {

@@ -17,7 +17,7 @@ import {
   demoSpaceBySlug,
   demoLessonsForSpace,
   demoMessagesForChannel,
-  demoScheduleForSpace,
+  scheduleForSpaceSlug,
 } from "@/lib/demo";
 import type {
   Channel,
@@ -53,7 +53,6 @@ export default async function ChannelPage({
     channel = c;
     if (c.type === "lessons") lessons = demoLessonsForSpace(s.id);
     if (c.type === "text") messages = demoMessagesForChannel(c.id);
-    if (c.type === "schedule") schedule = demoScheduleForSpace(s.id);
   } else {
     const supabase = createClient();
     const { data: s } = await supabase
@@ -82,6 +81,11 @@ export default async function ChannelPage({
       lessons = (data ?? []) as Lesson[];
     }
     // Text-channel history is Phase 2 (Supabase Realtime over `messages`).
+  }
+
+  // Schedule is served from a constant (works in both demo and real mode).
+  if (channel.type === "schedule") {
+    schedule = scheduleForSpaceSlug(params.spaceSlug);
   }
 
   return (

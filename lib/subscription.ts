@@ -4,6 +4,14 @@ import { IS_DEMO, demoMemberContext } from "@/lib/demo";
 import type { Profile, Subscription } from "@/lib/types";
 
 /**
+ * The Stripe paywall. OFF until Stripe is wired — while off, any authenticated
+ * member gets full hub access (free). Flip NEXT_PUBLIC_SUBSCRIPTION_ENABLED to
+ * "true" once Stripe is live to start enforcing active subscriptions.
+ */
+export const SUBSCRIPTION_ENABLED =
+  process.env.NEXT_PUBLIC_SUBSCRIPTION_ENABLED === "true";
+
+/**
  * Loads the current user's profile + subscription in one place.
  * Returns null user if not authenticated.
  */
@@ -29,7 +37,9 @@ export async function getMemberContext() {
       .maybeSingle(),
   ]);
 
-  const hasAccess = isActive(subscription as Subscription | null);
+  // Free access while the paywall is off; otherwise require an active sub.
+  const hasAccess =
+    !SUBSCRIPTION_ENABLED || isActive(subscription as Subscription | null);
 
   return {
     user,

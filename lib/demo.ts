@@ -232,6 +232,10 @@ export const DEMO_SCHEDULE: ScheduleSession[] = [
 export function demoScheduleForSpace(spaceId: string): ScheduleSession[] {
   return DEMO_SCHEDULE.filter((s) => s.space_id === spaceId);
 }
+/** Schedule by space slug — works in real mode too (no DB table needed yet). */
+export function scheduleForSpaceSlug(slug: string): ScheduleSession[] {
+  return DEMO_SCHEDULE.filter((s) => s.space_id === `space-${slug}`);
+}
 export function demoSpaces(): Space[] {
   return [...DEMO_SPACES].sort((a, b) => a.position - b.position);
 }

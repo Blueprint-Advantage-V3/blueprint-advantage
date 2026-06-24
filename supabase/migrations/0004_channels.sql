@@ -13,7 +13,7 @@ create table if not exists public.channels (
   space_id uuid not null references public.spaces (id) on delete cascade,
   slug text not null,
   name text not null,
-  type text not null default 'text' check (type in ('lessons', 'text', 'voice', 'video')),
+  type text not null default 'text' check (type in ('lessons', 'schedule', 'text', 'voice', 'video')),
   position int not null default 0,
   created_at timestamptz not null default now(),
   unique (space_id, slug)
@@ -36,12 +36,13 @@ insert into public.channels (space_id, slug, name, type, position)
 select s.id, c.slug, c.name, c.type, c.position
 from public.spaces s
 cross join (values
-  ('lessons',      'Lessons',      'lessons', 0),
-  ('general',      'general',      'text',    1),
-  ('questions',    'questions',    'text',    2),
-  ('study-hall',   'Study Hall',   'voice',   3),
-  ('office-hours', 'Office Hours', 'voice',   4),
-  ('live-class',   'Live Class',   'video',   5)
+  ('lessons',      'Lessons',      'lessons',  0),
+  ('schedule',     'Schedule',     'schedule', 1),
+  ('general',      'general',      'text',     2),
+  ('questions',    'questions',    'text',     3),
+  ('study-hall',   'Study Hall',   'voice',    4),
+  ('office-hours', 'Office Hours', 'voice',    5),
+  ('live-class',   'Live Class',   'video',    6)
 ) as c(slug, name, type, position)
 on conflict (space_id, slug) do nothing;
 
@@ -55,11 +56,12 @@ begin
   insert into public.channels (space_id, slug, name, type, position)
   values
     (new.id, 'lessons', 'Lessons', 'lessons', 0),
-    (new.id, 'general', 'general', 'text', 1),
-    (new.id, 'questions', 'questions', 'text', 2),
-    (new.id, 'study-hall', 'Study Hall', 'voice', 3),
-    (new.id, 'office-hours', 'Office Hours', 'voice', 4),
-    (new.id, 'live-class', 'Live Class', 'video', 5)
+    (new.id, 'schedule', 'Schedule', 'schedule', 1),
+    (new.id, 'general', 'general', 'text', 2),
+    (new.id, 'questions', 'questions', 'text', 3),
+    (new.id, 'study-hall', 'Study Hall', 'voice', 4),
+    (new.id, 'office-hours', 'Office Hours', 'voice', 5),
+    (new.id, 'live-class', 'Live Class', 'video', 6)
   on conflict (space_id, slug) do nothing;
   return new;
 end;
