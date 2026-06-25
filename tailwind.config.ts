@@ -1,10 +1,14 @@
 import type { Config } from "tailwindcss";
 
 /**
- * "Ascendant Core" design system (from the Stitch / Apex Academy export).
- * Material-3-style token palette: deep obsidian surfaces, electric violet
- * primary, sky-blue secondary, amber tertiary. Geist for headings/labels,
- * Inter for body.
+ * Claude / Anthropic design language — warm-light. Cream surfaces, warm ink
+ * text, Anthropic blue as the brand accent (fits "Blueprint"), clay + gold as
+ * warm pops. Flat and calm: no glassmorphism, no neon, no glow. Poppins for
+ * headings/UI, Lora for editorial prose.
+ *
+ * Token NAMES are preserved from the old system so every component keeps
+ * working; only the VALUES change. Borders use the ink color so low-alpha
+ * hairlines (`border-outline-variant/10`) still read on cream.
  */
 const config: Config = {
   darkMode: "class",
@@ -12,70 +16,68 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // ── Ascendant Core tokens ──────────────────────────────
-        // Accent = navy/blue (Material-3 blue tonal palette)
-        "on-primary": "#002e69",
-        primary: "#adc6ff",
-        "primary-fixed": "#d8e2ff",
-        "primary-fixed-dim": "#adc6ff",
-        "primary-container": "#2c4fb8",
-        "on-primary-container": "#dbe4ff",
-        "on-primary-fixed": "#001a41",
-        "on-primary-fixed-variant": "#284777",
-        "inverse-primary": "#415f91",
-        secondary: "#89ceff",
-        "secondary-container": "#00a2e6",
-        "on-secondary": "#00344d",
-        "on-secondary-container": "#00344e",
-        "secondary-fixed": "#c9e6ff",
-        "secondary-fixed-dim": "#89ceff",
-        "on-secondary-fixed": "#001e2f",
-        "on-secondary-fixed-variant": "#004c6e",
-        tertiary: "#ffb784",
-        "tertiary-container": "#a15100",
-        "on-tertiary": "#4f2500",
-        "on-tertiary-container": "#ffe0cd",
-        "tertiary-fixed": "#ffdcc6",
-        "tertiary-fixed-dim": "#ffb784",
-        "on-tertiary-fixed": "#301400",
-        "on-tertiary-fixed-variant": "#713700",
-        error: "#ffb4ab",
-        "on-error": "#690005",
-        "error-container": "#93000a",
-        "on-error-container": "#ffdad6",
-        // Surfaces — NAVY base (deep midnight → bright). Whole UI is navy-toned.
-        canvas: "#0a0f20", // true page background (deep navy)
-        background: "#0e1430",
-        surface: "#0e1430",
-        "surface-dim": "#0b1026",
-        "surface-bright": "#2e3a72",
-        "surface-container-lowest": "#070b18",
-        "surface-container-low": "#131a3a", // sidebars
-        "surface-container": "#18204a",
-        "surface-container-high": "#1f2a5c",
-        "surface-container-highest": "#27336e",
-        "surface-variant": "#27336e",
-        "surface-tint": "#adc6ff",
-        // On-surface / outlines (blue-tinted)
-        "on-surface": "#e7e9f6",
-        "on-surface-variant": "#c2c8e4",
-        "on-background": "#e7e9f6",
-        outline: "#8b93c4",
-        "outline-variant": "#2f3c70",
-        "inverse-surface": "#e7e9f6",
-        "inverse-on-surface": "#1a2142",
-        // ── "Earned" accent (gold) — only on things you EARN ───
-        // Levels, milestones, top leaderboard spots. Reads as achievement,
-        // never decoration. Keeps progress feeling earned, not hyped.
-        earned: "#e6b15e",
-        "earned-dim": "#caa052",
-        "on-earned": "#3a2606",
-        // ── Back-compat aliases (old token names) ──────────────
-        muted: "#c2c8e4",
-        border: "#2f3c70",
-        brand: "#2c4fb8",
-        "brand-hover": "#3a5fcc",
-        "brand-soft": "#1a2952",
+        // ── Brand accent = Anthropic blue ──────────────────────
+        "on-primary": "#ffffff",
+        primary: "#3a6ea5", // deep blue: accent text/icons/active state
+        "primary-fixed": "#e7eef6",
+        "primary-fixed-dim": "#6a9bcc",
+        "primary-container": "#3a6ea5", // filled CTA background
+        "on-primary-container": "#ffffff",
+        "on-primary-fixed": "#10324f",
+        "on-primary-fixed-variant": "#335f8f",
+        "inverse-primary": "#9cc0e4",
+        secondary: "#5b87b3",
+        "secondary-container": "#6a9bcc",
+        "on-secondary": "#ffffff",
+        "on-secondary-container": "#10324f",
+        "secondary-fixed": "#dce8f3",
+        "secondary-fixed-dim": "#6a9bcc",
+        "on-secondary-fixed": "#10324f",
+        "on-secondary-fixed-variant": "#335f8f",
+        // Clay — Anthropic's warm signature pop
+        tertiary: "#c2603c",
+        "tertiary-container": "#f6ddd0",
+        "on-tertiary": "#ffffff",
+        "on-tertiary-container": "#5a2c18",
+        "tertiary-fixed": "#f6ddd0",
+        "tertiary-fixed-dim": "#d97757",
+        "on-tertiary-fixed": "#5a2c18",
+        "on-tertiary-fixed-variant": "#9a4a2c",
+        error: "#b3261e",
+        "on-error": "#ffffff",
+        "error-container": "#f9dedc",
+        "on-error-container": "#410e0b",
+        // ── Surfaces — WARM CREAM base (Anthropic light) ───────
+        canvas: "#faf9f5", // true page background (warm cream)
+        background: "#faf9f5",
+        surface: "#ffffff",
+        "surface-dim": "#f1efe8",
+        "surface-bright": "#ffffff",
+        "surface-container-lowest": "#ffffff",
+        "surface-container-low": "#f6f4ee", // sidebars
+        "surface-container": "#f1efe8",
+        "surface-container-high": "#ebe8df",
+        "surface-container-highest": "#e5e2d8",
+        "surface-variant": "#efece4",
+        "surface-tint": "#3a6ea5",
+        // ── On-surface / outlines (warm) ───────────────────────
+        "on-surface": "#141413", // warm ink
+        "on-surface-variant": "#5f5e57", // muted warm gray
+        "on-background": "#141413",
+        outline: "#8a887e", // mid gray — muted labels
+        "outline-variant": "#23211d", // near-ink — for low-alpha hairlines
+        "inverse-surface": "#2b2a27",
+        "inverse-on-surface": "#faf9f5",
+        // ── "Earned" accent (warm gold) — only on things you EARN
+        earned: "#b07d1e",
+        "earned-dim": "#946818",
+        "on-earned": "#ffffff",
+        // ── Back-compat aliases ────────────────────────────────
+        muted: "#5f5e57",
+        border: "#e3e1d8",
+        brand: "#3a6ea5",
+        "brand-hover": "#335f8f",
+        "brand-soft": "#e7eef6",
       },
       spacing: {
         sidebar_width: "280px",
@@ -87,29 +89,31 @@ const config: Config = {
         stack_lg: "32px",
       },
       fontFamily: {
-        sans: ["var(--font-inter)", "system-ui", "sans-serif"],
-        display: ["var(--font-geist-sans)", "system-ui", "sans-serif"],
-        "headline-lg": ["var(--font-geist-sans)", "system-ui", "sans-serif"],
-        "headline-md": ["var(--font-geist-sans)", "system-ui", "sans-serif"],
-        "headline-lg-mobile": ["var(--font-geist-sans)", "system-ui", "sans-serif"],
-        "label-md": ["var(--font-geist-sans)", "system-ui", "sans-serif"],
-        code: ["var(--font-geist-mono)", "var(--font-geist-sans)", "monospace"],
-        "body-lg": ["var(--font-inter)", "system-ui", "sans-serif"],
-        "body-md": ["var(--font-inter)", "system-ui", "sans-serif"],
+        sans: ["var(--font-poppins)", "system-ui", "sans-serif"],
+        display: ["var(--font-poppins)", "system-ui", "sans-serif"],
+        "headline-lg": ["var(--font-poppins)", "system-ui", "sans-serif"],
+        "headline-md": ["var(--font-poppins)", "system-ui", "sans-serif"],
+        "headline-lg-mobile": ["var(--font-poppins)", "system-ui", "sans-serif"],
+        "label-md": ["var(--font-poppins)", "system-ui", "sans-serif"],
+        code: ["var(--font-geist-mono)", "monospace"],
+        "body-lg": ["var(--font-lora)", "Georgia", "serif"],
+        "body-md": ["var(--font-lora)", "Georgia", "serif"],
       },
       fontSize: {
-        display: ["48px", { lineHeight: "1.1", letterSpacing: "-0.04em", fontWeight: "700" }],
-        "headline-lg": ["32px", { lineHeight: "1.2", letterSpacing: "-0.02em", fontWeight: "600" }],
-        "headline-md": ["24px", { lineHeight: "1.3", fontWeight: "600" }],
+        display: ["48px", { lineHeight: "1.08", letterSpacing: "-0.03em", fontWeight: "600" }],
+        "headline-lg": ["32px", { lineHeight: "1.15", letterSpacing: "-0.02em", fontWeight: "600" }],
+        "headline-md": ["22px", { lineHeight: "1.3", fontWeight: "600" }],
         "headline-lg-mobile": ["24px", { lineHeight: "1.2", fontWeight: "600" }],
-        "body-lg": ["18px", { lineHeight: "1.6", fontWeight: "400" }],
-        "body-md": ["16px", { lineHeight: "1.5", fontWeight: "400" }],
-        "label-md": ["14px", { lineHeight: "1", letterSpacing: "0.02em", fontWeight: "500" }],
+        "body-lg": ["18px", { lineHeight: "1.65", fontWeight: "400" }],
+        "body-md": ["16px", { lineHeight: "1.6", fontWeight: "400" }],
+        "label-md": ["14px", { lineHeight: "1.2", letterSpacing: "0", fontWeight: "500" }],
         code: ["14px", { lineHeight: "1.5", fontWeight: "400" }],
       },
       boxShadow: {
-        glow: "0 0 0 1px rgba(173,198,255,0.35), 0 0 24px -4px rgba(44,79,184,0.6)",
-        "glow-sm": "0 0 15px rgba(173, 198, 255, 0.3)",
+        // Soft, neutral elevation — no glow.
+        glow: "0 1px 2px rgba(20,20,19,0.05), 0 6px 16px -6px rgba(20,20,19,0.10)",
+        "glow-sm": "0 1px 2px rgba(20,20,19,0.06)",
+        card: "0 1px 2px rgba(20,20,19,0.04), 0 2px 8px -4px rgba(20,20,19,0.06)",
       },
     },
   },

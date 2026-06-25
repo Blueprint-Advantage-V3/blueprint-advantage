@@ -88,9 +88,9 @@ export function ChannelSidebar({
 }
 
 const NAV_INACTIVE =
-  "flex items-center gap-stack_sm rounded-r-lg px-4 py-2 text-on-surface-variant transition-colors duration-200 hover:bg-white/5 hover:text-on-surface active:scale-95";
+  "flex items-center gap-stack_sm rounded-r-lg px-4 py-2 text-on-surface-variant transition-colors duration-200 hover:bg-on-surface/[0.04] hover:text-on-surface active:scale-95";
 const NAV_ACTIVE =
-  "flex items-center gap-stack_sm rounded-r-lg border-l-4 border-primary bg-primary/10 px-4 py-2 font-bold text-primary sidebar-indicator active:scale-95";
+  "flex items-center gap-stack_sm rounded-r-lg border-l-4 border-primary bg-primary/10 px-4 py-2 font-bold text-primary active:scale-95";
 
 function HomePanel({ spaces }: { spaces: Space[] }) {
   const pathname = usePathname();
@@ -200,7 +200,7 @@ function RankLadder({ currentRank, xp }: { currentRank: number; xp: number }) {
               className={[
                 "flex items-center gap-stack_sm rounded-r-lg px-4 py-2",
                 current
-                  ? "border-l-4 border-primary bg-primary/10 font-bold text-primary sidebar-indicator"
+                  ? "border-l-4 border-primary bg-primary/10 font-bold text-primary"
                   : locked
                   ? "text-on-surface-variant opacity-40"
                   : "text-on-surface-variant",

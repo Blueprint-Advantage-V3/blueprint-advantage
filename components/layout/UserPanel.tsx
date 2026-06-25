@@ -23,7 +23,7 @@ export function UserPanel({
     <div className="relative flex-none border-t border-outline-variant/10 bg-surface-container-low p-3">
       <button
         onClick={() => setOpen((v) => !v)}
-        className="flex w-full items-center gap-stack_sm rounded-lg px-2 py-1.5 transition-colors hover:bg-white/5"
+        className="flex w-full items-center gap-stack_sm rounded-lg px-2 py-1.5 transition-colors hover:bg-on-surface/[0.04]"
       >
         <span className="flex h-8 w-8 flex-none items-center justify-center rounded-full bg-primary-container text-sm font-bold text-on-primary-container">
           {initial}
@@ -52,13 +52,13 @@ export function UserPanel({
             <Link
               href="/settings"
               onClick={() => setOpen(false)}
-              className="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-left text-sm text-on-surface-variant transition-colors hover:bg-white/5"
+              className="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-left text-sm text-on-surface-variant transition-colors hover:bg-on-surface/[0.04]"
             >
               <Icon name="settings" className="text-[18px]" />
               Settings
             </Link>
             <form action={signOut}>
-              <button className="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-left text-sm text-on-surface-variant transition-colors hover:bg-white/5">
+              <button className="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-left text-sm text-on-surface-variant transition-colors hover:bg-on-surface/[0.04]">
                 <Icon name="logout" className="text-[18px]" />
                 Sign out
               </button>

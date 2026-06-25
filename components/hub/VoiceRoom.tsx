@@ -24,7 +24,7 @@ export function VoiceRoom({ channelName, currentUser }: { channelName: string; c
   if (!joined) {
     return (
       <div className="flex h-full flex-col items-center justify-center gap-5 px-6 text-center">
-        <div className="flex h-20 w-20 items-center justify-center rounded-full bg-primary/20 text-primary">
+        <div className="flex h-20 w-20 items-center justify-center rounded-full bg-primary/10 text-primary">
           <Icon name="graphic_eq" className="text-4xl" />
         </div>
         <div>
@@ -55,7 +55,7 @@ export function VoiceRoom({ channelName, currentUser }: { channelName: string; c
               key={i}
               className={[
                 "glass-panel flex aspect-square flex-col items-center justify-center gap-3 rounded-2xl transition-all",
-                p.speaking ? "border-secondary shadow-[0_0_0_2px_rgba(137,206,255,0.5)]" : "",
+                p.speaking ? "border-primary ring-1 ring-primary" : "",
               ].join(" ")}
             >
               <span className="flex h-16 w-16 items-center justify-center rounded-full bg-primary-container text-2xl font-bold text-on-primary-container">

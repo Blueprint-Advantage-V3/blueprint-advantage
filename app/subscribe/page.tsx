@@ -23,12 +23,11 @@ export default async function SubscribePage({
 
   return (
     <main className="relative flex min-h-screen items-center justify-center overflow-hidden bg-canvas px-6 py-12">
-      <div className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/5 blur-[120px]" />
       <div className="w-full max-w-md text-center">
         <span className="font-label-md text-label-md font-bold uppercase tracking-widest text-primary">
           One step left
         </span>
-        <h1 className="mt-3 font-display text-display tracking-tight text-on-primary-container">
+        <h1 className="mt-3 font-display text-display tracking-tight text-on-surface">
           Claim Your Seat
         </h1>
         <p className="mt-3 font-body-md text-body-md text-on-surface-variant">
@@ -41,10 +40,10 @@ export default async function SubscribePage({
           </p>
         )}
 
-        <div className="glass-card mt-8 rounded-[2rem] border-2 border-primary/20 p-stack_lg shadow-2xl shadow-primary/10">
+        <div className="glass-card mt-8 rounded-[2rem] border-2 border-primary/20 p-stack_lg shadow-card">
           <div className="flex items-baseline justify-center gap-1">
             <span className="font-display text-[64px] leading-none">{PRICE_DISPLAY.amount}</span>
-            <span className="font-headline-md text-on-surface-variant/60">{PRICE_DISPLAY.period}</span>
+            <span className="font-headline-md text-on-surface-variant">{PRICE_DISPLAY.period}</span>
           </div>
           <ul className="mx-auto mt-6 max-w-xs space-y-3 text-left">
             {[
@@ -62,7 +61,7 @@ export default async function SubscribePage({
           <div className="mt-8">
             <SubscribeButton />
           </div>
-          <p className="mt-3 font-label-md text-label-md text-on-surface-variant/40">
+          <p className="mt-3 font-label-md text-label-md text-on-surface-variant">
             Secure checkout via Stripe. Card required.
           </p>
         </div>

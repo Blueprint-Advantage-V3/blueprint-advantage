@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 import { getMemberContext, isAdmin } from "@/lib/subscription";
 import { BRAND } from "@/lib/constants";
 import { Icon } from "@/components/ui/Icon";
+import { LogoMark } from "@/components/brand/Logo";
 import { AdminNav } from "@/components/admin/AdminNav";
 
 /**
@@ -24,13 +25,16 @@ export default async function AdminLayout({
       {/* Side navigation */}
       <aside className="z-50 flex flex-col border-b border-outline-variant/10 bg-surface-container-low py-stack_md lg:fixed lg:inset-y-0 lg:left-0 lg:w-sidebar_width lg:border-b-0 lg:border-r">
         <div className="mb-stack_lg px-gutter">
-          <Link href="/admin" className="block">
-            <h1 className="font-headline-md text-headline-md font-bold text-primary">
-              {BRAND.shortName} Admin
-            </h1>
-            <p className="font-label-md text-label-md text-on-surface-variant opacity-70">
-              {BRAND.name}
-            </p>
+          <Link href="/admin" className="flex items-center gap-2.5">
+            <LogoMark size={30} />
+            <div>
+              <h1 className="font-headline-md text-headline-md font-bold text-on-surface">
+                Admin
+              </h1>
+              <p className="font-label-md text-label-md text-on-surface-variant opacity-70">
+                {BRAND.name}
+              </p>
+            </div>
           </Link>
         </div>
 
@@ -57,7 +61,7 @@ export default async function AdminLayout({
           </div>
           <Link
             href="/hub"
-            className="flex items-center gap-stack_sm rounded-r-lg px-4 py-2 text-on-surface-variant transition-colors hover:bg-white/5 hover:text-on-surface"
+            className="flex items-center gap-stack_sm rounded-r-lg px-4 py-2 text-on-surface-variant transition-colors hover:bg-on-surface/[0.04] hover:text-on-surface"
           >
             <Icon name="arrow_back" />
             <span className="font-label-md text-label-md">Back to hub</span>
@@ -87,10 +91,6 @@ export default async function AdminLayout({
 
         {/* Content canvas */}
         <section className="relative flex-1 overflow-hidden">
-          <div
-            aria-hidden
-            className="pointer-events-none absolute -top-24 right-0 h-72 w-72 rounded-full bg-primary/5 blur-[120px]"
-          />
           <div className="relative mx-auto max-w-5xl px-gutter py-stack_lg">
             {children}
           </div>

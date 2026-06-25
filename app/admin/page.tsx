@@ -38,7 +38,7 @@ export default async function AdminDashboard() {
   return (
     <div className="space-y-stack_lg">
       <div>
-        <h1 className="font-display text-3xl font-black tracking-tight bg-gradient-to-b from-on-surface to-on-surface-variant bg-clip-text text-transparent">
+        <h1 className="font-display text-3xl font-black tracking-tight text-on-surface">
           Dashboard
         </h1>
         <p className="mt-1 text-on-surface-variant">

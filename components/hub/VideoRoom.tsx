@@ -59,7 +59,7 @@ export function VideoRoom({ channelName, currentUser }: { channelName: string; c
   if (!joined) {
     return (
       <div className="flex h-full flex-col items-center justify-center gap-5 px-6 text-center">
-        <div className="flex h-20 w-20 items-center justify-center rounded-full bg-primary/20 text-primary">
+        <div className="flex h-20 w-20 items-center justify-center rounded-full bg-primary/10 text-primary">
           <Icon name="videocam" className="text-4xl" />
         </div>
         <div>
@@ -84,7 +84,7 @@ export function VideoRoom({ channelName, currentUser }: { channelName: string; c
       <div className="flex-1 overflow-y-auto p-6">
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           {/* Your tile (real camera) */}
-          <div className="relative flex aspect-video items-center justify-center overflow-hidden rounded-2xl border border-secondary bg-black shadow-[0_0_0_2px_rgba(137,206,255,0.4)]">
+          <div className="relative flex aspect-video items-center justify-center overflow-hidden rounded-2xl border-2 border-primary bg-black">
             {camOn && !camError ? (
               <video ref={videoRef} autoPlay playsInline muted className="h-full w-full -scale-x-100 object-cover" />
             ) : (
@@ -104,10 +104,10 @@ export function VideoRoom({ channelName, currentUser }: { channelName: string; c
               key={name}
               className="glass-panel relative flex aspect-video items-center justify-center rounded-2xl"
             >
-              <span className="flex h-20 w-20 items-center justify-center rounded-full bg-surface-container-highest text-3xl font-bold text-on-surface">
+              <span className="flex h-20 w-20 items-center justify-center rounded-full bg-primary-container text-3xl font-bold text-on-primary-container">
                 {name.charAt(0).toUpperCase()}
               </span>
-              <span className="absolute bottom-2 left-3 rounded bg-black/60 px-2 py-0.5 text-xs text-white">
+              <span className="absolute bottom-2 left-3 rounded bg-surface-container-high px-2 py-0.5 text-xs font-medium text-on-surface-variant">
                 {name}
               </span>
             </div>

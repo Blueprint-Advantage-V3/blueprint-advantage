@@ -63,13 +63,13 @@ export function StudyBuddy() {
 
   return (
     <>
-      {/* Floating launcher — fixed lives on the wrapper so the glow-button's
+      {/* Floating launcher — fixed lives on the wrapper so the button's
           position:relative can't override it (that caused a full-height blob). */}
       {!open && (
         <div className="fixed bottom-6 right-6 z-40">
           <button
             onClick={() => setOpen(true)}
-            className="glow-button flex h-11 items-center gap-1.5 rounded-full bg-primary-container px-4 text-sm font-bold text-on-primary-container shadow-2xl transition-transform hover:scale-105 active:scale-95"
+            className="flex h-11 items-center gap-1.5 rounded-full bg-primary-container px-4 text-sm font-bold text-on-primary-container shadow-card transition-transform hover:scale-105 active:scale-95"
           >
             <Icon name="auto_awesome" fill className="text-[18px]" />
             Ask AI
@@ -95,7 +95,7 @@ export function StudyBuddy() {
             </div>
             <button
               onClick={() => setOpen(false)}
-              className="flex h-8 w-8 items-center justify-center rounded-lg text-on-surface-variant transition hover:bg-white/5 hover:text-on-surface"
+              className="flex h-8 w-8 items-center justify-center rounded-lg text-on-surface-variant transition hover:bg-on-surface/[0.04] hover:text-on-surface"
             >
               <Icon name="close" />
             </button>

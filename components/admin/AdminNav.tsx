@@ -30,7 +30,7 @@ export function AdminNav() {
             className={
               active
                 ? "sidebar-indicator flex items-center gap-stack_sm rounded-r-lg border-l-4 border-primary bg-primary/10 px-4 py-2 font-bold text-primary transition-colors"
-                : "flex items-center gap-stack_sm rounded-r-lg px-4 py-2 text-on-surface-variant transition-colors hover:bg-white/5 hover:text-on-surface"
+                : "flex items-center gap-stack_sm rounded-r-lg px-4 py-2 text-on-surface-variant transition-colors hover:bg-on-surface/[0.04] hover:text-on-surface"
             }
           >
             <Icon name={item.icon} />

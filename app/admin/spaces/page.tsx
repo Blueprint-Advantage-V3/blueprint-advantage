@@ -24,7 +24,7 @@ export default async function AdminSpacesPage() {
   return (
     <div className="space-y-stack_lg">
       <div>
-        <h1 className="font-display text-3xl font-black tracking-tight bg-gradient-to-b from-on-surface to-on-surface-variant bg-clip-text text-transparent">
+        <h1 className="font-display text-3xl font-black tracking-tight text-on-surface">
           Spaces
         </h1>
         <p className="mt-1 text-on-surface-variant">
@@ -43,7 +43,7 @@ export default async function AdminSpacesPage() {
             <Link
               key={s.id}
               href={`/admin/spaces/${s.id}`}
-              className="group flex items-center gap-4 px-gutter py-4 transition-colors hover:bg-white/5"
+              className="group flex items-center gap-4 px-gutter py-4 transition-colors hover:bg-on-surface/[0.04]"
             >
               <span className="flex h-10 w-10 flex-none items-center justify-center rounded bg-surface-container-high text-xl">
                 {s.icon ?? "#"}

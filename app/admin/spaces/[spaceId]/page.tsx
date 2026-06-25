@@ -50,7 +50,7 @@ export default async function EditSpacePage({
         </Link>
         <h1 className="mt-2 font-display text-3xl font-black tracking-tight">
           <span className="mr-1">{s.icon}</span>
-          <span className="bg-gradient-to-b from-on-surface to-on-surface-variant bg-clip-text text-transparent">
+          <span className="text-on-surface">
             {s.name}
           </span>
         </h1>
@@ -98,7 +98,7 @@ export default async function EditSpacePage({
               <Link
                 key={l.id}
                 href={`/admin/lessons/${l.id}`}
-                className="group flex items-center gap-4 px-gutter py-4 transition-colors hover:bg-white/5"
+                className="group flex items-center gap-4 px-gutter py-4 transition-colors hover:bg-on-surface/[0.04]"
               >
                 <span className="flex h-8 w-8 flex-none items-center justify-center rounded-lg bg-primary/10 text-sm font-bold text-primary">
                   {i + 1}

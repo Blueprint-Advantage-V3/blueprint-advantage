@@ -51,7 +51,6 @@ export default function WelcomePage() {
       <div className="absolute left-6 top-6 z-10">
         <Logo size={28} wordmarkClass="text-[16px] font-medium" />
       </div>
-      <div className="pointer-events-none absolute left-1/2 top-1/3 -z-10 h-[600px] w-[600px] -translate-x-1/2 rounded-full bg-primary/10 blur-[120px]" />
 
       {!selected ? (
         <div className="w-full max-w-3xl text-center">
@@ -83,7 +82,7 @@ export default function WelcomePage() {
                     {c.goal}
                   </p>
                   <h3 className="mt-1 font-headline-md text-headline-md">{c.name}</h3>
-                  <p className="mt-1 font-body-md text-body-md text-on-surface-variant/80">
+                  <p className="mt-1 font-body-md text-body-md text-on-surface-variant">
                     {c.blurb}
                   </p>
                 </div>

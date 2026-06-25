@@ -1,8 +1,8 @@
 import Link from "next/link";
-import { BRAND } from "@/lib/constants";
+import { Logo } from "@/components/brand/Logo";
 
 /**
- * Shared visual frame for the auth pages — centered card on the dark canvas.
+ * Shared visual frame for the auth pages — centered card on the warm canvas.
  */
 export function AuthShell({
   title,
@@ -17,14 +17,10 @@ export function AuthShell({
 }) {
   return (
     <main className="relative flex min-h-screen items-center justify-center overflow-hidden bg-canvas px-6 py-12">
-      <div className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/5 blur-[120px]" />
       <div className="w-full max-w-md">
-        <Link
-          href="/"
-          className="mb-8 block text-center font-display text-headline-md font-black uppercase tracking-tighter text-primary"
-        >
-          {BRAND.name}
-        </Link>
+        <div className="mb-8 flex justify-center">
+          <Logo href="/" size={32} wordmarkClass="text-[20px] font-medium" />
+        </div>
         <div className="glass-panel rounded-2xl p-8">
           <h1 className="font-headline-md text-headline-md font-bold tracking-tight">{title}</h1>
           <p className="mt-1.5 font-body-md text-body-md text-on-surface-variant">{subtitle}</p>

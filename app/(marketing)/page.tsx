@@ -12,7 +12,6 @@ const FEATURES = [
     cta: "Explore curriculum",
     ctaIcon: "arrow_forward",
     span: "md:col-span-3",
-    blob: "absolute top-0 right-0 w-32 h-32 bg-primary/20 blur-[80px] group-hover:bg-primary/40 transition-all",
   },
   {
     icon: "payments",
@@ -22,7 +21,6 @@ const FEATURES = [
     cta: "Capital mastery",
     ctaIcon: "trending_up",
     span: "md:col-span-3",
-    blob: "absolute bottom-0 right-0 w-48 h-24 bg-secondary/10 blur-[60px]",
   },
   {
     icon: "psychology",
@@ -76,7 +74,7 @@ export default function LandingPage() {
           <div className="flex items-center gap-4">
             <Link
               href="/login"
-              className="hidden rounded-lg border border-outline-variant/30 px-4 py-2 font-label-md text-label-md text-on-surface transition-all hover:bg-white/5 md:flex"
+              className="hidden rounded-lg border border-outline-variant/20 px-4 py-2 font-label-md text-label-md text-on-surface transition-all hover:bg-on-surface/[0.04] md:flex"
             >
               Log in
             </Link>
@@ -93,9 +91,8 @@ export default function LandingPage() {
       {/* Hero */}
       <section className="relative flex min-h-screen items-center justify-center overflow-hidden px-margin_mobile pt-24">
         <div className="draft-grid-fade pointer-events-none absolute inset-0 -z-10" />
-        <div className="pointer-events-none absolute left-1/2 top-1/3 -z-10 h-[700px] w-[700px] -translate-x-1/2 rounded-full bg-primary/5 blur-[120px]" />
         <div className="relative z-10 mx-auto max-w-content_max_width text-center">
-          <h1 className="mb-stack_md bg-gradient-to-b from-on-surface to-on-surface-variant bg-clip-text font-display text-[48px] font-black leading-[1] tracking-tighter text-transparent md:text-[80px]">
+          <h1 className="mb-stack_md font-display text-[48px] font-black leading-[1] tracking-tighter text-on-surface md:text-[80px]">
             Front-run the world
             <br />
             with <span className="text-primary">Blueprint Advantage</span>.
@@ -114,7 +111,7 @@ export default function LandingPage() {
             </Link>
             <a
               href="#how"
-              className="w-full rounded-xl border border-outline-variant/30 px-10 py-5 font-headline-md text-headline-md font-medium text-on-surface transition-all hover:bg-white/5 md:w-auto"
+              className="w-full rounded-xl border border-outline-variant/20 px-10 py-5 font-headline-md text-headline-md font-medium text-on-surface transition-all hover:bg-on-surface/[0.04] md:w-auto"
             >
               See how it works
             </a>
@@ -151,7 +148,6 @@ export default function LandingPage() {
                 f.featured ? "primary-gradient-border" : ""
               } ${f.bgClass ?? ""}`}
             >
-              {f.blob && <div className={f.blob} />}
               <div>
                 <Icon name={f.icon} className={`mb-4 text-[32px] ${f.accent}`} />
                 <h3 className="mb-2 font-headline-md text-headline-md">{f.title}</h3>
@@ -235,10 +231,10 @@ export default function LandingPage() {
       </section>
 
       {/* Pricing */}
-      <section id="pricing" className="relative overflow-hidden bg-surface-container-lowest py-24">
+      <section id="pricing" className="relative overflow-hidden border-y border-outline-variant/15 bg-surface-container py-24">
         <div className="relative z-10 mx-auto flex max-w-7xl flex-col items-center gap-stack_lg px-gutter md:flex-row">
           <div className="flex-1 text-center md:text-left">
-            <h2 className="mb-stack_md font-display text-display text-on-primary-container">
+            <h2 className="mb-stack_md font-display text-display text-on-surface">
               Infinite Leverage.
               <br />
               One Membership.
@@ -261,7 +257,7 @@ export default function LandingPage() {
               ))}
             </ul>
           </div>
-          <div className="glass-card w-full max-w-md rounded-[2rem] border-2 border-primary/20 p-stack_lg shadow-2xl shadow-primary/10">
+          <div className="glass-card w-full max-w-md rounded-[2rem] border-2 border-primary/20 p-stack_lg shadow-card">
             <div className="mb-8 text-center">
               <span className="font-label-md text-label-md font-bold uppercase tracking-widest text-primary">
                 Standard Access
@@ -285,7 +281,6 @@ export default function LandingPage() {
             </p>
           </div>
         </div>
-        <div className="absolute left-1/2 top-1/2 -z-10 h-[800px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/5 blur-[120px]" />
       </section>
 
       {/* Scarcity / final CTA */}
@@ -321,11 +316,11 @@ export default function LandingPage() {
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-outline-variant/10 bg-surface-container-lowest py-stack_lg">
+      <footer className="border-t border-outline-variant/15 bg-surface-container-low py-stack_lg">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-stack_md px-gutter md:flex-row">
           <div>
             <Logo href={null} size={26} wordmarkClass="text-[17px] font-medium" />
-            <p className="mt-2 font-label-md text-label-md text-on-surface-variant/60">
+            <p className="mt-2 font-label-md text-label-md text-on-surface-variant">
               © {new Date().getFullYear()} {BRAND.name}. All rights reserved.
             </p>
           </div>

@@ -39,7 +39,7 @@ export default async function EditLessonPage({
         >
           <Icon name="arrow_back" className="text-base" /> Back to space
         </Link>
-        <h1 className="mt-2 font-display text-3xl font-black tracking-tight bg-gradient-to-b from-on-surface to-on-surface-variant bg-clip-text text-transparent">
+        <h1 className="mt-2 font-display text-3xl font-black tracking-tight text-on-surface">
           Edit lesson
         </h1>
       </div>

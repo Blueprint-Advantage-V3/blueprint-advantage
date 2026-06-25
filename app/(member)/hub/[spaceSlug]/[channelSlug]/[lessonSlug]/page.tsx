@@ -99,7 +99,7 @@ export default async function LessonPage({
                 <LessonComplete campus={params.spaceSlug} lessonId={l.id} />
                 <button
                   type="button"
-                  className="rounded-xl border border-outline-variant/30 px-6 py-4 font-label-md text-label-md text-on-surface-variant transition-all hover:bg-white/5"
+                  className="rounded-xl border border-outline-variant/30 px-6 py-4 font-label-md text-label-md text-on-surface-variant transition-all hover:bg-on-surface/[0.04]"
                 >
                   Take Notes
                 </button>
@@ -124,7 +124,7 @@ export default async function LessonPage({
                 </h4>
                 <Link
                   href={channelBase}
-                  className="group flex items-center justify-between rounded-lg p-3 transition-all hover:bg-white/5"
+                  className="group flex items-center justify-between rounded-lg p-3 transition-all hover:bg-on-surface/[0.04]"
                 >
                   <span className="flex items-center gap-3 font-label-md text-label-md text-on-surface-variant group-hover:text-on-surface">
                     <Icon name="play_arrow" className="text-primary" />
@@ -143,7 +143,7 @@ export default async function LessonPage({
                   Resources
                 </h4>
                 <ul className="space-y-3">
-                  <li className="group flex cursor-pointer items-center justify-between rounded-lg p-3 transition-all hover:bg-white/5">
+                  <li className="group flex cursor-pointer items-center justify-between rounded-lg p-3 transition-all hover:bg-on-surface/[0.04]">
                     <div className="flex items-center gap-3">
                       <Icon name="description" className="text-secondary" />
                       <span className="font-label-md text-label-md text-on-surface-variant group-hover:text-on-surface">
@@ -152,7 +152,7 @@ export default async function LessonPage({
                     </div>
                     <Icon name="download" className="text-sm opacity-40" />
                   </li>
-                  <li className="group flex cursor-pointer items-center justify-between rounded-lg p-3 transition-all hover:bg-white/5">
+                  <li className="group flex cursor-pointer items-center justify-between rounded-lg p-3 transition-all hover:bg-on-surface/[0.04]">
                     <div className="flex items-center gap-3">
                       <Icon name="link" className="text-secondary" />
                       <span className="font-label-md text-label-md text-on-surface-variant group-hover:text-on-surface">
