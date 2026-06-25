@@ -10,6 +10,7 @@ import { VideoRoom } from "@/components/hub/VideoRoom";
 import { ScheduleView } from "@/components/hub/ScheduleView";
 import { MemberList } from "@/components/community/MemberList";
 import { LessonStatus } from "@/components/progress/LessonStatus";
+import { TrackCertificate } from "@/components/progress/TrackCertificate";
 import {
   IS_DEMO,
   demoChannel,
@@ -96,7 +97,7 @@ export default async function ChannelPage({
       />
       <div className="min-h-0 flex-1">
         {channel.type === "lessons" && (
-          <LessonLibrary space={space} channelSlug={channel.slug} lessons={lessons} />
+          <LessonLibrary space={space} channelSlug={channel.slug} lessons={lessons} userName={currentUser} />
         )}
         {channel.type === "schedule" && (
           <ScheduleView sessions={schedule} spaceName={space.name} />
@@ -129,13 +130,16 @@ function LessonLibrary({
   space,
   channelSlug,
   lessons,
+  userName,
 }: {
   space: Space;
   channelSlug: string;
   lessons: Lesson[];
+  userName: string;
 }) {
   return (
     <div className="mx-auto h-full max-w-content_max_width overflow-y-auto px-gutter py-stack_lg">
+      <TrackCertificate trackName={space.name} lessonIds={lessons.map((l) => l.id)} userName={userName} />
       <div className="flex items-center gap-3">
         <span className="grid h-12 w-12 flex-none place-items-center rounded-xl bg-primary/10 text-2xl">
           {space.icon ?? <Icon name="menu_book" className="text-primary" />}

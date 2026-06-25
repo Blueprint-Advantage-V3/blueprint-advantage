@@ -3,9 +3,11 @@ import { notFound } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { VideoEmbed } from "@/components/hub/VideoEmbed";
 import { LessonNotes } from "@/components/hub/LessonNotes";
+import { LessonQuiz } from "@/components/hub/LessonQuiz";
+import { LessonNoteEditor } from "@/components/hub/LessonNoteEditor";
 import { LessonComplete } from "@/components/progress/LessonComplete";
 import { Icon } from "@/components/ui/Icon";
-import { IS_DEMO, demoSpaceBySlug, demoLesson } from "@/lib/demo";
+import { IS_DEMO, demoSpaceBySlug, demoLesson, quizForLesson } from "@/lib/demo";
 import type { Lesson, Space } from "@/lib/types";
 
 /**
@@ -50,6 +52,7 @@ export default async function LessonPage({
   }
 
   const channelBase = `/hub/${params.spaceSlug}/${params.channelSlug}`;
+  const quiz = quizForLesson(params.lessonSlug);
 
   return (
     <div className="h-full overflow-y-auto px-margin_mobile py-10 md:px-stack_lg">
@@ -94,15 +97,15 @@ export default async function LessonPage({
 
               {l.content && <LessonNotes content={l.content} />}
 
+              {quiz.length > 0 && (
+                <div className="mt-10">
+                  <LessonQuiz campus={params.spaceSlug} lessonId={l.id} questions={quiz} />
+                </div>
+              )}
+
               {/* Lesson actions */}
-              <div className="mt-12 flex flex-wrap items-center gap-4 border-t border-outline-variant/10 py-8">
+              <div className="mt-10 flex flex-wrap items-center gap-4 border-t border-outline-variant/10 pt-8">
                 <LessonComplete campus={params.spaceSlug} lessonId={l.id} />
-                <button
-                  type="button"
-                  className="rounded-xl border border-outline-variant/30 px-6 py-4 font-label-md text-label-md text-on-surface-variant transition-all hover:bg-on-surface/[0.04]"
-                >
-                  Take Notes
-                </button>
               </div>
 
               {/* ── Phase 2 drop-in: lesson discussion thread goes here ──
@@ -136,6 +139,8 @@ export default async function LessonPage({
                   />
                 </Link>
               </div>
+
+              <LessonNoteEditor lessonId={l.id} lessonTitle={l.title} trackName={s.name} />
             </div>
           </aside>
         </div>

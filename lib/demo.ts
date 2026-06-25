@@ -282,6 +282,45 @@ export function demoLessonById(id: string): Lesson | null {
   return DEMO_LESSONS.find((l) => l.id === id) ?? null;
 }
 
+// ── Knowledge-check quizzes (per lesson slug) ────────────────────
+type QuizQ = { q: string; options: string[]; answer: number };
+
+export const LESSON_QUIZZES: Record<string, QuizQ[]> = {
+  "math-foundations": [
+    { q: "How many practice problems a day does the lesson suggest?", options: ["1", "5", "10", "25"], answer: 2 },
+    { q: "Which is a core SAT Math concept from the lesson?", options: ["Calculus", "Linear equations", "Trig proofs", "Matrices"], answer: 1 },
+    { q: "Best approach when one variable is already isolated?", options: ["Substitution", "Graphing", "Guessing", "Skip it"], answer: 0 },
+  ],
+  "reading-strategy": [
+    { q: "On pass 1 of the 3-pass strategy, you…", options: ["Read every detail", "Skim for structure", "Answer everything", "Memorize it"], answer: 1 },
+    { q: "Before choosing, eliminate how many wrong answers?", options: ["Zero", "One", "Two", "All of them"], answer: 2 },
+  ],
+  "budgeting-101": [
+    { q: "“Pay yourself first” means…", options: ["Spend, then save", "Save a fixed % before spending", "Only save leftovers", "Never save"], answer: 1 },
+    { q: "Suggested starting savings rate?", options: ["1%", "10%", "50%", "90%"], answer: 1 },
+  ],
+  "intro-to-investing": [
+    { q: "What beats most active strategies?", options: ["Day trading", "Low-cost index funds", "Meme stocks", "Timing the market"], answer: 1 },
+    { q: "Time in the market beats…", options: ["Timing the market", "Saving", "Budgeting", "Index funds"], answer: 0 },
+  ],
+  "contracts-basics": [
+    { q: "Which is NOT one of the four contract ingredients?", options: ["Offer", "Acceptance", "Consideration", "Notarization"], answer: 3 },
+    { q: "The best record of an agreement is…", options: ["A handshake", "A signature", "A verbal promise", "An emoji"], answer: 1 },
+  ],
+  "prompting-fundamentals": [
+    { q: "Which is one of the three prompt traits?", options: ["Length", "Context", "Volume", "Speed"], answer: 1 },
+    { q: "Your second prompt is usually…", options: ["Worse", "The same", "Better", "Unnecessary"], answer: 2 },
+  ],
+  "automate-with-ai": [
+    { q: "First step to automate a task with AI?", options: ["Buy software", "Write out the steps you do by hand", "Hire someone", "Ignore it"], answer: 1 },
+    { q: "What compounds over time?", options: ["Leverage", "Cost", "Risk", "Delay"], answer: 0 },
+  ],
+};
+
+export function quizForLesson(slug: string): QuizQ[] {
+  return LESSON_QUIZZES[slug] ?? [];
+}
+
 /** Fake "active admin" context so every gated screen is reachable. */
 export function demoMemberContext(): {
   user: { id: string; email: string };
