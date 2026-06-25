@@ -3,7 +3,6 @@ import { notFound } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { getMemberContext } from "@/lib/subscription";
 import { Icon } from "@/components/ui/Icon";
-import { channelIcon } from "@/lib/icons";
 import { ChannelHeader } from "@/components/hub/ChannelHeader";
 import { ChatChannel } from "@/components/hub/ChatChannel";
 import { VoiceRoom } from "@/components/hub/VoiceRoom";
@@ -137,31 +136,43 @@ function LessonLibrary({
 }) {
   return (
     <div className="mx-auto h-full max-w-content_max_width overflow-y-auto px-gutter py-stack_lg">
-      <h1 className="font-display text-headline-lg tracking-tight">Lessons</h1>
-      <p className="mt-1 font-body-md text-body-md text-on-surface-variant">
-        Prerecorded lessons from your professors. Work top to bottom.
-      </p>
+      <div className="flex items-center gap-3">
+        <span className="grid h-12 w-12 flex-none place-items-center rounded-xl bg-primary/10 text-2xl">
+          {space.icon ?? <Icon name="menu_book" className="text-primary" />}
+        </span>
+        <div className="min-w-0">
+          <h1 className="font-display text-[26px] font-semibold tracking-tight text-on-surface">
+            {space.name}
+          </h1>
+          <p className="font-sans text-sm text-on-surface-variant">
+            {lessons.length} {lessons.length === 1 ? "lesson" : "lessons"} · taught by your professors
+          </p>
+        </div>
+      </div>
 
-      <div className="mt-6 space-y-2">
+      <div className="mt-7 space-y-2.5">
         {lessons.length === 0 && (
-          <p className="glass-panel rounded-xl px-5 py-8 text-center text-sm text-outline">
-            No lessons in this space yet.
+          <p className="rounded-2xl border border-outline-variant/12 bg-surface px-5 py-10 text-center font-sans text-sm text-on-surface-variant">
+            No lessons in this track yet.
           </p>
         )}
         {lessons.map((lesson, i) => (
           <Link
             key={lesson.id}
             href={`/hub/${space.slug}/${channelSlug}/${lesson.slug}`}
-            className="glass-panel group flex items-center gap-4 rounded-xl px-5 py-4 transition-all duration-300 hover:border-primary/30"
+            className="group flex items-center gap-4 rounded-2xl border border-outline-variant/12 bg-surface px-5 py-4 transition hover:border-outline-variant/30 hover:shadow-card"
           >
-            <span className="flex h-10 w-10 flex-none items-center justify-center rounded-lg bg-primary/20 text-primary">
-              <Icon name={channelIcon("lessons")} />
+            <span className="grid h-7 w-7 flex-none place-items-center rounded-full bg-surface-container font-sans text-[12px] font-semibold text-on-surface-variant">
+              {i + 1}
             </span>
-            <div className="min-w-0">
-              <p className="truncate font-label-md font-bold text-on-surface transition-colors group-hover:text-primary">
+            <span className="grid h-10 w-10 flex-none place-items-center rounded-xl bg-primary/10 text-primary">
+              <Icon name="smart_display" fill className="text-[20px]" />
+            </span>
+            <div className="min-w-0 flex-1">
+              <p className="truncate font-display text-[15px] font-semibold text-on-surface transition-colors group-hover:text-primary">
                 {lesson.title}
               </p>
-              <p className="font-body-md text-xs text-outline">
+              <p className="truncate font-sans text-[12px] text-on-surface-variant">
                 {lesson.instructor ? `${lesson.instructor} · ` : ""}
                 {lesson.video_url ? "Video + notes" : "Notes"}
               </p>
