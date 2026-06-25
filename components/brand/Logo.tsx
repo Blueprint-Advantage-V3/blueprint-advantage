@@ -26,11 +26,11 @@ export function LogoMark({
         width="54"
         height="54"
         rx="13"
-        fill="#1f1e1b"
-        stroke="#34322d"
+        fill="#18181d"
+        stroke="#2c2c33"
         strokeWidth="0.75"
       />
-      <g stroke="#47443d" strokeWidth="0.75" opacity="0.6">
+      <g stroke="#33333c" strokeWidth="0.75" opacity="0.7">
         <line x1="14" y1="6" x2="14" y2="50" />
         <line x1="28" y1="6" x2="28" y2="50" />
         <line x1="42" y1="6" x2="42" y2="50" />
@@ -41,7 +41,7 @@ export function LogoMark({
       <path
         d="M16 42 L28 14 L40 42"
         fill="none"
-        stroke="#8fb9e0"
+        stroke="#7aa2ff"
         strokeWidth="3"
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -51,11 +51,11 @@ export function LogoMark({
         y1="32.5"
         x2="34.5"
         y2="32.5"
-        stroke="#8fb9e0"
+        stroke="#7aa2ff"
         strokeWidth="3"
         strokeLinecap="round"
       />
-      <circle cx="28" cy="14" r="3.4" fill="#d97757" />
+      <circle cx="28" cy="14" r="3.4" fill="#e0b15e" />
     </svg>
   );
 }

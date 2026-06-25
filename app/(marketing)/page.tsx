@@ -73,13 +73,8 @@ export default function LandingPage() {
             <span className="inline-flex items-center gap-2 rounded-full border border-outline-variant/15 bg-surface px-3 py-1.5 font-sans text-[13px] text-on-surface-variant">
               <CompassTick className="h-3 w-3" /> The members-only hub for ambitious people
             </span>
-            <h1 className="mt-6 font-serif text-[42px] font-medium leading-[1.02] tracking-[-0.02em] text-on-surface md:text-[60px]">
-              Front-run the world with{" "}
-              <span className="relative whitespace-nowrap text-primary">
-                Blueprint Advantage
-                <span className="absolute -bottom-1 left-0 h-[2px] w-full bg-clay/45" />
-              </span>
-              .
+            <h1 className="mt-6 font-display text-[42px] font-semibold leading-[1.02] tracking-[-0.035em] text-on-surface md:text-[62px]">
+              Front-run the world with <span className="text-primary">Blueprint Advantage</span>.
             </h1>
             <p className="mt-6 max-w-xl font-body-lg text-body-lg text-on-surface-variant">
               Learn from people who&apos;ve actually built it, in finance, law, AI, the road to a top
@@ -115,8 +110,8 @@ export default function LandingPage() {
       {/* Tracks */}
       <section id="tracks" className="mx-auto max-w-6xl px-gutter pb-20 pt-6">
         <div className="max-w-2xl">
-          <h2 className="font-serif text-[34px] font-medium leading-[1.1] tracking-[-0.01em] text-on-surface md:text-[44px]">
-            Learn the things <span className="text-clay">school skips.</span>
+          <h2 className="font-display text-[34px] font-semibold leading-[1.1] tracking-[-0.025em] text-on-surface md:text-[44px]">
+            Learn the things <span className="text-primary">school skips.</span>
           </h2>
           <p className="mt-4 font-body-lg text-body-lg text-on-surface-variant">
             Finance, law, AI, the road to a top university, plus the wider set of skills that actually
@@ -155,9 +150,9 @@ export default function LandingPage() {
       <section id="network" className="mx-auto max-w-6xl px-gutter pb-20 pt-6">
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
           <div>
-            <h2 className="font-serif text-[32px] font-medium leading-[1.12] tracking-[-0.01em] text-on-surface md:text-[42px]">
+            <h2 className="font-display text-[32px] font-semibold leading-[1.12] tracking-[-0.025em] text-on-surface md:text-[42px]">
               It&apos;s not just what you learn.{" "}
-              <span className="text-clay">It&apos;s who you&apos;re in the room with.</span>
+              <span className="text-primary">It&apos;s who you&apos;re in the room with.</span>
             </h2>
             <p className="mt-4 font-body-lg text-body-lg text-on-surface-variant">
               The lessons get you moving. The network is the real edge: the mentors, peers, and
@@ -191,7 +186,7 @@ export default function LandingPage() {
           <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-3 py-1 font-sans text-[13px] font-medium text-primary">
             <Icon name="bolt" className="text-[14px]" /> The skill of the decade
           </span>
-          <blockquote className="mx-auto mt-7 max-w-3xl font-serif text-[28px] font-medium italic leading-[1.28] text-on-surface md:text-[40px]">
+          <blockquote className="mx-auto mt-7 max-w-3xl font-display text-[28px] font-semibold leading-[1.2] tracking-[-0.02em] text-on-surface md:text-[38px]">
             &ldquo;AI isn&apos;t going to replace humans, but it{" "}
             <span className="not-italic font-semibold text-primary">will</span> replace humans who
             don&apos;t know how to take full advantage of AI.&rdquo;
@@ -207,7 +202,7 @@ export default function LandingPage() {
       {/* How it works */}
       <section id="how" className="mx-auto max-w-6xl px-gutter py-20">
         <div className="max-w-2xl">
-          <h2 className="font-serif text-[30px] font-medium leading-[1.1] tracking-[-0.01em] text-on-surface md:text-[40px]">
+          <h2 className="font-display text-[30px] font-semibold leading-[1.1] tracking-[-0.025em] text-on-surface md:text-[40px]">
             Up and running in minutes.
           </h2>
           <p className="mt-3 font-body-lg text-body-lg text-on-surface-variant">
@@ -230,7 +225,7 @@ export default function LandingPage() {
       {/* Pricing */}
       <section id="pricing" className="border-t border-outline-variant/15 bg-surface-container-low py-24">
         <div className="mx-auto max-w-md px-gutter text-center">
-          <h2 className="font-serif text-[30px] font-medium leading-[1.1] tracking-[-0.01em] text-on-surface md:text-[38px]">
+          <h2 className="font-display text-[30px] font-semibold leading-[1.1] tracking-[-0.025em] text-on-surface md:text-[38px]">
             One membership. Everything in.
           </h2>
           <p className="mt-3 font-body-lg text-body-lg text-on-surface-variant">
@@ -268,8 +263,8 @@ export default function LandingPage() {
 
       {/* Final CTA */}
       <section className="px-gutter pb-24 pt-6 text-center">
-        <h2 className="mx-auto max-w-2xl font-serif text-[32px] font-medium leading-[1.08] tracking-[-0.01em] text-on-surface md:text-[44px]">
-          Start building your <span className="text-clay">advantage today.</span>
+        <h2 className="mx-auto max-w-2xl font-display text-[32px] font-semibold leading-[1.08] tracking-[-0.025em] text-on-surface md:text-[44px]">
+          Start building your <span className="text-primary">advantage today.</span>
         </h2>
         <p className="mx-auto mt-4 max-w-xl font-body-lg text-body-lg text-on-surface-variant">
           Get inside a private network of ambitious people learning the skills school skips, and

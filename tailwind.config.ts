@@ -1,14 +1,12 @@
 import type { Config } from "tailwindcss";
 
 /**
- * Claude / Anthropic design language — warm-light. Cream surfaces, warm ink
- * text, Anthropic blue as the brand accent (fits "Blueprint"), clay + gold as
- * warm pops. Flat and calm: no glassmorphism, no neon, no glow. Poppins for
- * headings/UI, Lora for editorial prose.
+ * "Sleek dark product" design language (Linear / Vercel energy). Near-black
+ * surfaces, ONE electric-blue accent, sharp Inter type, hairline borders.
+ * Gold is reserved strictly for "earned" (levels/achievement).
  *
- * Token NAMES are preserved from the old system so every component keeps
- * working; only the VALUES change. Borders use the ink color so low-alpha
- * hairlines (`border-outline-variant/10`) still read on cream.
+ * Token NAMES are preserved so every component keeps working; only VALUES
+ * change. outline-variant is near-white so low-alpha hairlines read on black.
  */
 const config: Config = {
   darkMode: "class",
@@ -16,70 +14,70 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // ── Brand accent = Anthropic blue ──────────────────────
+        // ── Brand accent = electric blue ───────────────────────
         "on-primary": "#ffffff",
-        primary: "#3a6ea5", // deep blue: accent text/icons/active state
-        "primary-fixed": "#e7eef6",
-        "primary-fixed-dim": "#6a9bcc",
-        "primary-container": "#3a6ea5", // filled CTA background
+        primary: "#7aa2ff", // accent text/icons/active on near-black
+        "primary-fixed": "#1a2742",
+        "primary-fixed-dim": "#7aa2ff",
+        "primary-container": "#3f6bff", // filled CTA
         "on-primary-container": "#ffffff",
-        "on-primary-fixed": "#10324f",
-        "on-primary-fixed-variant": "#335f8f",
-        "inverse-primary": "#9cc0e4",
-        secondary: "#5b87b3",
-        "secondary-container": "#6a9bcc",
+        "on-primary-fixed": "#cddcff",
+        "on-primary-fixed-variant": "#7aa2ff",
+        "inverse-primary": "#3f6bff",
+        secondary: "#8fb0ff",
+        "secondary-container": "#3f6bff",
         "on-secondary": "#ffffff",
-        "on-secondary-container": "#10324f",
-        "secondary-fixed": "#dce8f3",
-        "secondary-fixed-dim": "#6a9bcc",
-        "on-secondary-fixed": "#10324f",
-        "on-secondary-fixed-variant": "#335f8f",
-        // Clay — Anthropic's warm signature pop
-        tertiary: "#c2603c",
-        "tertiary-container": "#f6ddd0",
-        "on-tertiary": "#ffffff",
-        "on-tertiary-container": "#5a2c18",
-        "tertiary-fixed": "#f6ddd0",
-        "tertiary-fixed-dim": "#d97757",
-        "on-tertiary-fixed": "#5a2c18",
-        "on-tertiary-fixed-variant": "#9a4a2c",
-        error: "#b3261e",
-        "on-error": "#ffffff",
-        "error-container": "#f9dedc",
-        "on-error-container": "#410e0b",
-        // ── Surfaces — WARM CREAM base (Anthropic light) ───────
-        canvas: "#faf9f5", // true page background (warm cream)
-        background: "#faf9f5",
-        surface: "#ffffff",
-        "surface-dim": "#f1efe8",
-        "surface-bright": "#ffffff",
-        "surface-container-lowest": "#ffffff",
-        "surface-container-low": "#f6f4ee", // sidebars
-        "surface-container": "#f1efe8",
-        "surface-container-high": "#ebe8df",
-        "surface-container-highest": "#e5e2d8",
-        "surface-variant": "#efece4",
-        "surface-tint": "#3a6ea5",
-        // ── On-surface / outlines (warm) ───────────────────────
-        "on-surface": "#141413", // warm ink
-        "on-surface-variant": "#5f5e57", // muted warm gray
-        "on-background": "#141413",
-        outline: "#8a887e", // mid gray — muted labels
-        "outline-variant": "#23211d", // near-ink — for low-alpha hairlines
-        "inverse-surface": "#2b2a27",
-        "inverse-on-surface": "#faf9f5",
-        // Clay — Anthropic's warm signature, used for warmth/accent + the motif
-        clay: "#c2603c",
-        // ── "Earned" accent (warm gold) — only on things you EARN
-        earned: "#b07d1e",
-        "earned-dim": "#946818",
-        "on-earned": "#ffffff",
+        "on-secondary-container": "#cddcff",
+        "secondary-fixed": "#1a2742",
+        "secondary-fixed-dim": "#8fb0ff",
+        "on-secondary-fixed": "#cddcff",
+        "on-secondary-fixed-variant": "#7aa2ff",
+        // Tertiary kept neutral (one accent only) — muted slate
+        tertiary: "#9aa0ad",
+        "tertiary-container": "#24252b",
+        "on-tertiary": "#e7e8ec",
+        "on-tertiary-container": "#c8cad2",
+        "tertiary-fixed": "#24252b",
+        "tertiary-fixed-dim": "#9aa0ad",
+        "on-tertiary-fixed": "#e7e8ec",
+        "on-tertiary-fixed-variant": "#9aa0ad",
+        error: "#ff6b6b",
+        "on-error": "#1a0606",
+        "error-container": "#3a1414",
+        "on-error-container": "#ffd2d2",
+        // ── Surfaces — NEAR-BLACK ──────────────────────────────
+        canvas: "#0a0a0c", // true page background
+        background: "#0a0a0c",
+        surface: "#141417",
+        "surface-dim": "#0d0d0f",
+        "surface-bright": "#1f1f25",
+        "surface-container-lowest": "#0c0c0e",
+        "surface-container-low": "#121215", // sidebars
+        "surface-container": "#161619",
+        "surface-container-high": "#1c1c21",
+        "surface-container-highest": "#26262d",
+        "surface-variant": "#1c1c21",
+        "surface-tint": "#7aa2ff",
+        // ── On-surface / outlines ──────────────────────────────
+        "on-surface": "#f4f4f6", // near-white
+        "on-surface-variant": "#9b9ba6", // muted
+        "on-background": "#f4f4f6",
+        outline: "#6b6b76", // dim labels
+        "outline-variant": "#ffffff", // near-white → low-alpha hairlines
+        "inverse-surface": "#f4f4f6",
+        "inverse-on-surface": "#16161a",
+        // Clay kept as a neutral so any stray usage stays subtle, not orange
+        clay: "#7c7c87",
+        // ── "Earned" accent (gold) — only on things you EARN ───
+        earned: "#e0b15e",
+        "earned-dim": "#c79741",
+        "on-earned": "#241a07",
         // ── Back-compat aliases ────────────────────────────────
-        muted: "#5f5e57",
-        border: "#e3e1d8",
-        brand: "#3a6ea5",
-        "brand-hover": "#335f8f",
-        "brand-soft": "#e7eef6",
+        muted: "#9b9ba6",
+        border: "#26262d",
+        brand: "#7aa2ff",
+        "brand-hover": "#3f6bff",
+        "brand-soft": "#1a2742",
       },
       spacing: {
         sidebar_width: "280px",
@@ -91,32 +89,31 @@ const config: Config = {
         stack_lg: "32px",
       },
       fontFamily: {
-        sans: ["var(--font-poppins)", "system-ui", "sans-serif"],
-        serif: ["var(--font-lora)", "Georgia", "serif"],
-        display: ["var(--font-poppins)", "system-ui", "sans-serif"],
-        "headline-lg": ["var(--font-poppins)", "system-ui", "sans-serif"],
-        "headline-md": ["var(--font-poppins)", "system-ui", "sans-serif"],
-        "headline-lg-mobile": ["var(--font-poppins)", "system-ui", "sans-serif"],
-        "label-md": ["var(--font-poppins)", "system-ui", "sans-serif"],
+        sans: ["var(--font-inter)", "system-ui", "sans-serif"],
+        serif: ["var(--font-inter)", "system-ui", "sans-serif"],
+        display: ["var(--font-inter)", "system-ui", "sans-serif"],
+        "headline-lg": ["var(--font-inter)", "system-ui", "sans-serif"],
+        "headline-md": ["var(--font-inter)", "system-ui", "sans-serif"],
+        "headline-lg-mobile": ["var(--font-inter)", "system-ui", "sans-serif"],
+        "label-md": ["var(--font-inter)", "system-ui", "sans-serif"],
         code: ["var(--font-geist-mono)", "monospace"],
-        "body-lg": ["var(--font-lora)", "Georgia", "serif"],
-        "body-md": ["var(--font-lora)", "Georgia", "serif"],
+        "body-lg": ["var(--font-inter)", "system-ui", "sans-serif"],
+        "body-md": ["var(--font-inter)", "system-ui", "sans-serif"],
       },
       fontSize: {
-        display: ["48px", { lineHeight: "1.08", letterSpacing: "-0.03em", fontWeight: "600" }],
-        "headline-lg": ["32px", { lineHeight: "1.15", letterSpacing: "-0.02em", fontWeight: "600" }],
-        "headline-md": ["22px", { lineHeight: "1.3", fontWeight: "600" }],
-        "headline-lg-mobile": ["24px", { lineHeight: "1.2", fontWeight: "600" }],
-        "body-lg": ["18px", { lineHeight: "1.65", fontWeight: "400" }],
-        "body-md": ["16px", { lineHeight: "1.6", fontWeight: "400" }],
+        display: ["52px", { lineHeight: "1.04", letterSpacing: "-0.035em", fontWeight: "650" }],
+        "headline-lg": ["32px", { lineHeight: "1.1", letterSpacing: "-0.025em", fontWeight: "600" }],
+        "headline-md": ["20px", { lineHeight: "1.25", letterSpacing: "-0.01em", fontWeight: "600" }],
+        "headline-lg-mobile": ["26px", { lineHeight: "1.15", letterSpacing: "-0.02em", fontWeight: "600" }],
+        "body-lg": ["18px", { lineHeight: "1.6", fontWeight: "400" }],
+        "body-md": ["15px", { lineHeight: "1.6", fontWeight: "400" }],
         "label-md": ["14px", { lineHeight: "1.2", letterSpacing: "0", fontWeight: "500" }],
         code: ["14px", { lineHeight: "1.5", fontWeight: "400" }],
       },
       boxShadow: {
-        // Soft, neutral elevation — no glow.
-        glow: "0 1px 2px rgba(20,20,19,0.05), 0 6px 16px -6px rgba(20,20,19,0.10)",
-        "glow-sm": "0 1px 2px rgba(20,20,19,0.06)",
-        card: "0 1px 2px rgba(20,20,19,0.04), 0 2px 8px -4px rgba(20,20,19,0.06)",
+        glow: "0 1px 0 rgba(255,255,255,0.04) inset, 0 10px 30px -12px rgba(0,0,0,0.7)",
+        "glow-sm": "0 1px 0 rgba(255,255,255,0.04) inset",
+        card: "0 1px 0 rgba(255,255,255,0.03) inset, 0 8px 24px -14px rgba(0,0,0,0.7)",
       },
     },
   },

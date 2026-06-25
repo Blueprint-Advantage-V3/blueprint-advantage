@@ -1,19 +1,13 @@
 import type { Metadata, Viewport } from "next";
-import { Poppins, Lora } from "next/font/google";
+import { Inter } from "next/font/google";
 import { GeistMono } from "geist/font/mono";
 import { BRAND } from "@/lib/constants";
 import "./globals.css";
 
-const poppins = Poppins({
+const inter = Inter({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
-  variable: "--font-poppins",
-  display: "swap",
-});
-const lora = Lora({
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  variable: "--font-lora",
+  variable: "--font-inter",
   display: "swap",
 });
 
@@ -26,7 +20,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#faf9f5",
+  themeColor: "#0a0a0c",
 };
 
 export default function RootLayout({
@@ -35,10 +29,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html
-      lang="en"
-      className={`${poppins.variable} ${lora.variable} ${GeistMono.variable}`}
-    >
+    <html lang="en" className={`dark ${inter.variable} ${GeistMono.variable}`}>
       <head>
         <link
           rel="stylesheet"
