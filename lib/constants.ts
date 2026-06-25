@@ -10,9 +10,9 @@ export const BRAND = {
 };
 
 export const PRICE_DISPLAY = {
-  amount: "$50",
+  amount: "$100",
   period: "/month",
-  cents: 5000,
+  cents: 10000,
 };
 
 /**
