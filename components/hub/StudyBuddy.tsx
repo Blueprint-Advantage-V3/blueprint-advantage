@@ -107,7 +107,7 @@ export function StudyBuddy() {
               <div className="rounded-xl border border-outline-variant/10 bg-surface-container/40 p-4">
                 <p className="font-body-md text-body-md text-on-surface-variant">
                   Hey 👋 I&apos;m your AI study buddy{campusLabel ? ` for ${campusLabel}` : ""}.
-                  Ask me anything — I&apos;ll explain it, quiz you, or build you a plan.
+                  Ask me anything. I&apos;ll explain it, quiz you, or build you a plan.
                 </p>
               </div>
             )}

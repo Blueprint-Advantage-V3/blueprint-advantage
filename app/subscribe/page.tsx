@@ -36,7 +36,7 @@ export default async function SubscribePage({
 
         {searchParams.canceled && (
           <p className="mt-5 rounded-lg border border-outline-variant/20 bg-surface-container px-4 py-3 font-body-md text-body-md text-on-surface-variant">
-            Checkout canceled — no worries, you can join whenever you're ready.
+            Checkout canceled. No worries, you can join whenever you're ready.
           </p>
         )}
 

@@ -32,7 +32,7 @@ const CAMPUSES = [
     name: "Law",
     icon: "gavel",
     goal: "Understand the law & protect myself",
-    blurb: "Contracts, rights, and sharp legal reasoning — in plain English.",
+    blurb: "Contracts, rights, and sharp legal reasoning, in plain English.",
   },
   {
     slug: "ai",
@@ -63,7 +63,7 @@ export default function WelcomePage() {
             right track.
           </h1>
           <p className="mx-auto mt-4 max-w-xl font-body-lg text-body-lg text-on-surface-variant">
-            What do you want to win at first? Pick your main goal — we&apos;ll drop you
+            What do you want to win at first? Pick your main goal and we&apos;ll drop you
             straight in. You can explore the rest anytime.
           </p>
 

@@ -23,7 +23,7 @@ const CAMPUS_PERSONA: Record<string, { name: string; brief: string }> = {
   finance: {
     name: "your Finance coach",
     brief:
-      "You teach money, budgeting, investing, and building real wealth in plain English. Be practical, never give individualized financial advice — teach principles.",
+      "You teach money, budgeting, investing, and building real wealth in plain English. Be practical, never give individualized financial advice. Teach principles.",
   },
   law: {
     name: "your Law coach",
@@ -33,7 +33,7 @@ const CAMPUS_PERSONA: Record<string, { name: string; brief: string }> = {
   ai: {
     name: "your AI coach",
     brief:
-      "You teach people to use AI to 10x their output — prompting, automating, and building. Be hands-on and concrete.",
+      "You teach people to use AI to 10x their output: prompting, automating, and building. Be hands-on and concrete.",
   },
 };
 
@@ -48,7 +48,7 @@ function fallbackReply(campus: string | undefined, question: string) {
   const p = personaFor(campus);
   const q = question.trim();
   return [
-    `I'm ${p.name} 👋 (running in demo mode — add an AI key to unlock full answers).`,
+    `I'm ${p.name} 👋 (running in demo mode, add an AI key to unlock full answers).`,
     q
       ? `Here's how I'd start on "${q.slice(0, 140)}": break it into the smallest first step you can do in the next 10 minutes, then build from there. Watch the related lesson, take one note, and apply it today.`
       : `Ask me anything about this campus and I'll break it down, quiz you, or give you a step-by-step plan.`,
@@ -81,7 +81,7 @@ export async function POST(req: Request) {
     req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
   if (rateLimited(ip)) {
     return NextResponse.json(
-      { reply: "Whoa — slow down a sec ⏳ You've hit the tutor a lot. Try again in a few minutes." },
+      { reply: "Whoa, slow down a sec ⏳ You've hit the tutor a lot. Try again in a few minutes." },
       { status: 429 }
     );
   }
@@ -100,7 +100,7 @@ export async function POST(req: Request) {
   const totalChars = messages.reduce((n, m) => n + m.content.length, 0);
   if (totalChars > MAX_INPUT_CHARS) {
     return NextResponse.json(
-      { reply: "That's a lot to chew on at once — try asking one focused question and I'll go deep on it. 🎯" },
+      { reply: "That's a lot to chew on at once. Try asking one focused question and I'll go deep on it. 🎯" },
       { status: 200 }
     );
   }

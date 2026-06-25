@@ -15,14 +15,14 @@ export function MemberList({ currentUser }: { currentUser: string }) {
     <aside className="hidden w-56 flex-none flex-col border-l border-outline-variant/10 bg-surface-container-low/40 lg:flex">
       <div className="custom-scrollbar flex-1 overflow-y-auto p-3">
         <p className="px-2 pb-2 text-[11px] font-bold uppercase tracking-widest text-outline">
-          Online — {ONLINE.length + 1}
+          Online · {ONLINE.length + 1}
         </p>
         <Row name={`${currentUser} (you)`} online you />
         {ONLINE.map((m) => (
           <Row key={m.name} name={m.name} role={m.role} online />
         ))}
         <p className="px-2 pb-2 pt-4 text-[11px] font-bold uppercase tracking-widest text-outline">
-          Offline — {OFFLINE.length}
+          Offline · {OFFLINE.length}
         </p>
         {OFFLINE.map((m) => (
           <Row key={m.name} name={m.name} />

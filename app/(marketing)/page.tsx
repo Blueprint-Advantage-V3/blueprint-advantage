@@ -82,7 +82,7 @@ export default function LandingPage() {
               .
             </h1>
             <p className="mt-6 max-w-xl font-body-lg text-body-lg text-on-surface-variant">
-              Learn from people who&apos;ve actually built it — in finance, law, AI, the road to a top
+              Learn from people who&apos;ve actually built it, in finance, law, AI, the road to a top
               university, and every skill that moves you forward. Then get in the room with them.
               Blueprint Advantage is a private network of proven mentors and driven peers, with live
               rooms and connections you&apos;d never get on your own.
@@ -119,7 +119,7 @@ export default function LandingPage() {
             Learn the things <span className="text-clay">school skips.</span>
           </h2>
           <p className="mt-4 font-body-lg text-body-lg text-on-surface-variant">
-            Finance, law, AI, the road to a top university — plus the wider set of skills that actually
+            Finance, law, AI, the road to a top university, plus the wider set of skills that actually
             move you forward. Pick where you want to win first, then go as deep as you want across the
             rest. Every track is taught by people who&apos;ve done it for real.
           </p>
@@ -159,14 +159,14 @@ export default function LandingPage() {
               <span className="text-clay">It&apos;s who you&apos;re in the room with.</span>
             </h2>
             <p className="mt-4 font-body-lg text-body-lg text-on-surface-variant">
-              The lessons get you moving. The network is the real edge — the mentors, peers, and
+              The lessons get you moving. The network is the real edge: the mentors, peers, and
               high-level connections you simply can&apos;t assemble on your own.
             </p>
             <ul className="mt-8 space-y-6">
               {[
-                { icon: "verified", t: "Learn from people who've done it", b: "Mentors who've actually built success in their field — real operators with real results, not theory and not influencers." },
+                { icon: "verified", t: "Learn from people who've done it", b: "Mentors who've actually built success in their field. Real operators with real results, not theory and not influencers." },
                 { icon: "groups", t: "Network with ambitious peers", b: "A private circle of driven members leveling up right beside you. These are the people who become your future partners, hires, and friends." },
-                { icon: "handshake", t: "Leverage high-level connections", b: "Introductions, access, and rooms you'd never reach from the outside — the kind of connections that quietly change everything." },
+                { icon: "handshake", t: "Leverage high-level connections", b: "Introductions, access, and rooms you'd never reach from the outside. The kind of connections that quietly change everything." },
               ].map((p) => (
                 <li key={p.t} className="flex gap-4">
                   <span className="grid h-10 w-10 flex-none place-items-center rounded-xl bg-primary/10 text-primary">
@@ -191,13 +191,13 @@ export default function LandingPage() {
             <Icon name="bolt" className="text-[14px]" /> The skill of the decade
           </span>
           <blockquote className="mx-auto mt-7 max-w-3xl font-serif text-[28px] font-medium italic leading-[1.28] text-on-surface md:text-[40px]">
-            &ldquo;AI isn&apos;t going to replace humans — but it{" "}
+            &ldquo;AI isn&apos;t going to replace humans, but it{" "}
             <span className="not-italic font-semibold text-primary">will</span> replace humans who
             don&apos;t know how to take full advantage of AI.&rdquo;
           </blockquote>
           <p className="mx-auto mt-7 max-w-2xl font-body-lg text-body-lg text-on-surface-variant">
             That&apos;s why learning to use AI right now isn&apos;t optional. It&apos;s rewriting every
-            industry in real time — the people who wield it today are doing the work of ten. School
+            industry in real time, and the people who wield it today are doing the work of ten. School
             isn&apos;t teaching it. <span className="text-primary">We are.</span>
           </p>
         </div>
@@ -233,7 +233,7 @@ export default function LandingPage() {
             One membership. Everything in.
           </h2>
           <p className="mt-3 font-body-lg text-body-lg text-on-surface-variant">
-            No tiers, no upsells. Every track, every mentor, the whole network — for one flat price.
+            No tiers, no upsells. Every track, every mentor, and the whole network for one flat price.
           </p>
           <div className="mt-8 rounded-2xl border border-outline-variant/15 border-l-[3px] border-l-clay bg-surface p-8 text-left shadow-card">
             <div className="flex items-baseline gap-1.5">
@@ -271,7 +271,7 @@ export default function LandingPage() {
           Start building your <span className="text-clay">advantage today.</span>
         </h2>
         <p className="mx-auto mt-4 max-w-xl font-body-lg text-body-lg text-on-surface-variant">
-          Get inside a private network of ambitious people learning the skills school skips — and
+          Get inside a private network of ambitious people learning the skills school skips, and
           leveraging each other to pull ahead. Your seat is one click away.
         </p>
         <div className="mt-8">
@@ -279,7 +279,7 @@ export default function LandingPage() {
             href="/signup"
             className="inline-block rounded-xl bg-primary-container px-8 py-4 font-sans font-semibold text-on-primary-container transition hover:brightness-95 active:scale-[0.98]"
           >
-            Get started — {PRICE_DISPLAY.amount}{PRICE_DISPLAY.period}
+            Get started for {PRICE_DISPLAY.amount}{PRICE_DISPLAY.period}
           </Link>
         </div>
       </section>

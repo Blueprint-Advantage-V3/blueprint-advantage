@@ -84,7 +84,7 @@ export function WinsFeed({ currentUser }: { currentUser: string }) {
         <textarea
           value={draft}
           onChange={(e) => setDraft(e.target.value)}
-          placeholder="Share a win — big or small…"
+          placeholder="Share a win, big or small…"
           rows={2}
           className="w-full resize-none bg-transparent text-sm text-on-surface outline-none placeholder:text-outline"
         />

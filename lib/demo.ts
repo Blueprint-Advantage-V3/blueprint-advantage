@@ -41,7 +41,7 @@ function space(
 }
 
 export const DEMO_SPACES: Space[] = [
-  space("sat", "Road to University", "🎓", "Your roadmap into a top university — SAT, essays & applications.", 0),
+  space("sat", "Road to University", "🎓", "Your roadmap into a top university: SAT, essays & applications.", 0),
   space("finance", "Finance", "💰", "Build wealth and master your money.", 1),
   space("law", "Law", "⚖️", "Understand the law and protect yourself.", 2),
   space("ai", "Using AI", "🤖", "Leverage AI to 10x your output.", 3),
@@ -154,7 +154,7 @@ export const DEMO_LESSONS: Lesson[] = [
     "Prompting fundamentals",
     "Sam Reyes",
     "https://www.youtube.com/embed/aircAruvnKk",
-    "## Prompting fundamentals\n\nGreat prompts share three traits:\n\n- **Context** — who you are, what you're doing.\n- **Specificity** — exactly what you want back.\n- **Format** — the shape of the answer (list, table, steps).\n\nIterate. Your second prompt is always better than your first.",
+    "## Prompting fundamentals\n\nGreat prompts share three traits:\n\n- **Context:** who you are, what you're doing.\n- **Specificity:** exactly what you want back.\n- **Format:** the shape of the answer (list, table, steps).\n\nIterate. Your second prompt is always better than your first.",
     0
   ),
   lesson(
@@ -188,7 +188,7 @@ function msg(
 export const DEMO_MESSAGES: ChannelMessage[] = [
   msg("chan-sat-general", "Dr. Lena Ortiz", "Welcome to Road to University! New lesson drops every Monday. 🎓", 0),
   msg("chan-sat-general", "Maya", "Just hit a 1480 on my practice test 🔥 thank you!", 1),
-  msg("chan-sat-general", "Dr. Lena Ortiz", "Incredible Maya — let's push for 1500+ next.", 2),
+  msg("chan-sat-general", "Dr. Lena Ortiz", "Incredible Maya, let's push for 1500+ next.", 2),
   msg("chan-sat-questions", "Jordan", "On the math no-calc section, how do you handle systems fast?", 0),
   msg("chan-sat-questions", "Dr. Lena Ortiz", "Substitution when one variable is isolated, elimination otherwise. The Foundations lesson covers it.", 1),
   msg("chan-finance-general", "Marcus Webb", "Reminder: pay yourself first. Automate it today. 💰", 0),
