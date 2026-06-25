@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { getMemberContext } from "@/lib/subscription";
 import { Icon } from "@/components/ui/Icon";
+import { ChannelHeader } from "@/components/hub/ChannelHeader";
 import { ChatChannel } from "@/components/hub/ChatChannel";
 import { VoiceRoom } from "@/components/hub/VoiceRoom";
 import { VideoRoom } from "@/components/hub/VideoRoom";
@@ -87,8 +88,13 @@ export default async function ChannelPage({
   }
 
   return (
-    <div className="h-full">
-      <div className="h-full">
+    <div className="flex h-full flex-col">
+      <ChannelHeader
+        type={channel.type}
+        name={channel.name}
+        topic={channel.type === "lessons" ? space.description ?? undefined : undefined}
+      />
+      <div className="min-h-0 flex-1">
         {channel.type === "lessons" && (
           <LessonLibrary space={space} channelSlug={channel.slug} lessons={lessons} />
         )}
@@ -129,12 +135,22 @@ function LessonLibrary({
   lessons: Lesson[];
 }) {
   return (
-    <div className="mx-auto h-full max-w-content_max_width overflow-y-auto px-gutter py-6">
-      <p className="font-sans text-[13px] text-on-surface-variant">
-        {lessons.length} {lessons.length === 1 ? "lesson" : "lessons"} · taught by your professors. Work top to bottom.
-      </p>
+    <div className="mx-auto h-full max-w-content_max_width overflow-y-auto px-gutter py-stack_lg">
+      <div className="flex items-center gap-3">
+        <span className="grid h-12 w-12 flex-none place-items-center rounded-xl bg-primary/10 text-2xl">
+          {space.icon ?? <Icon name="menu_book" className="text-primary" />}
+        </span>
+        <div className="min-w-0">
+          <h1 className="font-display text-[26px] font-semibold tracking-tight text-on-surface">
+            {space.name}
+          </h1>
+          <p className="font-sans text-sm text-on-surface-variant">
+            {lessons.length} {lessons.length === 1 ? "lesson" : "lessons"} · taught by your professors
+          </p>
+        </div>
+      </div>
 
-      <div className="mt-4 space-y-2.5">
+      <div className="mt-7 space-y-2.5">
         {lessons.length === 0 && (
           <p className="rounded-2xl border border-outline-variant/12 bg-surface px-5 py-10 text-center font-sans text-sm text-on-surface-variant">
             No lessons in this track yet.

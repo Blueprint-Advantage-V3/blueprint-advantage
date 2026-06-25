@@ -79,7 +79,7 @@ export function HubDashboard({
             {schedule.slice(0, 5).map((s) => (
               <Link
                 key={s.id}
-                href="/hub/live"
+                href={`/hub/${s.space_id.replace("space-", "")}/schedule`}
                 className="flex items-center gap-3 rounded-lg px-2 py-2 transition-colors hover:bg-on-surface/[0.03]"
               >
                 <span className="grid h-9 w-9 flex-none place-items-center rounded-lg bg-primary/10 text-primary">

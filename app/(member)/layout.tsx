@@ -1,16 +1,19 @@
 import { redirect } from "next/navigation";
 import { getMemberContext } from "@/lib/subscription";
 import { createClient } from "@/lib/supabase/server";
-import { AppSidebar } from "@/components/layout/AppSidebar";
+import { ServerRail } from "@/components/layout/ServerRail";
+import { ChannelSidebar } from "@/components/layout/ChannelSidebar";
 import { StudyBuddy } from "@/components/hub/StudyBuddy";
 import { ProgressProvider } from "@/lib/progress";
-import { IS_DEMO, demoSpaces } from "@/lib/demo";
-import type { Space } from "@/lib/types";
+import { IS_DEMO, demoSpaces, demoChannels } from "@/lib/demo";
+import type { Channel, Space } from "@/lib/types";
 
 /**
- * THE APP SHELL — a single content-first sidebar + main area (rendered once,
- * persisted across navigation). Not a chat server: sections are Home, Live,
- * Community, Wins, Members, plus the member's tracks.
+ * THE HUB SHELL — community-style three-column app frame, rendered once and
+ * persisted across navigation:
+ *   1. ServerRail    — icon column to switch spaces
+ *   2. ChannelSidebar — channels for the active space (+ user panel)
+ *   3. main          — the active channel / lesson / home
  *
  * Gate: authenticated (middleware) AND active subscription (here).
  */
@@ -25,36 +28,41 @@ export default async function MemberLayout({
   if (!hasAccess) redirect("/subscribe");
 
   let spaces: Space[];
+  let channels: Channel[];
   if (IS_DEMO) {
     spaces = demoSpaces();
+    channels = demoChannels();
   } else {
     const supabase = createClient();
-    const { data } = await supabase
-      .from("spaces")
-      .select("*")
-      .order("position", { ascending: true });
-    spaces = (data ?? []) as Space[];
+    const [spacesRes, channelsRes] = await Promise.all([
+      supabase.from("spaces").select("*").order("position", { ascending: true }),
+      supabase.from("channels").select("*").order("position", { ascending: true }),
+    ]);
+    spaces = (spacesRes.data ?? []) as Space[];
+    channels = (channelsRes.data ?? []) as Channel[];
   }
 
   return (
     <ProgressProvider>
-      <div className="flex h-screen overflow-hidden bg-canvas">
-        <AppSidebar
-          spaces={spaces}
-          fullName={profile?.full_name ?? user.email ?? "Member"}
-          email={user.email ?? ""}
-        />
-        <div className="flex flex-1 flex-col overflow-hidden">
-          {IS_DEMO && (
-            <div className="flex-none border-b border-amber-200 bg-amber-100 px-gutter py-1.5 text-center text-xs font-label-md text-amber-800">
-              🔍 Demo mode · sample content, no login required. Connect Supabase +
-              Stripe to go live.
-            </div>
-          )}
-          <main className="draft-grid flex-1 overflow-y-auto">{children}</main>
-        </div>
-        <StudyBuddy />
+    <div className="flex h-screen overflow-hidden bg-canvas">
+      <ServerRail spaces={spaces} />
+      <ChannelSidebar
+        spaces={spaces}
+        channels={channels}
+        fullName={profile?.full_name ?? user.email ?? "Member"}
+        email={user.email ?? ""}
+      />
+      <div className="flex flex-1 flex-col overflow-hidden">
+        {IS_DEMO && (
+          <div className="flex-none border-b border-amber-200 bg-amber-100 px-gutter py-1.5 text-center text-xs font-label-md text-amber-800">
+            🔍 Demo mode · sample content, no login required. Connect Supabase +
+            Stripe to go live.
+          </div>
+        )}
+        <main className="draft-grid flex-1 overflow-y-auto">{children}</main>
       </div>
+      <StudyBuddy />
+    </div>
     </ProgressProvider>
   );
 }
