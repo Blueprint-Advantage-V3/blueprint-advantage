@@ -4,7 +4,7 @@
 export const BRAND = {
   name: "Blueprint Advantage",
   shortName: "Blueprint",
-  tagline: "The membership for ambitious people who refuse to stay average.",
+  tagline: "Build the skills school skips.",
   // Marketing one-liners reused across the landing page.
   promise: "Get into university, master your money, the law, and AI — all in one members-only hub.",
 };

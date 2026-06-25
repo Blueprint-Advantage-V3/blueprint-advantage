@@ -59,7 +59,7 @@ export default async function MemberLayout({
             Stripe to go live.
           </div>
         )}
-        <main className="flex-1 overflow-y-auto">{children}</main>
+        <main className="draft-grid flex-1 overflow-y-auto">{children}</main>
       </div>
       <StudyBuddy />
     </div>

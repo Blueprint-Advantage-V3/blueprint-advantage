@@ -33,6 +33,24 @@ body {
   font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 24;
 }
 
+/* ── Blueprint draft grid (technical-drawing texture) ──────────── */
+/* Subtle architect's grid in blueprint-cyan. Makes the name literal. */
+.draft-grid {
+  background-image:
+    linear-gradient(rgba(143, 188, 230, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(143, 188, 230, 0.05) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+/* Same grid, faded out toward the edges (good for hero/banner areas). */
+.draft-grid-fade {
+  background-image:
+    linear-gradient(rgba(143, 188, 230, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(143, 188, 230, 0.07) 1px, transparent 1px);
+  background-size: 28px 28px;
+  -webkit-mask-image: radial-gradient(ellipse at center, #000 0%, transparent 72%);
+  mask-image: radial-gradient(ellipse at center, #000 0%, transparent 72%);
+}
+
 /* ── Ascendant Core surfaces ───────────────────────────────────── */
 
 /* Glassmorphism panel — translucent, blurred, hairline border */

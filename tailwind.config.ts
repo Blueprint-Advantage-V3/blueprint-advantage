@@ -64,6 +64,12 @@ const config: Config = {
         "outline-variant": "#2f3c70",
         "inverse-surface": "#e7e9f6",
         "inverse-on-surface": "#1a2142",
+        // ── "Earned" accent (gold) — only on things you EARN ───
+        // Levels, milestones, top leaderboard spots. Reads as achievement,
+        // never decoration. Keeps progress feeling earned, not hyped.
+        earned: "#e6b15e",
+        "earned-dim": "#caa052",
+        "on-earned": "#3a2606",
         // ── Back-compat aliases (old token names) ──────────────
         muted: "#c2c8e4",
         border: "#2f3c70",

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Icon } from "@/components/ui/Icon";
+import { LogoMark } from "@/components/brand/Logo";
 import { spaceIcon } from "@/lib/icons";
 import type { Space } from "@/lib/types";
 
@@ -16,6 +17,14 @@ export function ServerRail({ spaces }: { spaces: Space[] }) {
 
   return (
     <nav className="flex h-full w-[72px] flex-none flex-col items-center gap-2 border-r border-outline-variant/10 bg-surface-container-lowest py-3">
+      <Link
+        href="/hub"
+        title="Blueprint Advantage"
+        className="flex h-11 w-11 items-center justify-center transition-transform active:scale-95"
+      >
+        <LogoMark size={36} />
+      </Link>
+      <div className="my-1 h-px w-8 bg-outline-variant/20" />
       <RailButton href="/hub" active={onHome} label="Home">
         <Icon name="home" fill={onHome} className="text-[22px]" />
       </RailButton>

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Icon } from "@/components/ui/Icon";
+import { Logo } from "@/components/brand/Logo";
 import { BRAND, PRICE_DISPLAY } from "@/lib/constants";
 
 const FEATURES = [
@@ -50,7 +51,7 @@ const FEATURES = [
 
 const STEPS = [
   { n: "1", title: "Join", body: `Create your account and start your membership for ${PRICE_DISPLAY.amount}${PRICE_DISPLAY.period}.` },
-  { n: "2", title: "Pick your campus", body: "University, Finance, Law, AI — onboarding drops you in the right campus, then explore them all." },
+  { n: "2", title: "Pick your track", body: "University, Finance, Law, AI — onboarding drops you on the right track, then explore them all." },
   { n: "3", title: "Start leveling up", body: "Watch, take notes, join the rooms, and apply it. New content drops every week." },
 ];
 
@@ -60,9 +61,7 @@ export default function LandingPage() {
       {/* Fixed blurred header */}
       <header className="fixed top-0 z-50 w-full border-b border-outline-variant/10 bg-surface/70 backdrop-blur-xl">
         <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-gutter">
-          <span className="font-display text-headline-md font-black uppercase tracking-tighter text-primary">
-            {BRAND.name}
-          </span>
+          <Logo href={null} size={30} wordmarkClass="text-[19px] font-medium" />
           <div className="hidden items-center gap-stack_lg md:flex">
             <a href="#features" className="font-label-md text-label-md text-on-surface-variant transition-all hover:text-on-surface">
               Curriculum
@@ -93,6 +92,7 @@ export default function LandingPage() {
 
       {/* Hero */}
       <section className="relative flex min-h-screen items-center justify-center overflow-hidden px-margin_mobile pt-24">
+        <div className="draft-grid-fade pointer-events-none absolute inset-0 -z-10" />
         <div className="pointer-events-none absolute left-1/2 top-1/3 -z-10 h-[700px] w-[700px] -translate-x-1/2 rounded-full bg-primary/5 blur-[120px]" />
         <div className="relative z-10 mx-auto max-w-content_max_width text-center">
           <h1 className="mb-stack_md bg-gradient-to-b from-on-surface to-on-surface-variant bg-clip-text font-display text-[48px] font-black leading-[1] tracking-tighter text-transparent md:text-[80px]">
@@ -324,10 +324,8 @@ export default function LandingPage() {
       <footer className="border-t border-outline-variant/10 bg-surface-container-lowest py-stack_lg">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-stack_md px-gutter md:flex-row">
           <div>
-            <span className="font-headline-md text-headline-md font-bold uppercase tracking-tighter text-primary">
-              {BRAND.name}
-            </span>
-            <p className="mt-1 font-label-md text-label-md text-on-surface-variant/60">
+            <Logo href={null} size={26} wordmarkClass="text-[17px] font-medium" />
+            <p className="mt-2 font-label-md text-label-md text-on-surface-variant/60">
               © {new Date().getFullYear()} {BRAND.name}. All rights reserved.
             </p>
           </div>

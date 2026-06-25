@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { UserPanel } from "./UserPanel";
 import { Icon } from "@/components/ui/Icon";
+import { Wordmark } from "@/components/brand/Logo";
 import { channelIcon, spaceIcon } from "@/lib/icons";
 import { BRAND } from "@/lib/constants";
 import { useProgress, rankProgress, TOTAL_RANKS } from "@/lib/progress";
@@ -60,11 +61,9 @@ export function ChannelSidebar({
           </>
         ) : (
           <>
-            <h1 className="truncate font-headline-md text-headline-md font-bold text-primary">
-              {BRAND.name}
-            </h1>
-            <p className="font-label-md text-label-md text-on-surface-variant opacity-70">
-              Elite Membership
+            <Wordmark className="text-[20px] font-medium" />
+            <p className="mt-1 font-label-md text-label-md text-on-surface-variant opacity-70">
+              {BRAND.tagline}
             </p>
           </>
         )}
@@ -182,13 +181,13 @@ function SpaceChannels({
   );
 }
 
-/** Rank 1–5 progression ladder + live XP bar shown at the top of every class. */
+/** Level 1–5 progression ladder + live XP bar shown at the top of every track. */
 function RankLadder({ currentRank, xp }: { currentRank: number; xp: number }) {
   const p = rankProgress(xp);
   return (
     <div>
       <p className="px-4 pb-1 text-[11px] font-bold uppercase tracking-widest text-outline">
-        Ranks
+        Levels
       </p>
       <div className="space-y-0.5">
         {Array.from({ length: TOTAL_RANKS }, (_, i) => i + 1).map((r) => {
@@ -210,16 +209,16 @@ function RankLadder({ currentRank, xp }: { currentRank: number; xp: number }) {
               <Icon
                 name={locked ? "lock" : "military_tech"}
                 fill={current || done}
-                className="flex-none text-[20px]"
+                className={`flex-none text-[20px] ${done ? "text-earned" : ""}`}
               />
-              <span className="font-label-md text-label-md">Rank {r}</span>
+              <span className="font-label-md text-label-md">Level {r}</span>
               {current && (
                 <span className="ml-auto text-[10px] font-bold uppercase tracking-wider text-primary">
                   You
                 </span>
               )}
               {done && (
-                <Icon name="check_circle" fill className="ml-auto text-[16px] text-secondary" />
+                <Icon name="check_circle" fill className="ml-auto text-[16px] text-earned" />
               )}
             </div>
           );
@@ -229,11 +228,11 @@ function RankLadder({ currentRank, xp }: { currentRank: number; xp: number }) {
       <div className="mt-2 px-4">
         <div className="mb-1 flex items-center justify-between text-[10px] text-outline">
           <span>{xp} XP</span>
-          <span>{p.atMax ? "Max rank" : `${p.into}/${p.need} → Rank ${p.rank + 1}`}</span>
+          <span>{p.atMax ? "Max level" : `${p.into}/${p.need} → Level ${p.rank + 1}`}</span>
         </div>
         <div className="h-1.5 w-full overflow-hidden rounded-full bg-surface-container">
           <div
-            className="h-full rounded-full bg-gradient-to-r from-secondary to-primary transition-all duration-500"
+            className="h-full rounded-full bg-gradient-to-r from-primary to-earned transition-all duration-500"
             style={{ width: `${p.pct}%` }}
           />
         </div>

@@ -37,7 +37,7 @@ export function Leaderboard() {
           >
             <span
               className={`w-5 text-center text-sm font-bold ${
-                i < 3 ? "text-primary" : "text-outline"
+                i < 3 ? "text-earned" : "text-outline"
               }`}
             >
               {i + 1}

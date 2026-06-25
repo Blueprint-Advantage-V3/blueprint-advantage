@@ -24,7 +24,7 @@ export function LessonComplete({
       disabled={done}
       className={
         done
-          ? "flex items-center gap-3 rounded-xl bg-secondary/15 px-8 py-4 font-headline-md text-headline-md text-secondary"
+          ? "flex items-center gap-3 rounded-xl bg-earned/15 px-8 py-4 font-headline-md text-headline-md text-earned"
           : "flex items-center gap-3 rounded-xl bg-primary-container px-8 py-4 font-headline-md text-headline-md text-on-primary-container transition-all hover:opacity-90 active:scale-95"
       }
     >
