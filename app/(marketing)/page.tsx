@@ -31,9 +31,9 @@ const TRACKS = [
 ];
 
 const STEPS = [
-  { n: "1", title: "Pick your track", body: "Onboarding drops you on the right starting track, then opens up everything else to explore." },
-  { n: "2", title: "Learn & apply", body: "Watch lessons from real professors, take notes, and join the live voice & video rooms." },
-  { n: "3", title: "Level up", body: "Earn XP, climb your levels, and ask your AI tutor anything. New content drops every week." },
+  { n: "1", title: "Pick your track", body: "Onboarding sets you down on the right starting track, then opens the whole library and the full network to explore." },
+  { n: "2", title: "Learn and connect", body: "Watch lessons from proven mentors, then jump into the live voice and video rooms where members and mentors actually talk." },
+  { n: "3", title: "Level up", body: "Earn XP, climb your levels, ask your AI tutor anything, and build the relationships that put you ahead." },
 ];
 
 export default function LandingPage() {
@@ -71,26 +71,32 @@ export default function LandingPage() {
         <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1.05fr_1fr] lg:gap-16">
           <div>
             <span className="inline-flex items-center gap-2 rounded-full border border-outline-variant/15 bg-surface px-3 py-1.5 font-sans text-[13px] text-on-surface-variant">
-              <span className="h-1.5 w-1.5 rounded-full bg-primary" /> The members-only hub for ambitious people
+              <CompassTick className="h-3 w-3" /> The members-only hub for ambitious people
             </span>
-            <h1 className="mt-6 font-display text-[40px] font-semibold leading-[1.05] tracking-tight text-on-surface md:text-[58px]">
-              Front-run the world with <span className="text-primary">Blueprint Advantage</span>.
+            <h1 className="mt-6 font-serif text-[42px] font-medium leading-[1.02] tracking-[-0.02em] text-on-surface md:text-[60px]">
+              Front-run the world with{" "}
+              <span className="relative whitespace-nowrap text-primary">
+                Blueprint Advantage
+                <span className="absolute -bottom-1 left-0 h-[2px] w-full bg-clay/45" />
+              </span>
+              .
             </h1>
             <p className="mt-6 max-w-xl font-body-lg text-body-lg text-on-surface-variant">
-              Learn from people who&apos;ve actually built success — across finance, law, AI, the road
-              to university, and more. Then get in the room with them: a private network of mentors and
-              ambitious peers, live rooms, and connections you can&apos;t get on your own.
+              Learn from people who&apos;ve actually built it — in finance, law, AI, the road to a top
+              university, and every skill that moves you forward. Then get in the room with them.
+              Blueprint Advantage is a private network of proven mentors and driven peers, with live
+              rooms and connections you&apos;d never get on your own.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Link href="/signup" className="rounded-xl bg-primary-container px-7 py-3.5 text-center font-sans font-medium text-on-primary-container transition hover:brightness-95 active:scale-[0.98]">
                 Join for {PRICE_DISPLAY.amount}{PRICE_DISPLAY.period}
               </Link>
-              <a href="#how" className="rounded-xl border border-outline-variant/20 px-7 py-3.5 text-center font-sans font-medium text-on-surface transition hover:bg-on-surface/[0.04]">
+              <a href="#how" className="rounded-xl border border-clay/30 px-7 py-3.5 text-center font-sans font-medium text-clay transition hover:border-clay/60 hover:bg-clay/[0.06]">
                 See how it works
               </a>
             </div>
             <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 font-sans text-[13px] text-on-surface-variant">
-              {["Mentors who've done it", "A network you can leverage", "Live rooms + AI tutor"].map((f) => (
+              {["Mentors who've actually done it", "A network you can leverage", "Live rooms + your AI tutor"].map((f) => (
                 <span key={f} className="inline-flex items-center gap-1.5">
                   <Icon name="check_circle" fill className="text-[16px] text-primary" /> {f}
                 </span>
@@ -104,23 +110,27 @@ export default function LandingPage() {
         </div>
       </section>
 
+      <RegisterMark label="The curriculum" />
+
       {/* Tracks */}
-      <section id="tracks" className="mx-auto max-w-6xl px-gutter py-20">
+      <section id="tracks" className="mx-auto max-w-6xl px-gutter pb-20 pt-6">
         <div className="max-w-2xl">
-          <h2 className="font-display text-[30px] font-semibold tracking-tight text-on-surface md:text-[38px]">
-            Learn the things school skips.
+          <h2 className="font-serif text-[34px] font-medium leading-[1.1] tracking-[-0.01em] text-on-surface md:text-[44px]">
+            Learn the things <span className="text-clay">school skips.</span>
           </h2>
-          <p className="mt-3 font-body-lg text-body-lg text-on-surface-variant">
-            Finance, law, AI, the road to university — and more added over time. Pick where you want to
-            win first, then explore the rest. Every track is taught by people who&apos;ve actually done it.
+          <p className="mt-4 font-body-lg text-body-lg text-on-surface-variant">
+            Finance, law, AI, the road to a top university — plus the wider set of skills that actually
+            move you forward. Pick where you want to win first, then go as deep as you want across the
+            rest. Every track is taught by people who&apos;ve done it for real.
           </p>
         </div>
         <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {TRACKS.map((t) => (
             <div
               key={t.name}
-              className="flex flex-col rounded-2xl border border-outline-variant/15 bg-surface p-6 transition hover:border-outline-variant/30 hover:shadow-card"
+              className="group relative flex flex-col rounded-2xl border border-outline-variant/15 border-l-2 border-l-clay/40 bg-surface p-6 transition hover:border-l-clay hover:shadow-card"
             >
+              <CompassTick className="absolute right-4 top-4 h-3.5 w-3.5 opacity-40 transition group-hover:opacity-70" />
               <span className="grid h-11 w-11 place-items-center rounded-xl bg-primary/10 text-primary">
                 <Icon name={t.icon} fill className="text-[24px]" />
               </span>
@@ -136,43 +146,27 @@ export default function LandingPage() {
             </div>
           ))}
         </div>
-        <div className="mt-5 flex flex-col items-start justify-between gap-4 rounded-2xl border border-dashed border-outline-variant/25 bg-surface-container-low px-6 py-5 sm:flex-row sm:items-center">
-          <div className="flex items-center gap-3">
-            <span className="grid h-10 w-10 flex-none place-items-center rounded-xl bg-surface text-on-surface-variant">
-              <Icon name="add" className="text-[22px]" />
-            </span>
-            <div>
-              <p className="font-display text-[15px] font-semibold text-on-surface">More on the way</p>
-              <p className="font-sans text-[13px] text-on-surface-variant">
-                These are just the start — new tracks get added over time.
-              </p>
-            </div>
-          </div>
-          <Link href="/signup" className="flex-none rounded-lg border border-outline-variant/20 px-4 py-2 font-sans text-sm text-on-surface transition hover:bg-on-surface/[0.04]">
-            Join &amp; help shape what&apos;s next
-          </Link>
-        </div>
       </section>
 
+      <RegisterMark label="The network" />
+
       {/* The network */}
-      <section id="network" className="mx-auto max-w-6xl px-gutter py-20">
+      <section id="network" className="mx-auto max-w-6xl px-gutter pb-20 pt-6">
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
           <div>
-            <span className="inline-flex items-center gap-2 rounded-full border border-outline-variant/15 bg-surface px-3 py-1.5 font-sans text-[13px] text-on-surface-variant">
-              <span className="h-1.5 w-1.5 rounded-full bg-primary" /> The network
-            </span>
-            <h2 className="mt-6 font-display text-[30px] font-semibold leading-tight tracking-tight text-on-surface md:text-[38px]">
-              It&apos;s not just what you learn. It&apos;s who you&apos;re in the room with.
+            <h2 className="font-serif text-[32px] font-medium leading-[1.12] tracking-[-0.01em] text-on-surface md:text-[42px]">
+              It&apos;s not just what you learn.{" "}
+              <span className="text-clay">It&apos;s who you&apos;re in the room with.</span>
             </h2>
             <p className="mt-4 font-body-lg text-body-lg text-on-surface-variant">
-              The lessons get you moving. The network is the real advantage — the people, mentors, and
-              connections you can&apos;t build on your own.
+              The lessons get you moving. The network is the real edge — the mentors, peers, and
+              high-level connections you simply can&apos;t assemble on your own.
             </p>
             <ul className="mt-8 space-y-6">
               {[
-                { icon: "verified", t: "Learn from people who've done it", b: "Mentors who've actually built success in their field — not theory, not influencers." },
-                { icon: "groups", t: "Network with ambitious peers", b: "A private community of driven members leveling up right alongside you — your future circle." },
-                { icon: "handshake", t: "Leverage high-level connections", b: "Access, introductions, and rooms you simply can't get on the outside." },
+                { icon: "verified", t: "Learn from people who've done it", b: "Mentors who've actually built success in their field — real operators with real results, not theory and not influencers." },
+                { icon: "groups", t: "Network with ambitious peers", b: "A private circle of driven members leveling up right beside you. These are the people who become your future partners, hires, and friends." },
+                { icon: "handshake", t: "Leverage high-level connections", b: "Introductions, access, and rooms you'd never reach from the outside — the kind of connections that quietly change everything." },
               ].map((p) => (
                 <li key={p.t} className="flex gap-4">
                   <span className="grid h-10 w-10 flex-none place-items-center rounded-xl bg-primary/10 text-primary">
@@ -196,10 +190,10 @@ export default function LandingPage() {
           <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-3 py-1 font-sans text-[13px] font-medium text-primary">
             <Icon name="bolt" className="text-[14px]" /> The skill of the decade
           </span>
-          <blockquote className="mx-auto mt-7 max-w-3xl font-body-md text-[27px] font-medium leading-[1.3] text-on-surface md:text-[38px]">
+          <blockquote className="mx-auto mt-7 max-w-3xl font-serif text-[28px] font-medium italic leading-[1.28] text-on-surface md:text-[40px]">
             &ldquo;AI isn&apos;t going to replace humans — but it{" "}
-            <span className="text-primary">will</span> replace humans who don&apos;t know how to take
-            full advantage of AI.&rdquo;
+            <span className="not-italic font-semibold text-primary">will</span> replace humans who
+            don&apos;t know how to take full advantage of AI.&rdquo;
           </blockquote>
           <p className="mx-auto mt-7 max-w-2xl font-body-lg text-body-lg text-on-surface-variant">
             That&apos;s why learning to use AI right now isn&apos;t optional. It&apos;s rewriting every
@@ -212,11 +206,11 @@ export default function LandingPage() {
       {/* How it works */}
       <section id="how" className="mx-auto max-w-6xl px-gutter py-20">
         <div className="max-w-2xl">
-          <h2 className="font-display text-[30px] font-semibold tracking-tight text-on-surface md:text-[38px]">
+          <h2 className="font-serif text-[30px] font-medium leading-[1.1] tracking-[-0.01em] text-on-surface md:text-[40px]">
             Up and running in minutes.
           </h2>
           <p className="mt-3 font-body-lg text-body-lg text-on-surface-variant">
-            Three steps from sign-up to your first lesson.
+            Three steps from sign-up to learning, building, and meeting your people.
           </p>
         </div>
         <div className="mt-10 grid gap-px overflow-hidden rounded-2xl border border-outline-variant/15 bg-outline-variant/10 md:grid-cols-3">
@@ -235,13 +229,13 @@ export default function LandingPage() {
       {/* Pricing */}
       <section id="pricing" className="border-t border-outline-variant/15 bg-surface-container-low py-24">
         <div className="mx-auto max-w-md px-gutter text-center">
-          <h2 className="font-display text-[30px] font-semibold tracking-tight text-on-surface md:text-[36px]">
+          <h2 className="font-serif text-[30px] font-medium leading-[1.1] tracking-[-0.01em] text-on-surface md:text-[38px]">
             One membership. Everything in.
           </h2>
           <p className="mt-3 font-body-lg text-body-lg text-on-surface-variant">
-            No tiers, no upsells — every track, every lesson, the whole community.
+            No tiers, no upsells. Every track, every mentor, the whole network — for one flat price.
           </p>
-          <div className="mt-8 rounded-2xl border border-outline-variant/15 bg-surface p-8 text-left shadow-card">
+          <div className="mt-8 rounded-2xl border border-outline-variant/15 border-l-[3px] border-l-clay bg-surface p-8 text-left shadow-card">
             <div className="flex items-baseline gap-1.5">
               <span className="font-display text-[46px] font-semibold leading-none text-on-surface">{PRICE_DISPLAY.amount}</span>
               <span className="font-sans text-on-surface-variant">{PRICE_DISPLAY.period}</span>
@@ -269,14 +263,16 @@ export default function LandingPage() {
         </div>
       </section>
 
+      <RegisterMark />
+
       {/* Final CTA */}
-      <section className="px-gutter py-24 text-center">
-        <h2 className="mx-auto max-w-2xl font-display text-[32px] font-semibold tracking-tight text-on-surface md:text-[44px]">
-          Start building your advantage today.
+      <section className="px-gutter pb-24 pt-6 text-center">
+        <h2 className="mx-auto max-w-2xl font-serif text-[32px] font-medium leading-[1.08] tracking-[-0.01em] text-on-surface md:text-[44px]">
+          Start building your <span className="text-clay">advantage today.</span>
         </h2>
         <p className="mx-auto mt-4 max-w-xl font-body-lg text-body-lg text-on-surface-variant">
-          Join a network of ambitious people learning the skills school skips — and leveraging each
-          other to pull ahead.
+          Get inside a private network of ambitious people learning the skills school skips — and
+          leveraging each other to pull ahead. Your seat is one click away.
         </p>
         <div className="mt-8">
           <Link
@@ -307,6 +303,33 @@ export default function LandingPage() {
   );
 }
 
+/* ── Signature motif: the compass tick (circle + crosshair), echoing the logo ── */
+function CompassTick({ className = "" }: { className?: string }) {
+  return (
+    <span className={`relative grid flex-none place-items-center ${className}`}>
+      <span className="absolute inset-0 rounded-full border border-clay/60" />
+      <span className="h-1/2 w-px bg-clay/70" />
+      <span className="absolute h-px w-1/2 bg-clay/70" />
+    </span>
+  );
+}
+
+/* ── A draft "register mark" divider — the page's recurring signature ── */
+function RegisterMark({ label }: { label?: string }) {
+  return (
+    <div className="mx-auto flex max-w-6xl items-center gap-4 px-gutter py-14">
+      <span className="h-px flex-1 bg-gradient-to-r from-transparent to-clay/30" />
+      <CompassTick className="h-4 w-4" />
+      {label && (
+        <span className="flex-none font-sans text-[11px] font-medium uppercase tracking-[0.18em] text-on-surface-variant">
+          {label}
+        </span>
+      )}
+      <span className="h-px flex-1 bg-gradient-to-l from-transparent to-clay/30" />
+    </div>
+  );
+}
+
 /* ── The network panel — mentors who've done it + a community of peers ── */
 function NetworkPanel() {
   const mentors = [
@@ -333,7 +356,7 @@ function NetworkPanel() {
               <p className="truncate font-sans text-[13px] font-semibold text-on-surface">{m.name}</p>
               <p className="truncate font-sans text-[11px] text-on-surface-variant">{m.role}</p>
             </div>
-            <span className="flex-none rounded-md bg-primary/10 px-2 py-0.5 font-sans text-[11px] font-medium text-primary">Mentor</span>
+            <span className="flex-none rounded-md bg-clay/10 px-2 py-0.5 font-sans text-[11px] font-medium text-clay">Mentor</span>
           </div>
         ))}
       </div>

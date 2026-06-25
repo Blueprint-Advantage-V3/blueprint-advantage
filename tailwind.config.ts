@@ -68,6 +68,8 @@ const config: Config = {
         "outline-variant": "#23211d", // near-ink — for low-alpha hairlines
         "inverse-surface": "#2b2a27",
         "inverse-on-surface": "#faf9f5",
+        // Clay — Anthropic's warm signature, used for warmth/accent + the motif
+        clay: "#c2603c",
         // ── "Earned" accent (warm gold) — only on things you EARN
         earned: "#b07d1e",
         "earned-dim": "#946818",
@@ -90,6 +92,7 @@ const config: Config = {
       },
       fontFamily: {
         sans: ["var(--font-poppins)", "system-ui", "sans-serif"],
+        serif: ["var(--font-lora)", "Georgia", "serif"],
         display: ["var(--font-poppins)", "system-ui", "sans-serif"],
         "headline-lg": ["var(--font-poppins)", "system-ui", "sans-serif"],
         "headline-md": ["var(--font-poppins)", "system-ui", "sans-serif"],
