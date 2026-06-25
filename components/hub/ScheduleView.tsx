@@ -31,19 +31,10 @@ export function ScheduleView({
   );
 
   return (
-    <div className="mx-auto h-full max-w-3xl overflow-y-auto px-gutter py-stack_lg">
-      <div className="mb-6 flex items-center gap-3">
-        <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary/15 text-primary">
-          <Icon name="calendar_month" fill className="text-[26px]" />
-        </span>
-        <div>
-          <h1 className="font-display text-headline-lg tracking-tight">Schedule</h1>
-          <p className="font-body-md text-body-md text-on-surface-variant">
-            Live sessions for {spaceName}
-            {educators.length === 1 ? ` with ${educators[0]}` : ""}.
-          </p>
-        </div>
-      </div>
+    <div className="mx-auto h-full max-w-content_max_width overflow-y-auto px-gutter py-6">
+      <p className="mb-5 font-sans text-[13px] text-on-surface-variant">
+        Live sessions{educators.length === 1 ? ` with ${educators[0]}` : ""}. Enter the room when it&apos;s time.
+      </p>
 
       {sorted.length === 0 ? (
         <p className="glass-panel rounded-xl px-5 py-8 text-center text-sm text-outline">
