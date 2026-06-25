@@ -11,10 +11,12 @@ export function LessonNoteEditor({
   lessonId,
   lessonTitle,
   trackName,
+  href,
 }: {
   lessonId: string;
   lessonTitle: string;
   trackName: string;
+  href: string;
 }) {
   const KEY = `ba_note_${lessonId}`;
   const [note, setNote] = useState("");
@@ -38,7 +40,7 @@ export function LessonNoteEditor({
         localStorage.setItem(KEY, note);
         const raw = localStorage.getItem("ba_notes_index");
         const idx = raw ? JSON.parse(raw) : {};
-        if (note.trim()) idx[lessonId] = { title: lessonTitle, track: trackName };
+        if (note.trim()) idx[lessonId] = { title: lessonTitle, track: trackName, href };
         else delete idx[lessonId];
         localStorage.setItem("ba_notes_index", JSON.stringify(idx));
         setSavedAt(Date.now());
@@ -47,7 +49,7 @@ export function LessonNoteEditor({
       }
     }, 500);
     return () => clearTimeout(t);
-  }, [note, KEY, lessonId, lessonTitle, trackName]);
+  }, [note, KEY, lessonId, lessonTitle, trackName, href]);
 
   return (
     <div className="rounded-2xl border border-outline-variant/10 bg-surface p-5">

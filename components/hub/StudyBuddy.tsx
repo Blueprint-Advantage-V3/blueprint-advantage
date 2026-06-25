@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import { Icon } from "@/components/ui/Icon";
+import { demoLesson } from "@/lib/demo";
 
 type Msg = { role: "user" | "assistant"; content: string };
 
@@ -19,7 +20,11 @@ const CAMPUS_LABEL: Record<string, string> = {
  */
 export function StudyBuddy() {
   const pathname = usePathname();
-  const campus = pathname.split("/").filter(Boolean)[1]; // /hub/[campus]/...
+  const segments = pathname.split("/").filter(Boolean); // [hub, campus, channel, lesson]
+  const campus = segments[1];
+  const lessonSlug = segments[3];
+  const lesson = campus && lessonSlug ? demoLesson(campus, lessonSlug) : null;
+  const lessonTitle = lesson?.title ?? null;
   const campusLabel = (campus && CAMPUS_LABEL[campus]) || null;
 
   const [open, setOpen] = useState(false);
@@ -43,7 +48,7 @@ export function StudyBuddy() {
       const res = await fetch("/api/tutor", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ messages: next, campus }),
+        body: JSON.stringify({ messages: next, campus, lessonTitle }),
       });
       const data = await res.json();
       setMessages((m) => [...m, { role: "assistant", content: data.reply ?? "…" }]);
@@ -57,7 +62,9 @@ export function StudyBuddy() {
     }
   }
 
-  const starters = campusLabel
+  const starters = lessonTitle
+    ? ["Summarize this lesson", "Quiz me on this", "Explain it simpler"]
+    : campusLabel
     ? [`Quiz me on ${campusLabel}`, "Give me a 7-day plan", "Explain this simply"]
     : ["What should I learn first?", "Quiz me", "Make me a study plan"];
 
@@ -88,8 +95,8 @@ export function StudyBuddy() {
               </span>
               <div>
                 <p className="font-label-md text-label-md font-bold text-on-surface">AI Study Buddy</p>
-                <p className="text-[11px] text-outline">
-                  {campusLabel ? `${campusLabel} tutor` : "Pick a campus for tailored help"}
+                <p className="max-w-[210px] truncate text-[11px] text-outline">
+                  {lessonTitle ? `On: ${lessonTitle}` : campusLabel ? `${campusLabel} tutor` : "Pick a campus for tailored help"}
                 </p>
               </div>
             </div>
@@ -106,7 +113,7 @@ export function StudyBuddy() {
             {messages.length === 0 && (
               <div className="rounded-xl border border-outline-variant/10 bg-surface-container/40 p-4">
                 <p className="font-body-md text-body-md text-on-surface-variant">
-                  Hey 👋 I&apos;m your AI study buddy{campusLabel ? ` for ${campusLabel}` : ""}.
+                  Hey 👋 I&apos;m your AI study buddy{lessonTitle ? `, right here on “${lessonTitle}”` : campusLabel ? ` for ${campusLabel}` : ""}.
                   Ask me anything. I&apos;ll explain it, quiz you, or build you a plan.
                 </p>
               </div>

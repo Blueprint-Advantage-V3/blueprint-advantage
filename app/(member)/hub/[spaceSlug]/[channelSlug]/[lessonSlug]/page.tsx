@@ -140,7 +140,12 @@ export default async function LessonPage({
                 </Link>
               </div>
 
-              <LessonNoteEditor lessonId={l.id} lessonTitle={l.title} trackName={s.name} />
+              <LessonNoteEditor
+                lessonId={l.id}
+                lessonTitle={l.title}
+                trackName={s.name}
+                href={`${channelBase}/${params.lessonSlug}`}
+              />
             </div>
           </aside>
         </div>

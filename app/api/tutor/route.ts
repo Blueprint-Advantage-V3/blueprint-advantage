@@ -44,15 +44,18 @@ function personaFor(campus?: string) {
   };
 }
 
-function fallbackReply(campus: string | undefined, question: string) {
+function fallbackReply(campus: string | undefined, question: string, lessonTitle?: string) {
   const p = personaFor(campus);
   const q = question.trim();
+  const ctx = lessonTitle ? ` on “${lessonTitle}”` : "";
   return [
     `I'm ${p.name} 👋 (running in demo mode, add an AI key to unlock full answers).`,
     q
-      ? `Here's how I'd start on "${q.slice(0, 140)}": break it into the smallest first step you can do in the next 10 minutes, then build from there. Watch the related lesson, take one note, and apply it today.`
+      ? `Here's how I'd start${ctx}: break it into the smallest first step you can do in the next 10 minutes, then build from there. Re-watch the key part of the lesson, take one note, and apply it today.`
+      : lessonTitle
+      ? `Ask me anything about “${lessonTitle}” and I'll summarize the key points, quiz you, or explain it a simpler way.`
       : `Ask me anything about this campus and I'll break it down, quiz you, or give you a step-by-step plan.`,
-    `Tip: consistency beats intensity. Show up daily and the rank-ups take care of themselves. 💪`,
+    `Tip: consistency beats intensity. Show up daily and the level-ups take care of themselves. 💪`,
   ].join("\n\n");
 }
 
@@ -86,12 +89,13 @@ export async function POST(req: Request) {
     );
   }
 
-  let body: { messages?: Msg[]; campus?: string };
+  let body: { messages?: Msg[]; campus?: string; lessonTitle?: string };
   try {
     body = await req.json();
   } catch {
     return NextResponse.json({ error: "Invalid request" }, { status: 400 });
   }
+  const lessonTitle = typeof body.lessonTitle === "string" ? body.lessonTitle.slice(0, 200) : undefined;
 
   const messages = (body.messages ?? [])
     .slice(-12)
@@ -110,7 +114,7 @@ export async function POST(req: Request) {
   const key = process.env.OPENAI_API_KEY;
   if (!key) {
     return NextResponse.json({
-      reply: fallbackReply(campus, lastUser?.content ?? ""),
+      reply: fallbackReply(campus, lastUser?.content ?? "", lessonTitle),
       demo: true,
     });
   }
@@ -133,7 +137,7 @@ export async function POST(req: Request) {
         messages: [
           {
             role: "system",
-            content: `You are ${p.name} inside Blueprint Advantage, a premium members-only learning hub. ${p.brief} Keep answers concise, encouraging, and action-oriented. Use short paragraphs or tight lists. When useful, point the student to "watch the related lesson in this campus."`,
+            content: `You are ${p.name} inside Blueprint Advantage, a premium members-only learning hub. ${p.brief}${lessonTitle ? ` The student is currently on the lesson "${lessonTitle}" — tailor your help to it (summarize it, quiz them on it, or explain it more simply when asked).` : ""} Keep answers concise, encouraging, and action-oriented. Use short paragraphs or tight lists.`,
           },
           ...messages,
         ],
@@ -142,7 +146,7 @@ export async function POST(req: Request) {
 
     if (!res.ok) {
       return NextResponse.json({
-        reply: fallbackReply(campus, lastUser?.content ?? ""),
+        reply: fallbackReply(campus, lastUser?.content ?? "", lessonTitle),
         demo: true,
       });
     }
@@ -150,11 +154,11 @@ export async function POST(req: Request) {
     const data = await res.json();
     const reply =
       data?.choices?.[0]?.message?.content?.trim() ||
-      fallbackReply(campus, lastUser?.content ?? "");
+      fallbackReply(campus, lastUser?.content ?? "", lessonTitle);
     return NextResponse.json({ reply });
   } catch {
     return NextResponse.json({
-      reply: fallbackReply(campus, lastUser?.content ?? ""),
+      reply: fallbackReply(campus, lastUser?.content ?? "", lessonTitle),
       demo: true,
     });
   }

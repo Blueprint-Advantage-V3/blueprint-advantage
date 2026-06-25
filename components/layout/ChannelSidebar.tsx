@@ -68,6 +68,19 @@ export function ChannelSidebar({
         )}
       </div>
 
+      {/* Search */}
+      <div className="flex-none px-2.5 pb-2">
+        <button
+          type="button"
+          onClick={() => window.dispatchEvent(new CustomEvent("open-search"))}
+          className="flex w-full items-center gap-2 rounded-lg border border-outline-variant/12 bg-surface px-3 py-2 text-on-surface-variant transition hover:border-outline-variant/25 hover:text-on-surface"
+        >
+          <Icon name="search" className="text-[18px]" />
+          <span className="flex-1 text-left font-sans text-[13px]">Search</span>
+          <kbd className="rounded border border-outline-variant/20 px-1.5 py-0.5 font-sans text-[10px]">⌘K</kbd>
+        </button>
+      </div>
+
       {/* Body */}
       <div className="custom-scrollbar flex-1 overflow-y-auto px-2.5 pb-3">
         {!activeSpace ? (
@@ -91,6 +104,7 @@ function HomePanel({ spaces }: { spaces: Space[] }) {
   const { campusRank } = useProgress();
   const onHome = pathname === "/hub";
   const onMembers = pathname.startsWith("/hub/members");
+  const onNotes = pathname.startsWith("/hub/notes");
   const onSettings = pathname.startsWith("/settings");
 
   return (
@@ -102,6 +116,10 @@ function HomePanel({ spaces }: { spaces: Space[] }) {
       <Link href="/hub/members" className={onMembers ? NAV_ACTIVE : NAV_INACTIVE}>
         <Icon name="group" fill={onMembers} className="text-[20px]" />
         <span className="font-sans text-sm">Members</span>
+      </Link>
+      <Link href="/hub/notes" className={onNotes ? NAV_ACTIVE : NAV_INACTIVE}>
+        <Icon name="edit_note" fill={onNotes} className="text-[20px]" />
+        <span className="font-sans text-sm">My notes</span>
       </Link>
       <Link href="/settings" className={onSettings ? NAV_ACTIVE : NAV_INACTIVE}>
         <Icon name="settings" fill={onSettings} className="text-[20px]" />
