@@ -20,8 +20,9 @@ const SEED: Win[] = [
   { id: "w4", author: "Jordan T.", initial: "J", campus: "Law", body: "Reviewed my apartment lease and caught a clause that would've cost me hundreds. This stuff is REAL.", fire: 22 },
 ];
 
-/** Community Wins feed — post your wins, react with 🔥, persisted in the demo. */
-export function WinsFeed({ currentUser }: { currentUser: string }) {
+/** Community Wins feed — post your wins, react with 🔥, persisted in the demo.
+ *  `embedded` drops the page chrome so it can live inside the home dashboard. */
+export function WinsFeed({ currentUser, embedded = false }: { currentUser: string; embedded?: boolean }) {
   const KEY = "ba_wins_v1";
   const [wins, setWins] = useState<Win[]>(SEED);
   const [draft, setDraft] = useState("");
@@ -66,20 +67,8 @@ export function WinsFeed({ currentUser }: { currentUser: string }) {
     );
   }
 
-  return (
-    <div className="mx-auto h-full max-w-2xl overflow-y-auto px-gutter py-stack_lg">
-      <div className="mb-6 flex items-center gap-3">
-        <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary/15 text-primary">
-          <Icon name="emoji_events" fill className="text-[26px]" />
-        </span>
-        <div>
-          <h1 className="font-display text-headline-lg tracking-tight">Wins</h1>
-          <p className="font-body-md text-body-md text-on-surface-variant">
-            Post your wins. Celebrate everyone else&apos;s. 🔥
-          </p>
-        </div>
-      </div>
-
+  const body = (
+    <>
       <form onSubmit={post} className="glass-panel mb-5 rounded-xl p-4">
         <textarea
           value={draft}
@@ -131,6 +120,25 @@ export function WinsFeed({ currentUser }: { currentUser: string }) {
           </article>
         ))}
       </div>
+    </>
+  );
+
+  if (embedded) return body;
+
+  return (
+    <div className="mx-auto h-full max-w-2xl overflow-y-auto px-gutter py-stack_lg">
+      <div className="mb-6 flex items-center gap-3">
+        <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary/15 text-primary">
+          <Icon name="emoji_events" fill className="text-[26px]" />
+        </span>
+        <div>
+          <h1 className="font-display text-headline-lg tracking-tight">Wins</h1>
+          <p className="font-body-md text-body-md text-on-surface-variant">
+            Post your wins. Celebrate everyone else&apos;s. 🔥
+          </p>
+        </div>
+      </div>
+      {body}
     </div>
   );
 }

@@ -90,7 +90,6 @@ function HomePanel({ spaces }: { spaces: Space[] }) {
   const pathname = usePathname();
   const { campusRank } = useProgress();
   const onHome = pathname === "/hub";
-  const onWins = pathname.startsWith("/hub/wins");
   const onSettings = pathname.startsWith("/settings");
 
   return (
@@ -98,10 +97,6 @@ function HomePanel({ spaces }: { spaces: Space[] }) {
       <Link href="/hub" className={onHome ? NAV_ACTIVE : NAV_INACTIVE}>
         <Icon name="home" fill={onHome} className="text-[20px]" />
         <span className="font-sans text-sm">Home</span>
-      </Link>
-      <Link href="/hub/wins" className={onWins ? NAV_ACTIVE : NAV_INACTIVE}>
-        <Icon name="emoji_events" fill={onWins} className="text-[20px]" />
-        <span className="font-sans text-sm">Wins</span>
       </Link>
       <Link href="/settings" className={onSettings ? NAV_ACTIVE : NAV_INACTIVE}>
         <Icon name="settings" fill={onSettings} className="text-[20px]" />

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { Icon } from "@/components/ui/Icon";
 import { Leaderboard } from "@/components/progress/Leaderboard";
+import { WinsFeed } from "@/components/community/WinsFeed";
 import { useProgress, rankProgress } from "@/lib/progress";
 import type { ScheduleSession, Space } from "@/lib/types";
 
@@ -138,6 +139,17 @@ export function HubDashboard({
           </div>
           <Leaderboard />
         </div>
+      </div>
+
+      {/* Community wins */}
+      <div className="mt-10">
+        <div className="mb-4 flex items-center justify-between">
+          <h2 className="flex items-center gap-2 font-display text-[17px] font-semibold text-on-surface">
+            <Icon name="emoji_events" fill className="text-[18px] text-earned" /> Community wins
+          </h2>
+          <p className="font-sans text-[13px] text-on-surface-variant">Post yours. Celebrate everyone&apos;s. 🔥</p>
+        </div>
+        <WinsFeed currentUser={userName} embedded />
       </div>
     </div>
   );

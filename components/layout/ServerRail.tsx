@@ -14,7 +14,6 @@ import type { Space } from "@/lib/types";
 export function ServerRail({ spaces }: { spaces: Space[] }) {
   const pathname = usePathname();
   const onHome = pathname === "/hub";
-  const onWins = pathname.startsWith("/hub/wins");
 
   return (
     <nav className="flex h-full w-[68px] flex-none flex-col items-center gap-1.5 border-r border-outline-variant/10 bg-surface-container-lowest py-3">
@@ -27,7 +26,6 @@ export function ServerRail({ spaces }: { spaces: Space[] }) {
       </Link>
 
       <RailTile href="/hub" active={onHome} label="Home" icon="home" />
-      <RailTile href="/hub/wins" active={onWins} label="Wins" icon="emoji_events" />
 
       <div className="my-1.5 h-px w-7 bg-outline-variant/15" />
 
