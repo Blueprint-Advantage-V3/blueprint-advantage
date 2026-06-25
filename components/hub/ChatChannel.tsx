@@ -93,7 +93,7 @@ export function ChatChannel({
           <input
             value={draft}
             onChange={(e) => setDraft(e.target.value)}
-            placeholder={`Message #${channelName}`}
+            placeholder={`Message ${channelName}…`}
             className="flex-1 bg-transparent py-3 text-sm text-on-surface outline-none placeholder:text-outline"
           />
           <button
