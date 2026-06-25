@@ -6,23 +6,26 @@ import { UserPanel } from "./UserPanel";
 import { Icon } from "@/components/ui/Icon";
 import { Wordmark } from "@/components/brand/Logo";
 import { channelIcon, spaceIcon } from "@/lib/icons";
-import { BRAND } from "@/lib/constants";
 import { useProgress, rankProgress, TOTAL_RANKS } from "@/lib/progress";
 import type { Channel, ChannelType, Space } from "@/lib/types";
 
-// Live channels (voice + video) sit right below Lessons; text channels last.
 const TYPE_ORDER: { type: ChannelType; heading: string }[] = [
   { type: "lessons", heading: "Lessons" },
   { type: "schedule", heading: "Schedule" },
-  { type: "voice", heading: "Voice Channels" },
-  { type: "video", heading: "Video Channels" },
-  { type: "text", heading: "Text Channels" },
+  { type: "voice", heading: "Voice" },
+  { type: "video", heading: "Video" },
+  { type: "text", heading: "Chat" },
 ];
 
+const NAV_INACTIVE =
+  "flex items-center gap-2.5 rounded-lg px-3 py-2 text-on-surface-variant transition-colors hover:bg-on-surface/[0.05] hover:text-on-surface";
+const NAV_ACTIVE =
+  "flex items-center gap-2.5 rounded-lg bg-primary/12 px-3 py-2 font-medium text-primary";
+const SECTION = "px-3 pb-1 pt-4 text-[11px] font-semibold uppercase tracking-widest text-outline";
+
 /**
- * The middle column — the community's channel list. Shows the active space's
- * channels grouped by type, or a Home panel when on the platform landing.
- * The active space is derived from the URL.
+ * Middle column: brand/space header, then either a home panel or the active
+ * space's progress + channels. Modern filled-pill nav, no heavy borders.
  */
 export function ChannelSidebar({
   spaces,
@@ -36,7 +39,7 @@ export function ChannelSidebar({
   email: string;
 }) {
   const pathname = usePathname();
-  const segments = pathname.split("/").filter(Boolean); // ["hub", spaceSlug, channelSlug]
+  const segments = pathname.split("/").filter(Boolean);
   const activeSpaceSlug = segments[1];
   const activeChannelSlug = segments[2];
   const activeSpace = spaces.find((s) => s.slug === activeSpaceSlug) ?? null;
@@ -44,33 +47,29 @@ export function ChannelSidebar({
   return (
     <div className="flex h-full w-60 flex-none flex-col border-r border-outline-variant/10 bg-surface-container-low">
       {/* Header */}
-      <div className="flex-none px-6 py-6">
+      <div className="flex-none px-5 py-5">
         {activeSpace ? (
-          <>
-            <h1 className="flex items-center gap-2 font-headline-md text-headline-md font-bold text-primary">
-              {activeSpace.icon ? (
-                <span className="text-xl">{activeSpace.icon}</span>
-              ) : (
-                <Icon name={spaceIcon(activeSpace.slug)} fill className="text-[22px]" />
-              )}
-              <span className="truncate">{activeSpace.name}</span>
-            </h1>
-            <p className="font-label-md text-label-md text-on-surface-variant opacity-70">
-              {BRAND.name}
-            </p>
-          </>
+          <div className="flex items-center gap-2.5">
+            <span className="grid h-9 w-9 flex-none place-items-center rounded-xl bg-surface-container-high text-lg">
+              {activeSpace.icon ?? <Icon name={spaceIcon(activeSpace.slug)} fill className="text-[20px] text-primary" />}
+            </span>
+            <div className="min-w-0">
+              <h1 className="truncate font-display text-[15px] font-semibold text-on-surface">{activeSpace.name}</h1>
+              <Link href="/hub" className="font-sans text-[11px] text-on-surface-variant transition-colors hover:text-on-surface">
+                ← All of Blueprint
+              </Link>
+            </div>
+          </div>
         ) : (
           <>
-            <Wordmark className="text-[20px] font-medium" />
-            <p className="mt-1 font-label-md text-label-md text-on-surface-variant opacity-70">
-              {BRAND.tagline}
-            </p>
+            <Wordmark className="text-[19px] font-medium" />
+            <p className="mt-1 font-sans text-[12px] text-on-surface-variant">Your hub</p>
           </>
         )}
       </div>
 
       {/* Body */}
-      <div className="custom-scrollbar flex-1 overflow-y-auto px-3 pb-3">
+      <div className="custom-scrollbar flex-1 overflow-y-auto px-2.5 pb-3">
         {!activeSpace ? (
           <HomePanel spaces={spaces} />
         ) : (
@@ -87,39 +86,36 @@ export function ChannelSidebar({
   );
 }
 
-const NAV_INACTIVE =
-  "flex items-center gap-stack_sm rounded-r-lg px-4 py-2 text-on-surface-variant transition-colors duration-200 hover:bg-on-surface/[0.04] hover:text-on-surface active:scale-95";
-const NAV_ACTIVE =
-  "flex items-center gap-stack_sm rounded-r-lg border-l-4 border-primary bg-primary/10 px-4 py-2 font-bold text-primary active:scale-95";
-
 function HomePanel({ spaces }: { spaces: Space[] }) {
   const pathname = usePathname();
+  const { campusRank } = useProgress();
   const onHome = pathname === "/hub";
+  const onWins = pathname.startsWith("/hub/wins");
+  const onSettings = pathname.startsWith("/settings");
+
   return (
-    <div className="space-y-1">
+    <div className="space-y-0.5">
       <Link href="/hub" className={onHome ? NAV_ACTIVE : NAV_INACTIVE}>
         <Icon name="home" fill={onHome} className="text-[20px]" />
-        <span className="font-label-md text-label-md">Home</span>
+        <span className="font-sans text-sm">Home</span>
       </Link>
-      <Link
-        href="/hub/wins"
-        className={pathname.startsWith("/hub/wins") ? NAV_ACTIVE : NAV_INACTIVE}
-      >
-        <Icon name="emoji_events" fill={pathname.startsWith("/hub/wins")} className="text-[20px]" />
-        <span className="font-label-md text-label-md">Wins</span>
+      <Link href="/hub/wins" className={onWins ? NAV_ACTIVE : NAV_INACTIVE}>
+        <Icon name="emoji_events" fill={onWins} className="text-[20px]" />
+        <span className="font-sans text-sm">Wins</span>
+      </Link>
+      <Link href="/settings" className={onSettings ? NAV_ACTIVE : NAV_INACTIVE}>
+        <Icon name="settings" fill={onSettings} className="text-[20px]" />
+        <span className="font-sans text-sm">Settings</span>
       </Link>
 
-      <p className="px-4 pb-1 pt-4 text-[11px] font-bold uppercase tracking-widest text-outline">
-        Your spaces
-      </p>
+      <p className={SECTION}>Your tracks</p>
       {spaces.map((s) => (
         <Link key={s.id} href={`/hub/${s.slug}`} className={NAV_INACTIVE}>
-          {s.icon ? (
-            <span className="w-5 text-center text-lg">{s.icon}</span>
-          ) : (
-            <Icon name={spaceIcon(s.slug)} className="text-[20px]" />
-          )}
-          <span className="truncate font-label-md text-label-md">{s.name}</span>
+          <span className="w-6 flex-none text-center text-lg">{s.icon ?? "📘"}</span>
+          <span className="min-w-0 flex-1 truncate font-sans text-sm">{s.name}</span>
+          <span className="ml-auto flex-none rounded-md bg-earned/12 px-1.5 py-0.5 font-sans text-[10px] font-medium text-earned">
+            L{campusRank(s.slug)}
+          </span>
         </Link>
       ))}
     </div>
@@ -135,14 +131,11 @@ function SpaceChannels({
   channels: Channel[];
   activeChannelSlug?: string;
 }) {
-  // Rank comes from real XP earned in this class (Wave 2 gamification).
   const { campusRank, campusXp } = useProgress();
-  const currentRank = campusRank(space.slug);
-  const xp = campusXp(space.slug);
 
   return (
-    <div className="space-y-stack_md">
-      <RankLadder currentRank={currentRank} xp={xp} />
+    <div className="space-y-3">
+      <RankLadder currentRank={campusRank(space.slug)} xp={campusXp(space.slug)} />
       {TYPE_ORDER.map(({ type, heading }) => {
         const group = channels
           .filter((c) => c.type === type)
@@ -150,9 +143,7 @@ function SpaceChannels({
         if (group.length === 0) return null;
         return (
           <div key={type}>
-            <p className="px-4 pb-1 text-[11px] font-bold uppercase tracking-widest text-outline">
-              {heading}
-            </p>
+            <p className={SECTION}>{heading}</p>
             <div className="space-y-0.5">
               {group.map((c) => {
                 const active = c.slug === activeChannelSlug;
@@ -162,14 +153,8 @@ function SpaceChannels({
                     href={`/hub/${space.slug}/${c.slug}`}
                     className={active ? NAV_ACTIVE : NAV_INACTIVE}
                   >
-                    <Icon
-                      name={channelIcon(c.type)}
-                      fill={active}
-                      className="flex-none text-[20px]"
-                    />
-                    <span className="truncate font-label-md text-label-md">
-                      {c.name}
-                    </span>
+                    <Icon name={channelIcon(c.type)} fill={active} className="flex-none text-[19px]" />
+                    <span className="truncate font-sans text-sm">{c.name}</span>
                   </Link>
                 );
               })}
@@ -181,62 +166,33 @@ function SpaceChannels({
   );
 }
 
-/** Level 1–5 progression ladder + live XP bar shown at the top of every track. */
+/** Level 1–5 ladder + live XP bar, shown at the top of every track. */
 function RankLadder({ currentRank, xp }: { currentRank: number; xp: number }) {
   const p = rankProgress(xp);
   return (
-    <div>
-      <p className="px-4 pb-1 text-[11px] font-bold uppercase tracking-widest text-outline">
-        Levels
-      </p>
-      <div className="space-y-0.5">
+    <div className="rounded-xl border border-outline-variant/10 bg-surface p-2.5">
+      <div className="mb-2 flex items-center justify-between px-1">
+        <span className="font-sans text-[11px] font-semibold uppercase tracking-widest text-outline">Level {currentRank}</span>
+        <span className="font-sans text-[10px] text-on-surface-variant">{xp} XP</span>
+      </div>
+      <div className="flex items-center gap-1">
         {Array.from({ length: TOTAL_RANKS }, (_, i) => i + 1).map((r) => {
           const done = r < currentRank;
           const current = r === currentRank;
-          const locked = r > currentRank;
           return (
-            <div
+            <span
               key={r}
               className={[
-                "flex items-center gap-stack_sm rounded-r-lg px-4 py-2",
-                current
-                  ? "border-l-4 border-primary bg-primary/10 font-bold text-primary"
-                  : locked
-                  ? "text-on-surface-variant opacity-40"
-                  : "text-on-surface-variant",
+                "h-1.5 flex-1 rounded-full",
+                done ? "bg-earned" : current ? "bg-primary" : "bg-surface-container-highest",
               ].join(" ")}
-            >
-              <Icon
-                name={locked ? "lock" : "military_tech"}
-                fill={current || done}
-                className={`flex-none text-[20px] ${done ? "text-earned" : ""}`}
-              />
-              <span className="font-label-md text-label-md">Level {r}</span>
-              {current && (
-                <span className="ml-auto text-[10px] font-bold uppercase tracking-wider text-primary">
-                  You
-                </span>
-              )}
-              {done && (
-                <Icon name="check_circle" fill className="ml-auto text-[16px] text-earned" />
-              )}
-            </div>
+            />
           );
         })}
       </div>
-      {/* Live XP-to-next-rank bar */}
-      <div className="mt-2 px-4">
-        <div className="mb-1 flex items-center justify-between text-[10px] text-outline">
-          <span>{xp} XP</span>
-          <span>{p.atMax ? "Max level" : `${p.into}/${p.need} → Level ${p.rank + 1}`}</span>
-        </div>
-        <div className="h-1.5 w-full overflow-hidden rounded-full bg-surface-container">
-          <div
-            className="h-full rounded-full bg-gradient-to-r from-primary to-earned transition-all duration-500"
-            style={{ width: `${p.pct}%` }}
-          />
-        </div>
-      </div>
+      <p className="mt-2 px-1 font-sans text-[10px] text-on-surface-variant">
+        {p.atMax ? "Max level reached" : `${p.into}/${p.need} XP to Level ${p.rank + 1}`}
+      </p>
     </div>
   );
 }

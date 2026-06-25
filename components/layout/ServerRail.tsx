@@ -8,88 +8,79 @@ import { spaceIcon } from "@/lib/icons";
 import type { Space } from "@/lib/types";
 
 /**
- * Far-left icon rail — the community "servers" column. A Home button up top,
- * then one rounded icon per space. Active space gets the pill indicator.
+ * Far-left rail: brand, global nav (Home, Wins), then a tile per space. Clean
+ * rounded tiles with a crisp active state + edge indicator.
  */
 export function ServerRail({ spaces }: { spaces: Space[] }) {
   const pathname = usePathname();
   const onHome = pathname === "/hub";
+  const onWins = pathname.startsWith("/hub/wins");
 
   return (
-    <nav className="flex h-full w-[72px] flex-none flex-col items-center gap-2 border-r border-outline-variant/10 bg-surface-container-lowest py-3">
+    <nav className="flex h-full w-[68px] flex-none flex-col items-center gap-1.5 border-r border-outline-variant/10 bg-surface-container-lowest py-3">
       <Link
         href="/hub"
         title="Blueprint Advantage"
-        className="flex h-11 w-11 items-center justify-center transition-transform active:scale-95"
+        className="mb-1 transition-transform active:scale-95"
       >
-        <LogoMark size={36} />
+        <LogoMark size={38} />
       </Link>
-      <div className="my-1 h-px w-8 bg-outline-variant/20" />
-      <RailButton href="/hub" active={onHome} label="Home">
-        <Icon name="home" fill={onHome} className="text-[22px]" />
-      </RailButton>
-      <RailButton
-        href="/hub/wins"
-        active={pathname.startsWith("/hub/wins")}
-        label="Wins"
-      >
-        <Icon name="emoji_events" fill={pathname.startsWith("/hub/wins")} className="text-[22px]" />
-      </RailButton>
 
-      <div className="my-1 h-px w-8 bg-outline-variant/20" />
+      <RailTile href="/hub" active={onHome} label="Home" icon="home" />
+      <RailTile href="/hub/wins" active={onWins} label="Wins" icon="emoji_events" />
 
-      {spaces.map((s) => {
-        const active = pathname.startsWith(`/hub/${s.slug}`);
-        return (
-          <RailButton
-            key={s.id}
-            href={`/hub/${s.slug}`}
-            active={active}
-            label={s.name}
-          >
-            {s.icon ? (
-              <span className="text-xl">{s.icon}</span>
-            ) : (
-              <Icon name={spaceIcon(s.slug)} fill={active} className="text-[22px]" />
-            )}
-          </RailButton>
-        );
-      })}
+      <div className="my-1.5 h-px w-7 bg-outline-variant/15" />
+
+      {spaces.map((s) => (
+        <RailTile
+          key={s.id}
+          href={`/hub/${s.slug}`}
+          active={pathname.startsWith(`/hub/${s.slug}`)}
+          label={s.name}
+          icon={spaceIcon(s.slug)}
+          emoji={s.icon}
+        />
+      ))}
     </nav>
   );
 }
 
-function RailButton({
+function RailTile({
   href,
   active,
   label,
-  children,
+  icon,
+  emoji,
 }: {
   href: string;
   active: boolean;
   label: string;
-  children: React.ReactNode;
+  icon: string;
+  emoji?: string | null;
 }) {
   return (
     <div className="group relative flex w-full items-center justify-center">
-      {/* active/hover pill on the left edge */}
       <span
         className={[
-          "absolute left-0 w-1 rounded-r-full bg-primary transition-all",
-          active ? "h-8" : "h-0 group-hover:h-4",
+          "absolute left-0 w-[3px] rounded-r-full bg-primary transition-all",
+          active ? "h-7" : "h-0 group-hover:h-3.5",
         ].join(" ")}
       />
       <Link
         href={href}
         title={label}
         className={[
-          "flex h-12 w-12 items-center justify-center transition-all active:scale-95",
+          "flex h-11 w-11 items-center justify-center rounded-2xl transition-all active:scale-95",
           active
-            ? "rounded-2xl bg-primary-container text-on-primary-container"
-            : "rounded-3xl bg-surface-container-high text-on-surface-variant hover:rounded-2xl hover:bg-primary-container hover:text-on-primary-container",
+            ? "bg-primary-container text-on-primary-container shadow-[0_0_0_1px_rgba(122,162,255,0.45)]"
+            : "bg-surface-container-high text-on-surface-variant hover:bg-surface-bright hover:text-on-surface",
         ].join(" ")}
       >
-        {children}
+        {emoji ? (
+          <span className="text-lg">{emoji}</span>
+        ) : (
+          <Icon name={icon} fill={active} className="text-[21px]" />
+        )}
       </Link>
     </div>
   );
