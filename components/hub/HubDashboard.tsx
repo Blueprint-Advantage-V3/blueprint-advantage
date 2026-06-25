@@ -77,8 +77,9 @@ export function HubDashboard({
           </h3>
           <div className="space-y-0.5">
             {schedule.slice(0, 5).map((s) => (
-              <div
+              <Link
                 key={s.id}
+                href={`/hub/${s.space_id.replace("space-", "")}/schedule`}
                 className="flex items-center gap-3 rounded-lg px-2 py-2 transition-colors hover:bg-on-surface/[0.03]"
               >
                 <span className="grid h-9 w-9 flex-none place-items-center rounded-lg bg-primary/10 text-primary">
@@ -92,7 +93,7 @@ export function HubDashboard({
                   <p className="font-sans text-[12px] font-medium text-on-surface">{s.day}</p>
                   <p className="font-sans text-[11px] text-on-surface-variant">{s.time}</p>
                 </div>
-              </div>
+              </Link>
             ))}
             {schedule.length === 0 && (
               <p className="px-2 py-2 font-sans text-sm text-on-surface-variant">

@@ -56,7 +56,7 @@ export function ScheduleView({
             return (
               <div
                 key={s.id}
-                className="glass-panel flex items-center gap-4 rounded-xl px-5 py-4 transition-all hover:border-primary/30"
+                className="glass-panel flex items-center gap-4 rounded-xl px-5 py-4"
               >
                 {/* Day pill */}
                 <div className="flex w-16 flex-none flex-col items-center justify-center rounded-lg bg-surface-container py-2">
@@ -79,11 +79,6 @@ export function ScheduleView({
                     {educators.length > 1 && <span>· {s.educator}</span>}
                   </p>
                 </div>
-
-                <button className="flex flex-none items-center gap-1.5 rounded-lg border border-outline-variant/20 px-3 py-2 text-xs font-bold text-on-surface-variant transition hover:border-primary/40 hover:text-on-surface">
-                  <Icon name="notifications" className="text-[16px]" />
-                  Remind me
-                </button>
               </div>
             );
           })}

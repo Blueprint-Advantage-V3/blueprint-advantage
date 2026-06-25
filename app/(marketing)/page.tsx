@@ -126,8 +126,9 @@ export default function LandingPage() {
         </div>
         <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {TRACKS.map((t) => (
-            <div
+            <Link
               key={t.name}
+              href="/signup"
               className="group relative flex flex-col rounded-2xl border border-outline-variant/15 border-l-2 border-l-clay/40 bg-surface p-6 transition hover:border-l-clay hover:shadow-card"
             >
               <CompassTick className="absolute right-4 top-4 h-3.5 w-3.5 opacity-40 transition group-hover:opacity-70" />
@@ -143,7 +144,7 @@ export default function LandingPage() {
                   </li>
                 ))}
               </ul>
-            </div>
+            </Link>
           ))}
         </div>
       </section>

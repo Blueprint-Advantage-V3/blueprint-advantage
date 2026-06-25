@@ -136,33 +136,6 @@ export default async function LessonPage({
                   />
                 </Link>
               </div>
-
-              {/* Resources (presentational chrome) */}
-              <div className="glass-panel rounded-2xl p-6">
-                <h4 className="mb-4 font-headline-md text-headline-md text-on-surface">
-                  Resources
-                </h4>
-                <ul className="space-y-3">
-                  <li className="group flex cursor-pointer items-center justify-between rounded-lg p-3 transition-all hover:bg-on-surface/[0.04]">
-                    <div className="flex items-center gap-3">
-                      <Icon name="description" className="text-secondary" />
-                      <span className="font-label-md text-label-md text-on-surface-variant group-hover:text-on-surface">
-                        Lesson Worksheet.pdf
-                      </span>
-                    </div>
-                    <Icon name="download" className="text-sm opacity-40" />
-                  </li>
-                  <li className="group flex cursor-pointer items-center justify-between rounded-lg p-3 transition-all hover:bg-on-surface/[0.04]">
-                    <div className="flex items-center gap-3">
-                      <Icon name="link" className="text-secondary" />
-                      <span className="font-label-md text-label-md text-on-surface-variant group-hover:text-on-surface">
-                        Supplementary Reading
-                      </span>
-                    </div>
-                    <Icon name="open_in_new" className="text-sm opacity-40" />
-                  </li>
-                </ul>
-              </div>
             </div>
           </aside>
         </div>
