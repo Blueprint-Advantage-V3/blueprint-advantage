@@ -2,8 +2,8 @@ import type { Config } from "tailwindcss";
 
 /**
  * Palette from Realtime Colors: near-white canvas (#fbfbfe), near-black text
- * (#050315), vivid indigo primary (#2f27ce) + accent (#433bff), lavender
- * secondary (#dedcff). Inter throughout. Light, modern, Manus-clean.
+ * (#050315), vivid indigo primary (#1d4ed8) + accent (#2563eb), lavender
+ * secondary (#dbeafe). Inter throughout. Light, modern, Manus-clean.
  *
  * Token NAMES preserved so every component re-themes automatically.
  * outline-variant is near-black so low-alpha hairlines read on the light canvas.
@@ -16,27 +16,27 @@ const config: Config = {
       colors: {
         // ── Brand accent = indigo / violet ─────────────────────
         "on-primary": "#ffffff",
-        primary: "#2f27ce", // deep indigo: accent text/icons/active
-        "primary-fixed": "#dedcff",
-        "primary-fixed-dim": "#433bff",
-        "primary-container": "#433bff", // filled CTA (brighter accent)
+        primary: "#1d4ed8", // deep indigo: accent text/icons/active
+        "primary-fixed": "#dbeafe",
+        "primary-fixed-dim": "#2563eb",
+        "primary-container": "#2563eb", // filled CTA (brighter accent)
         "on-primary-container": "#ffffff",
-        "on-primary-fixed": "#0a0840",
-        "on-primary-fixed-variant": "#2f27ce",
-        "inverse-primary": "#b9b5ff",
-        secondary: "#6b63e8",
-        "secondary-container": "#dedcff", // lavender soft chip
+        "on-primary-fixed": "#0a2a6b",
+        "on-primary-fixed-variant": "#1d4ed8",
+        "inverse-primary": "#93c5fd",
+        secondary: "#3b82f6",
+        "secondary-container": "#dbeafe", // lavender soft chip
         "on-secondary": "#ffffff",
-        "on-secondary-container": "#231c8f",
-        "secondary-fixed": "#dedcff",
-        "secondary-fixed-dim": "#6b63e8",
-        "on-secondary-fixed": "#231c8f",
-        "on-secondary-fixed-variant": "#433bff",
+        "on-secondary-container": "#11337a",
+        "secondary-fixed": "#dbeafe",
+        "secondary-fixed-dim": "#3b82f6",
+        "on-secondary-fixed": "#11337a",
+        "on-secondary-fixed-variant": "#2563eb",
         tertiary: "#7a6f9e",
-        "tertiary-container": "#ecebfb",
+        "tertiary-container": "#eff6ff",
         "on-tertiary": "#ffffff",
         "on-tertiary-container": "#332a55",
-        "tertiary-fixed": "#ecebfb",
+        "tertiary-fixed": "#eff6ff",
         "tertiary-fixed-dim": "#7a6f9e",
         "on-tertiary-fixed": "#332a55",
         "on-tertiary-fixed-variant": "#7a6f9e",
@@ -52,11 +52,11 @@ const config: Config = {
         "surface-bright": "#ffffff",
         "surface-container-lowest": "#ffffff",
         "surface-container-low": "#f7f7fd", // sidebars
-        "surface-container": "#f1f1fb",
+        "surface-container": "#eef4ff",
         "surface-container-high": "#eae9f7",
-        "surface-container-highest": "#e0def8",
-        "surface-variant": "#ecebf8",
-        "surface-tint": "#433bff",
+        "surface-container-highest": "#dbeafe",
+        "surface-variant": "#e7f0ff",
+        "surface-tint": "#2563eb",
         // ── On-surface / outlines ──────────────────────────────
         "on-surface": "#050315", // near-black navy
         "on-surface-variant": "#4b4a63",
@@ -72,10 +72,10 @@ const config: Config = {
         "on-earned": "#ffffff",
         // ── Back-compat aliases ────────────────────────────────
         muted: "#4b4a63",
-        border: "#e0def8",
-        brand: "#2f27ce",
-        "brand-hover": "#433bff",
-        "brand-soft": "#dedcff",
+        border: "#dbeafe",
+        brand: "#1d4ed8",
+        "brand-hover": "#2563eb",
+        "brand-soft": "#dbeafe",
       },
       spacing: {
         sidebar_width: "280px",
@@ -109,7 +109,7 @@ const config: Config = {
         code: ["14px", { lineHeight: "1.5", fontWeight: "400" }],
       },
       boxShadow: {
-        glow: "0 1px 2px rgba(5,3,21,0.05), 0 12px 32px -14px rgba(67,59,255,0.18)",
+        glow: "0 1px 2px rgba(5,3,21,0.05), 0 12px 32px -14px rgba(37, 99, 235,0.18)",
         "glow-sm": "0 1px 2px rgba(5,3,21,0.06)",
         card: "0 1px 2px rgba(5,3,21,0.04), 0 8px 24px -14px rgba(5,3,21,0.10)",
       },

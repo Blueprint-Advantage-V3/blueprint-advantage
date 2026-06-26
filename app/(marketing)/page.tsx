@@ -486,7 +486,7 @@ function FounderRow({
 /* ── A framed preview of the actual hub ── */
 function HubPreview() {
   return (
-    <div className="overflow-hidden rounded-2xl border border-outline-variant/12 bg-surface shadow-[0_40px_120px_-40px_rgba(47,39,206,0.45)]">
+    <div className="overflow-hidden rounded-2xl border border-outline-variant/12 bg-surface shadow-[0_40px_120px_-40px_rgba(29, 78, 216,0.45)]">
       <div className="flex items-center gap-2 border-b border-outline-variant/10 bg-surface-container-low px-4 py-2.5">
         <span className="h-2.5 w-2.5 rounded-full bg-outline-variant/15" />
         <span className="h-2.5 w-2.5 rounded-full bg-outline-variant/15" />
