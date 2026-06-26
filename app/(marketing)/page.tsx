@@ -24,6 +24,31 @@ const STEPS = [
   { n: "3", title: "Level up", body: "Earn XP, ask your AI tutor anything, and build the relationships that put you ahead." },
 ];
 
+const FOUNDERS = [
+  {
+    name: "Wallace Chen",
+    role: "Founder",
+    // Drop a real photo at public/founders/wallace.jpg, then set this to "/founders/wallace.jpg".
+    photo: "",
+    initials: "WC",
+    bio: "Add a short line about yourself.",
+    credentials: ["Add a credential", "Add a credential", "Add a credential"],
+    // Add real links only. Each renders a working button; leave empty and nothing renders.
+    // Example: { icon: "captive_portal", label: "LinkedIn", url: "https://linkedin.com/in/your-handle" }
+    socials: [] as { icon: string; label: string; url: string }[],
+  },
+  {
+    name: "Your co-founder",
+    role: "Co-founder",
+    // Drop a real photo at public/founders/cofounder.jpg, then set this to "/founders/cofounder.jpg".
+    photo: "",
+    initials: "BA",
+    bio: "Add a short line about yourself.",
+    credentials: ["Add a credential", "Add a credential", "Add a credential"],
+    socials: [] as { icon: string; label: string; url: string }[],
+  },
+];
+
 export default function LandingPage() {
   return (
     <main className="min-h-screen bg-canvas">
@@ -36,6 +61,7 @@ export default function LandingPage() {
               ["Features", "#features"],
               ["Tracks", "#tracks"],
               ["Network", "#network"],
+              ["Founders", "#founders"],
               ["Pricing", "#pricing"],
             ].map(([label, href]) => (
               <a key={href} href={href} className="font-sans text-sm text-on-surface-variant transition-colors hover:text-on-surface">
@@ -187,6 +213,28 @@ export default function LandingPage() {
             </ul>
           </div>
           <NetworkPanel />
+        </div>
+      </section>
+
+      {/* Founders — editorial rows, alternating sides */}
+      <section id="founders" className="border-t border-outline-variant/10 bg-surface-dim/40 py-24">
+        <div className="mx-auto max-w-6xl px-gutter">
+          <div className="mx-auto max-w-2xl text-center">
+            <span className="inline-flex items-center gap-2 rounded-full border border-outline-variant/12 bg-surface/80 px-3.5 py-1.5 font-sans text-[13px] text-on-surface-variant backdrop-blur">
+              <Icon name="diversity_3" fill className="text-[15px] text-primary" /> The founders
+            </span>
+            <h2 className="mt-6 font-display text-[32px] font-semibold tracking-[-0.025em] text-on-surface md:text-[44px]">
+              The people behind <span className="text-primary">Blueprint Advantage.</span>
+            </h2>
+            <p className="mt-4 font-body-lg text-body-lg text-on-surface-variant">
+              We built the room we wished we&apos;d had at your age. Here&apos;s who&apos;s in your corner.
+            </p>
+          </div>
+          <div className="reveal mt-16 space-y-16 md:space-y-20">
+            {FOUNDERS.map((f, i) => (
+              <FounderRow key={f.role} founder={f} flip={i % 2 === 1} />
+            ))}
+          </div>
         </div>
       </section>
 
@@ -342,6 +390,81 @@ function NetworkPanel() {
         <p className="font-sans text-[13px] text-on-surface-variant">
           <span className="font-semibold text-on-surface">+ a community</span> of ambitious members
         </p>
+      </div>
+    </div>
+  );
+}
+
+/* ── One editorial founder row: portrait + story, sides alternate ── */
+function FounderRow({
+  founder,
+  flip,
+}: {
+  founder: (typeof FOUNDERS)[number];
+  flip: boolean;
+}) {
+  return (
+    <div
+      className={`grid items-center gap-8 md:grid-cols-[minmax(0,360px)_1fr] md:gap-14 ${
+        flip ? "md:[&>*:first-child]:order-2" : ""
+      }`}
+    >
+      {/* Portrait: real photo if provided, otherwise a clean initials tile */}
+      <div className="relative mx-auto w-full max-w-[360px]">
+        <div className="pointer-events-none absolute -inset-3 -z-10 rounded-[28px] bg-primary/10 blur-2xl" />
+        <div className="aspect-[4/5] overflow-hidden rounded-2xl border border-outline-variant/10 bg-surface">
+          {founder.photo ? (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={founder.photo}
+              alt={`${founder.name}, ${founder.role} of ${BRAND.name}`}
+              className="h-full w-full object-cover"
+            />
+          ) : (
+            <div className="grid h-full w-full place-items-center bg-primary-container">
+              <span className="font-display text-[64px] font-semibold leading-none text-on-primary-container">
+                {founder.initials}
+              </span>
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* Story column */}
+      <div>
+        <p className="font-sans text-[11px] font-semibold uppercase tracking-widest text-primary">
+          {founder.role}
+        </p>
+        <h3 className="mt-2 font-display text-[26px] font-semibold tracking-[-0.02em] text-on-surface md:text-[34px]">
+          {founder.name}
+        </h3>
+        <p className="mt-4 max-w-xl font-body-lg text-body-lg text-on-surface-variant">
+          {founder.bio}
+        </p>
+        <ul className="mt-7 space-y-3">
+          {founder.credentials.map((c, ci) => (
+            <li key={ci} className="flex items-center gap-3 font-sans text-sm text-on-surface">
+              <Icon name="check_circle" fill className="flex-none text-[18px] text-primary" />
+              {c}
+            </li>
+          ))}
+        </ul>
+        {founder.socials.length > 0 && (
+          <div className="mt-7 flex flex-wrap gap-2">
+            {founder.socials.map((s) => (
+              <a
+                key={s.url}
+                href={s.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-lg border border-outline-variant/12 bg-surface px-3.5 py-2 font-sans text-[13px] font-medium text-on-surface transition hover:border-primary/30 hover:text-primary"
+              >
+                <Icon name={s.icon} fill className="text-[16px]" />
+                {s.label}
+              </a>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
