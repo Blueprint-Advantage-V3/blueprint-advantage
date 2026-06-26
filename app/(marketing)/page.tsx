@@ -56,31 +56,48 @@ export default function LandingPage() {
 
       {/* Hero — centered, product shown big below */}
       <section className="relative overflow-hidden px-gutter pb-16 pt-20 text-center md:pt-28">
-        <div className="pointer-events-none absolute left-1/2 top-0 -z-10 h-[460px] w-[860px] max-w-full -translate-x-1/2 rounded-full bg-primary/10 blur-[150px]" />
-        <span className="inline-flex items-center gap-2 rounded-full border border-outline-variant/10 bg-surface px-3.5 py-1.5 font-sans text-[13px] text-on-surface-variant">
-          <span className="h-1.5 w-1.5 rounded-full bg-primary" /> The members-only hub for ambitious people
-        </span>
-        <h1 className="mx-auto mt-7 max-w-4xl font-display text-[44px] font-semibold leading-[1.02] tracking-[-0.035em] text-on-surface md:text-[68px]">
-          Front-run the world with <span className="text-primary">Blueprint Advantage</span>.
-        </h1>
-        <p className="mx-auto mt-6 max-w-2xl font-body-lg text-body-lg text-on-surface-variant">
-          Learn from people who&apos;ve actually built it, then get in the room with them. A private
-          network of proven mentors and driven peers, with live rooms, real lessons, and an AI tutor
-          in your corner.
-        </p>
-        <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
-          <Link href="/signup" className="glow-button w-full rounded-xl bg-primary-container px-7 py-3.5 text-center font-sans font-medium text-on-primary-container transition active:scale-[0.98] sm:w-auto">
-            Join for {PRICE_DISPLAY.amount}{PRICE_DISPLAY.period}
-          </Link>
-          <a href="#features" className="w-full rounded-xl border border-outline-variant/15 px-7 py-3.5 text-center font-sans font-medium text-on-surface transition hover:bg-on-surface/[0.05] sm:w-auto">
-            See what&apos;s inside
-          </a>
+        {/* Haikei-style gradient mesh backdrop */}
+        <div className="hero-aurora">
+          <span
+            className="aurora-blob"
+            style={{
+              width: 380,
+              height: 380,
+              bottom: -140,
+              left: "14%",
+              background: "radial-gradient(circle at 50% 50%, #dedcff, transparent 70%)",
+              opacity: 0.75,
+              animation: "drift 26s ease-in-out infinite",
+            }}
+          />
         </div>
 
-        {/* Big product shot */}
-        <div className="relative mx-auto mt-16 max-w-4xl">
-          <div className="pointer-events-none absolute -inset-x-8 -top-8 -z-10 h-full rounded-[40px] bg-primary/10 blur-[110px]" />
-          <HubPreview />
+        <div className="relative z-10">
+          <span className="animate-fade-up inline-flex items-center gap-2 rounded-full border border-outline-variant/12 bg-surface/80 px-3.5 py-1.5 font-sans text-[13px] text-on-surface-variant backdrop-blur">
+            <span className="h-1.5 w-1.5 rounded-full bg-primary" /> The members-only hub for ambitious people
+          </span>
+          <h1 className="animate-fade-up mx-auto mt-7 max-w-4xl font-display text-[44px] font-semibold leading-[1.02] tracking-[-0.035em] text-on-surface md:text-[68px]" style={{ animationDelay: "0.08s" }}>
+            Front-run the world with <span className="text-gradient">Blueprint Advantage</span>.
+          </h1>
+          <p className="animate-fade-up mx-auto mt-6 max-w-2xl font-body-lg text-body-lg text-on-surface-variant" style={{ animationDelay: "0.16s" }}>
+            Learn from people who&apos;ve actually built it, then get in the room with them. A private
+            network of proven mentors and driven peers, with live rooms, real lessons, and an AI tutor
+            in your corner.
+          </p>
+          <div className="animate-fade-up mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row" style={{ animationDelay: "0.24s" }}>
+            <Link href="/signup" className="glow-button w-full rounded-xl bg-primary-container px-7 py-3.5 text-center font-sans font-medium text-on-primary-container transition active:scale-[0.98] sm:w-auto">
+              Join for {PRICE_DISPLAY.amount}{PRICE_DISPLAY.period}
+            </Link>
+            <a href="#features" className="w-full rounded-xl border border-outline-variant/15 bg-surface/60 px-7 py-3.5 text-center font-sans font-medium text-on-surface backdrop-blur transition hover:bg-on-surface/[0.05] sm:w-auto">
+              See what&apos;s inside
+            </a>
+          </div>
+
+          {/* Big product shot */}
+          <div className="animate-fade-up relative mx-auto mt-16 max-w-4xl" style={{ animationDelay: "0.34s" }}>
+            <div className="pointer-events-none absolute -inset-x-8 -top-8 -z-10 h-full rounded-[40px] bg-primary/12 blur-[110px]" />
+            <HubPreview />
+          </div>
         </div>
       </section>
 
@@ -94,7 +111,7 @@ export default function LandingPage() {
             One membership. Lessons, live rooms, a real network, and an AI tutor, all in one place.
           </p>
         </div>
-        <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-6">
+        <div className="reveal mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-6">
           {FEATURES.map((f) => (
             <div
               key={f.title}
@@ -122,7 +139,7 @@ export default function LandingPage() {
               for real.
             </p>
           </div>
-          <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="reveal mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {TRACKS.map((t) => (
               <Link
                 key={t.name}
@@ -142,7 +159,7 @@ export default function LandingPage() {
 
       {/* Network */}
       <section id="network" className="mx-auto max-w-6xl px-gutter py-24">
-        <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+        <div className="reveal grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
           <div>
             <h2 className="font-display text-[30px] font-semibold leading-[1.12] tracking-[-0.025em] text-on-surface md:text-[40px]">
               It&apos;s not just what you learn. <span className="text-primary">It&apos;s who you&apos;re in the room with.</span>
@@ -198,7 +215,7 @@ export default function LandingPage() {
             Up and running in minutes.
           </h2>
         </div>
-        <div className="mt-12 grid gap-px overflow-hidden rounded-2xl border border-outline-variant/10 bg-outline-variant/10 md:grid-cols-3">
+        <div className="reveal mt-12 grid gap-px overflow-hidden rounded-2xl border border-outline-variant/10 bg-outline-variant/10 md:grid-cols-3">
           {STEPS.map((s) => (
             <div key={s.n} className="bg-canvas p-7">
               <span className="grid h-9 w-9 place-items-center rounded-full bg-primary/12 font-sans text-sm font-semibold text-primary">
@@ -220,7 +237,7 @@ export default function LandingPage() {
           <p className="mt-3 font-body-lg text-body-lg text-on-surface-variant">
             No tiers, no upsells. Every track, every mentor, the whole network.
           </p>
-          <div className="glow-button mt-8 rounded-2xl border border-primary/25 bg-surface p-8 text-left">
+          <div className="reveal glow-button mt-8 rounded-2xl border border-primary/25 bg-surface p-8 text-left">
             <div className="flex items-baseline gap-1.5">
               <span className="font-display text-[48px] font-semibold leading-none tracking-tight text-on-surface">{PRICE_DISPLAY.amount}</span>
               <span className="font-sans text-on-surface-variant">{PRICE_DISPLAY.period}</span>
@@ -333,7 +350,7 @@ function NetworkPanel() {
 /* ── A framed preview of the actual hub ── */
 function HubPreview() {
   return (
-    <div className="overflow-hidden rounded-2xl border border-outline-variant/12 bg-surface shadow-[0_40px_120px_-30px_rgba(0,0,0,0.9)]">
+    <div className="overflow-hidden rounded-2xl border border-outline-variant/12 bg-surface shadow-[0_40px_120px_-40px_rgba(47,39,206,0.45)]">
       <div className="flex items-center gap-2 border-b border-outline-variant/10 bg-surface-container-low px-4 py-2.5">
         <span className="h-2.5 w-2.5 rounded-full bg-outline-variant/15" />
         <span className="h-2.5 w-2.5 rounded-full bg-outline-variant/15" />

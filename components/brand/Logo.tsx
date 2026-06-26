@@ -13,7 +13,7 @@ export function LogoMark({
 }) {
   return (
     <span
-      className={`inline-grid place-items-center rounded-[30%] border border-outline-variant/10 bg-surface-container-high font-display font-bold leading-none text-on-surface ${className}`}
+      className={`inline-grid place-items-center rounded-[30%] bg-primary-container font-display font-bold leading-none text-on-primary-container shadow-glow-sm ${className}`}
       style={{ width: size, height: size, fontSize: size * 0.5 }}
       aria-hidden="true"
     >

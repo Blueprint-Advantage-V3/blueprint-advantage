@@ -1,12 +1,12 @@
 import type { Config } from "tailwindcss";
 
 /**
- * "Sleek dark product" design language (Linear / Vercel energy). Near-black
- * surfaces, ONE electric-blue accent, sharp Inter type, hairline borders.
- * Gold is reserved strictly for "earned" (levels/achievement).
+ * Palette from Realtime Colors: near-white canvas (#fbfbfe), near-black text
+ * (#050315), vivid indigo primary (#2f27ce) + accent (#433bff), lavender
+ * secondary (#dedcff). Inter throughout. Light, modern, Manus-clean.
  *
- * Token NAMES are preserved so every component keeps working; only VALUES
- * change. outline-variant is near-white so low-alpha hairlines read on black.
+ * Token NAMES preserved so every component re-themes automatically.
+ * outline-variant is near-black so low-alpha hairlines read on the light canvas.
  */
 const config: Config = {
   darkMode: "class",
@@ -14,70 +14,68 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // ── Brand accent = electric blue ───────────────────────
+        // ── Brand accent = indigo / violet ─────────────────────
         "on-primary": "#ffffff",
-        primary: "#7aa2ff", // accent text/icons/active on near-black
-        "primary-fixed": "#1a2742",
-        "primary-fixed-dim": "#7aa2ff",
-        "primary-container": "#3f6bff", // filled CTA
+        primary: "#2f27ce", // deep indigo: accent text/icons/active
+        "primary-fixed": "#dedcff",
+        "primary-fixed-dim": "#433bff",
+        "primary-container": "#433bff", // filled CTA (brighter accent)
         "on-primary-container": "#ffffff",
-        "on-primary-fixed": "#cddcff",
-        "on-primary-fixed-variant": "#7aa2ff",
-        "inverse-primary": "#3f6bff",
-        secondary: "#8fb0ff",
-        "secondary-container": "#3f6bff",
+        "on-primary-fixed": "#0a0840",
+        "on-primary-fixed-variant": "#2f27ce",
+        "inverse-primary": "#b9b5ff",
+        secondary: "#6b63e8",
+        "secondary-container": "#dedcff", // lavender soft chip
         "on-secondary": "#ffffff",
-        "on-secondary-container": "#cddcff",
-        "secondary-fixed": "#1a2742",
-        "secondary-fixed-dim": "#8fb0ff",
-        "on-secondary-fixed": "#cddcff",
-        "on-secondary-fixed-variant": "#7aa2ff",
-        // Tertiary kept neutral (one accent only) — muted slate
-        tertiary: "#9aa0ad",
-        "tertiary-container": "#24252b",
-        "on-tertiary": "#e7e8ec",
-        "on-tertiary-container": "#c8cad2",
-        "tertiary-fixed": "#24252b",
-        "tertiary-fixed-dim": "#9aa0ad",
-        "on-tertiary-fixed": "#e7e8ec",
-        "on-tertiary-fixed-variant": "#9aa0ad",
-        error: "#ff6b6b",
-        "on-error": "#1a0606",
-        "error-container": "#3a1414",
-        "on-error-container": "#ffd2d2",
-        // ── Surfaces — NEAR-BLACK ──────────────────────────────
-        canvas: "#0a0a0c", // true page background
-        background: "#0a0a0c",
-        surface: "#141417",
-        "surface-dim": "#0d0d0f",
-        "surface-bright": "#1f1f25",
-        "surface-container-lowest": "#0c0c0e",
-        "surface-container-low": "#121215", // sidebars
-        "surface-container": "#161619",
-        "surface-container-high": "#1c1c21",
-        "surface-container-highest": "#26262d",
-        "surface-variant": "#1c1c21",
-        "surface-tint": "#7aa2ff",
+        "on-secondary-container": "#231c8f",
+        "secondary-fixed": "#dedcff",
+        "secondary-fixed-dim": "#6b63e8",
+        "on-secondary-fixed": "#231c8f",
+        "on-secondary-fixed-variant": "#433bff",
+        tertiary: "#7a6f9e",
+        "tertiary-container": "#ecebfb",
+        "on-tertiary": "#ffffff",
+        "on-tertiary-container": "#332a55",
+        "tertiary-fixed": "#ecebfb",
+        "tertiary-fixed-dim": "#7a6f9e",
+        "on-tertiary-fixed": "#332a55",
+        "on-tertiary-fixed-variant": "#7a6f9e",
+        error: "#d92d20",
+        "on-error": "#ffffff",
+        "error-container": "#fde4e1",
+        "on-error-container": "#5a1610",
+        // ── Surfaces — near-white, cool lavender tint ──────────
+        canvas: "#fbfbfe",
+        background: "#fbfbfe",
+        surface: "#ffffff",
+        "surface-dim": "#f3f3fb",
+        "surface-bright": "#ffffff",
+        "surface-container-lowest": "#ffffff",
+        "surface-container-low": "#f7f7fd", // sidebars
+        "surface-container": "#f1f1fb",
+        "surface-container-high": "#eae9f7",
+        "surface-container-highest": "#e0def8",
+        "surface-variant": "#ecebf8",
+        "surface-tint": "#433bff",
         // ── On-surface / outlines ──────────────────────────────
-        "on-surface": "#f4f4f6", // near-white
-        "on-surface-variant": "#9b9ba6", // muted
-        "on-background": "#f4f4f6",
-        outline: "#6b6b76", // dim labels
-        "outline-variant": "#ffffff", // near-white → low-alpha hairlines
-        "inverse-surface": "#f4f4f6",
-        "inverse-on-surface": "#16161a",
-        // Clay kept as a neutral so any stray usage stays subtle, not orange
-        clay: "#7c7c87",
+        "on-surface": "#050315", // near-black navy
+        "on-surface-variant": "#4b4a63",
+        "on-background": "#050315",
+        outline: "#84839c",
+        "outline-variant": "#050315", // near-black → low-alpha hairlines
+        "inverse-surface": "#1c1b2e",
+        "inverse-on-surface": "#fbfbfe",
+        clay: "#7a6f9e",
         // ── "Earned" accent (gold) — only on things you EARN ───
-        earned: "#e0b15e",
-        "earned-dim": "#c79741",
-        "on-earned": "#241a07",
+        earned: "#9a6b12",
+        "earned-dim": "#7e560d",
+        "on-earned": "#ffffff",
         // ── Back-compat aliases ────────────────────────────────
-        muted: "#9b9ba6",
-        border: "#26262d",
-        brand: "#7aa2ff",
-        "brand-hover": "#3f6bff",
-        "brand-soft": "#1a2742",
+        muted: "#4b4a63",
+        border: "#e0def8",
+        brand: "#2f27ce",
+        "brand-hover": "#433bff",
+        "brand-soft": "#dedcff",
       },
       spacing: {
         sidebar_width: "280px",
@@ -111,9 +109,9 @@ const config: Config = {
         code: ["14px", { lineHeight: "1.5", fontWeight: "400" }],
       },
       boxShadow: {
-        glow: "0 1px 0 rgba(255,255,255,0.04) inset, 0 10px 30px -12px rgba(0,0,0,0.7)",
-        "glow-sm": "0 1px 0 rgba(255,255,255,0.04) inset",
-        card: "0 1px 0 rgba(255,255,255,0.03) inset, 0 8px 24px -14px rgba(0,0,0,0.7)",
+        glow: "0 1px 2px rgba(5,3,21,0.05), 0 12px 32px -14px rgba(67,59,255,0.18)",
+        "glow-sm": "0 1px 2px rgba(5,3,21,0.06)",
+        card: "0 1px 2px rgba(5,3,21,0.04), 0 8px 24px -14px rgba(5,3,21,0.10)",
       },
     },
   },
