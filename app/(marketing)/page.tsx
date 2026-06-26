@@ -2,6 +2,9 @@ import Link from "next/link";
 import { Icon } from "@/components/ui/Icon";
 import { Logo, LogoMark } from "@/components/brand/Logo";
 import { BRAND, PRICE_DISPLAY } from "@/lib/constants";
+import { AnimatedGroup } from "@/components/motion/animated-group";
+import { TextEffect } from "@/components/motion/text-effect";
+import { InView } from "@/components/motion/in-view";
 
 const FEATURES = [
   { icon: "smart_display", title: "Lessons that move the needle", body: "On-demand video and notes from people who've actually built success in their field. Not theory, not influencers.", span: "lg:col-span-3" },
@@ -82,48 +85,58 @@ export default function LandingPage() {
 
       {/* Hero — centered, product shown big below */}
       <section className="relative overflow-hidden px-gutter pb-16 pt-20 text-center md:pt-28">
-        {/* Haikei-style gradient mesh backdrop */}
-        <div className="hero-aurora">
-          <span
-            className="aurora-blob"
-            style={{
-              width: 380,
-              height: 380,
-              bottom: -140,
-              left: "14%",
-              background: "radial-gradient(circle at 50% 50%, #dedcff, transparent 70%)",
-              opacity: 0.75,
-              animation: "drift 26s ease-in-out infinite",
+        {/* Haikei SVG backdrop (swap with your own export at /public/haikei-hero.svg) */}
+        <img
+          src="/haikei-hero.svg"
+          alt=""
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-x-0 top-0 z-0 h-[760px] w-full object-cover"
+        />
+
+        <div className="relative z-10 mx-auto flex max-w-4xl flex-col items-center">
+          <AnimatedGroup preset="blur-slide" className="flex flex-col items-center">
+            <span className="inline-flex items-center gap-2 rounded-full border border-outline-variant/12 bg-surface/80 px-3.5 py-1.5 font-sans text-[13px] text-on-surface-variant backdrop-blur">
+              <span className="h-1.5 w-1.5 rounded-full bg-primary" /> The members-only hub for ambitious people
+            </span>
+          </AnimatedGroup>
+
+          <TextEffect
+            as="h1"
+            per="word"
+            preset="blur"
+            delay={0.15}
+            className="mx-auto mt-7 max-w-4xl font-display text-[44px] font-semibold leading-[1.02] tracking-[-0.035em] text-on-surface md:text-[68px]"
+          >
+            Front-run the world with Blueprint Advantage.
+          </TextEffect>
+
+          <AnimatedGroup
+            preset="blur-slide"
+            className="flex w-full flex-col items-center"
+            variants={{
+              container: { hidden: {}, visible: { transition: { staggerChildren: 0.12, delayChildren: 0.5 } } },
             }}
-          />
-        </div>
+          >
+            <p className="mx-auto mt-6 max-w-2xl font-body-lg text-body-lg text-on-surface-variant">
+              Learn from people who&apos;ve actually built it, then get in the room with them. A private
+              network of proven mentors and driven peers, with live rooms, real lessons, and an AI tutor
+              in your corner.
+            </p>
+            <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
+              <Link href="/signup" className="glow-button w-full rounded-xl bg-primary-container px-7 py-3.5 text-center font-sans font-medium text-on-primary-container transition active:scale-[0.98] sm:w-auto">
+                Join for {PRICE_DISPLAY.amount}{PRICE_DISPLAY.period}
+              </Link>
+              <a href="#features" className="w-full rounded-xl border border-outline-variant/15 bg-surface/60 px-7 py-3.5 text-center font-sans font-medium text-on-surface backdrop-blur transition hover:bg-on-surface/[0.05] sm:w-auto">
+                See what&apos;s inside
+              </a>
+            </div>
 
-        <div className="relative z-10">
-          <span className="animate-fade-up inline-flex items-center gap-2 rounded-full border border-outline-variant/12 bg-surface/80 px-3.5 py-1.5 font-sans text-[13px] text-on-surface-variant backdrop-blur">
-            <span className="h-1.5 w-1.5 rounded-full bg-primary" /> The members-only hub for ambitious people
-          </span>
-          <h1 className="animate-fade-up mx-auto mt-7 max-w-4xl font-display text-[44px] font-semibold leading-[1.02] tracking-[-0.035em] text-on-surface md:text-[68px]" style={{ animationDelay: "0.08s" }}>
-            Front-run the world with <span className="text-gradient">Blueprint Advantage</span>.
-          </h1>
-          <p className="animate-fade-up mx-auto mt-6 max-w-2xl font-body-lg text-body-lg text-on-surface-variant" style={{ animationDelay: "0.16s" }}>
-            Learn from people who&apos;ve actually built it, then get in the room with them. A private
-            network of proven mentors and driven peers, with live rooms, real lessons, and an AI tutor
-            in your corner.
-          </p>
-          <div className="animate-fade-up mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row" style={{ animationDelay: "0.24s" }}>
-            <Link href="/signup" className="glow-button w-full rounded-xl bg-primary-container px-7 py-3.5 text-center font-sans font-medium text-on-primary-container transition active:scale-[0.98] sm:w-auto">
-              Join for {PRICE_DISPLAY.amount}{PRICE_DISPLAY.period}
-            </Link>
-            <a href="#features" className="w-full rounded-xl border border-outline-variant/15 bg-surface/60 px-7 py-3.5 text-center font-sans font-medium text-on-surface backdrop-blur transition hover:bg-on-surface/[0.05] sm:w-auto">
-              See what&apos;s inside
-            </a>
-          </div>
-
-          {/* Big product shot */}
-          <div className="animate-fade-up relative mx-auto mt-16 max-w-4xl" style={{ animationDelay: "0.34s" }}>
-            <div className="pointer-events-none absolute -inset-x-8 -top-8 -z-10 h-full rounded-[40px] bg-primary/12 blur-[110px]" />
-            <HubPreview />
-          </div>
+            {/* Big product shot */}
+            <div className="relative mx-auto mt-16 w-full max-w-4xl">
+              <div className="pointer-events-none absolute -inset-x-8 -top-8 -z-10 h-full rounded-[40px] bg-primary/12 blur-[110px]" />
+              <HubPreview />
+            </div>
+          </AnimatedGroup>
         </div>
       </section>
 
@@ -137,7 +150,7 @@ export default function LandingPage() {
             One membership. Lessons, live rooms, a real network, and an AI tutor, all in one place.
           </p>
         </div>
-        <div className="reveal mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-6">
+        <InView className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-6">
           {FEATURES.map((f) => (
             <div
               key={f.title}
@@ -150,7 +163,7 @@ export default function LandingPage() {
               <p className="mt-1.5 font-sans text-[14px] leading-relaxed text-on-surface-variant">{f.body}</p>
             </div>
           ))}
-        </div>
+        </InView>
       </section>
 
       {/* Tracks */}
@@ -165,7 +178,7 @@ export default function LandingPage() {
               for real.
             </p>
           </div>
-          <div className="reveal mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <InView className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {TRACKS.map((t) => (
               <Link
                 key={t.name}
@@ -179,13 +192,13 @@ export default function LandingPage() {
                 <p className="mt-1 font-sans text-[13px] text-on-surface-variant">{t.tag}</p>
               </Link>
             ))}
-          </div>
+          </InView>
         </div>
       </section>
 
       {/* Network */}
       <section id="network" className="mx-auto max-w-6xl px-gutter py-24">
-        <div className="reveal grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+        <InView className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
           <div>
             <h2 className="font-display text-[30px] font-semibold leading-[1.12] tracking-[-0.025em] text-on-surface md:text-[40px]">
               It&apos;s not just what you learn. <span className="text-primary">It&apos;s who you&apos;re in the room with.</span>
@@ -213,7 +226,7 @@ export default function LandingPage() {
             </ul>
           </div>
           <NetworkPanel />
-        </div>
+        </InView>
       </section>
 
       {/* Founders — editorial rows, alternating sides */}
@@ -221,20 +234,20 @@ export default function LandingPage() {
         <div className="mx-auto max-w-6xl px-gutter">
           <div className="mx-auto max-w-2xl text-center">
             <span className="inline-flex items-center gap-2 rounded-full border border-outline-variant/12 bg-surface/80 px-3.5 py-1.5 font-sans text-[13px] text-on-surface-variant backdrop-blur">
-              <Icon name="diversity_3" fill className="text-[15px] text-primary" /> The founders
+              <Icon name="diversity_3" fill className="text-[15px] text-primary" /> Founders
             </span>
             <h2 className="mt-6 font-display text-[32px] font-semibold tracking-[-0.025em] text-on-surface md:text-[44px]">
-              The people behind <span className="text-primary">Blueprint Advantage.</span>
+              Meet the <span className="text-primary">founders.</span>
             </h2>
             <p className="mt-4 font-body-lg text-body-lg text-on-surface-variant">
               We built the room we wished we&apos;d had at your age. Here&apos;s who&apos;s in your corner.
             </p>
           </div>
-          <div className="reveal mt-16 space-y-16 md:space-y-20">
+          <InView className="mt-16 space-y-16 md:space-y-20">
             {FOUNDERS.map((f, i) => (
               <FounderRow key={f.role} founder={f} flip={i % 2 === 1} />
             ))}
-          </div>
+          </InView>
         </div>
       </section>
 
@@ -263,7 +276,7 @@ export default function LandingPage() {
             Up and running in minutes.
           </h2>
         </div>
-        <div className="reveal mt-12 grid gap-px overflow-hidden rounded-2xl border border-outline-variant/10 bg-outline-variant/10 md:grid-cols-3">
+        <InView className="mt-12 grid gap-px overflow-hidden rounded-2xl border border-outline-variant/10 bg-outline-variant/10 md:grid-cols-3">
           {STEPS.map((s) => (
             <div key={s.n} className="bg-canvas p-7">
               <span className="grid h-9 w-9 place-items-center rounded-full bg-primary/12 font-sans text-sm font-semibold text-primary">
@@ -273,7 +286,7 @@ export default function LandingPage() {
               <p className="mt-2 font-body-md text-body-md text-on-surface-variant">{s.body}</p>
             </div>
           ))}
-        </div>
+        </InView>
       </section>
 
       {/* Pricing */}
@@ -285,7 +298,7 @@ export default function LandingPage() {
           <p className="mt-3 font-body-lg text-body-lg text-on-surface-variant">
             No tiers, no upsells. Every track, every mentor, the whole network.
           </p>
-          <div className="reveal glow-button mt-8 rounded-2xl border border-primary/25 bg-surface p-8 text-left">
+          <InView className="glow-button mt-8 rounded-2xl border border-primary/25 bg-surface p-8 text-left">
             <div className="flex items-baseline gap-1.5">
               <span className="font-display text-[48px] font-semibold leading-none tracking-tight text-on-surface">{PRICE_DISPLAY.amount}</span>
               <span className="font-sans text-on-surface-variant">{PRICE_DISPLAY.period}</span>
@@ -309,7 +322,7 @@ export default function LandingPage() {
             >
               Claim your seat
             </Link>
-          </div>
+          </InView>
         </div>
       </section>
 
